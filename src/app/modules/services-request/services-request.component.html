@@ -1,0 +1,153 @@
+
+<div class="container">
+  <mat-horizontal-stepper linear #stepper (selectionChange)="onStepChange($event)">
+    <mat-step [stepControl]="serviceFormGroup" [editable]="isEditable">
+      <form [formGroup]="serviceFormGroup">
+        <ng-template matStepLabel>!Selecciona el tipo de servicio!</ng-template>
+        <div class="row">
+          <div class="col-lg-4" *ngFor="let item of services">
+            <button mat-raised-button color="primary" matStepperNext (click)="setService(item)">{{ item.servicio }}</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="plansFormGroup" [editable]="isEditable">
+      <form [formGroup]="plansFormGroup">
+        <ng-template matStepLabel>Selecciona el plan</ng-template>
+        <div class="row">
+          <div *ngIf="preparedPlans.length == 0">
+            <p>No existen planes aun para este tipo de servicio</p>
+          </div>
+          <div class="col-md-3" *ngFor="let item of preparedPlans">
+            <mat-card class="example-card plan-card" matStepperNext (click)="setPlan(item)">
+              <mat-card-header matStepperNext>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><h1>{{ item.plan }} </h1> </mat-card-title>
+              </mat-card-header>
+              <mat-card-content matStepperNext>
+                <p>
+                  .
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button matStepperNext>LIKE</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="personalDataFormGroup" [editable]="isEditable" >
+      <form [formGroup]="personalDataFormGroup">
+        <ng-template matStepLabel>Ingresa tus datos</ng-template>
+        <div class="row">
+          <div class="col-lg-6 avatar-container">
+            <div class="avatar-select"  (change)="onFileChanged($event)"
+                 [ngStyle]="{
+                'text-align': 'center',
+                'color':'#fff',
+                'background-color':'#EBEBEB',
+                'background-image': 'url(' + imageSrc + ')',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover'
+              }"
+            >
+              <input
+                style="display: none"
+                formControlName="avatar"
+                type="file" (change)="onFileChanged($event)"
+                #fileInput>
+              <mat-icon color="primary" style="margin-top: 85%; cursor: pointer" (click)="fileInput.click()">camera_alt</mat-icon>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div>
+              <mat-form-field>
+                <mat-label>Nombre o Razon social</mat-label>
+                <input
+                  matInput
+                  formControlName="name"
+                  placeholder="Nombre"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Cedula o Rif</mat-label>
+                <input
+                  matInput
+                  formControlName="identification"
+                  placeholder="Cedula"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Correo</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  placeholder="Email"
+                  type="email"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Telefono</mat-label>
+                <input
+                  matInput
+                  formControlName="phone"
+                  placeholder="Celular"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field style="width:100%">
+                <mat-label>Clave</mat-label>
+                <input
+                  matInput
+                  formControlName="password"
+                  placeholder="Clave"
+                  type="password"
+                  required
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Atras</button>
+              <button  mat-button matStepperNext (click)="validatePersonalForm()" >Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel></ng-template>
+      <div *ngIf="isGettingLocation">
+        <mat-spinner></mat-spinner>
+      </div>
+      <p>Todo listo.</p>
+      <p *ngIf="isGettingLocation">Cargando localizacion.</p>
+      <p *ngIf="!isGettingLocation">{{ doesItHaveLocation }}.</p>
+      <p *ngIf="doesItHaveLocation">{{ currentLocation.latitude }}.</p>
+      <p *ngIf="doesItHaveLocation">{{ currentLocation.longitude }}.</p>
+      <p *ngIf="doesItHaveAddress">{{ myAddress }}.</p>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <button [disabled]="isLoading" mat-raised-button color="primary" (click)="confirmAddress()">Confirmar direccion</button>
+          <button [disabled]="isLoading" mat-raised-button color="primary" (click)="requestService()">Contratar Servicio</button>
+        </div>
+      </div>
+
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

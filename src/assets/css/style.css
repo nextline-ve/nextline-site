@@ -1,0 +1,32 @@
+/* @font-face {
+  font-family: AzoSansRegular;
+  src: url("../fonts/RuiAbreuAzoSansRegular.otf");
+}
+@font-face {
+  font-family: AzoSansBold;
+  src: url("../fonts/RuiAbreuAzoSansBold.otf");
+}
+@font-face {
+  font-family: AzoSansMedium;
+  src: url("../fonts/RuiAbreuAzoSansMedium.otf");
+}*/
+@font-face {
+  font-family: PoppinsRegular;
+  src: url("../fonts/PoppinsRegular.ttf");
+}
+.btn-primary{background-color: blue!important;}
+.mat-form-field{width: 100%;}
+.plan-card{
+  background: blue
+}
+.avatar-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-select{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: red;
+}
