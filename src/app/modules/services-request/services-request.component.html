@@ -30,7 +30,7 @@
           <app-plans
             [name]="item.plan"
             *ngFor="let item of plans"
-            (click)="setPlan(item)"
+            (click)="setPlan(item.id)"
           ></app-plans>
         </div>
         <div class="row center-lg">
@@ -45,7 +45,7 @@
       <form [formGroup]="personalDataFormGroup">
         <ng-template matStepLabel>Ingresa tus datos</ng-template>
         <div class="row">
-          <!-- <div class="col-lg-6 avatar-container">
+          <div class="col-lg-6 avatar-container">
             <div
               class="avatar-select"
               (change)="onFileChanged($event)"
@@ -72,7 +72,7 @@
                 >camera_alt</mat-icon
               >
             </div>
-          </div> -->
+          </div>
           <div class="col-lg-6">
             <div>
               <mat-form-field>

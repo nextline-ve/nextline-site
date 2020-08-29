@@ -63,7 +63,7 @@ export class ServicesRequestComponent implements OnInit {
       plan: [""],
     });
     this.personalDataFormGroup = this.formBuilder.group({
-      // avatar: new FormControl("", Validators.required),
+      avatar: new FormControl("", Validators.required),
       name: new FormControl("", Validators.required),
       identification: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
@@ -202,7 +202,8 @@ export class ServicesRequestComponent implements OnInit {
   setLocation(e) {
     console.log("set", e);
     this.currentLocation = e;
-    this.setAddressView('confirm');
+    this.getAddress(e);
+    this.setAddressView('address');
   }
 
   async pickAddress() {
@@ -268,7 +269,7 @@ export class ServicesRequestComponent implements OnInit {
       "clave",
       this.personalDataFormGroup.get("password").value
     );
-    // myFormData.append("avatar", this.avatar, this.avatar.name);
+    myFormData.append("avatar", this.avatar, this.avatar.name);
     myFormData.append("latitud", this.currentLocation.latitude);
     myFormData.append("longitud", this.currentLocation.longitude);
 
