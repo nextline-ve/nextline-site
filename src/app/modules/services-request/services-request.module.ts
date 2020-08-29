@@ -12,10 +12,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { ServicesComponent } from './components/services/services.component';
+import { PlansComponent } from './components/plans/plans.component';
 
 
 @NgModule({
-  declarations: [ServicesRequestComponent, ServicesComponent],
+  declarations: [ServicesRequestComponent, ServicesComponent, PlansComponent],
   imports: [
     CommonModule,
     ServicesRequestRoutingModule,

@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "nextline-site"
+  "defaultProject": "nextline-site",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -110,6 +110,7 @@ export class ServicesRequestComponent implements OnInit {
 
   public onStepChange(event: any): void {
     console.log(this.selectedService);
+    console.log(this.selectedPlan);
     if (event.selectedIndex == 3) {
       this.geoUtils.askLocation().then(res => {
         console.log('_ promise res', res);
@@ -205,7 +206,7 @@ export class ServicesRequestComponent implements OnInit {
     myFormData.append('cedula_rif', this.personalDataFormGroup.get('identification').value);
     myFormData.append('correo', this.personalDataFormGroup.get('email').value);
     myFormData.append('celular', this.personalDataFormGroup.get('phone').value);
-    myFormData.append('plan', this.selectedPlan.id);
+    myFormData.append('plan', this.selectedPlan);
     myFormData.append('direccion', this.myAddress);
     myFormData.append('clave', this.personalDataFormGroup.get('password').value);
     myFormData.append('avatar', this.avatar, this.avatar.name);
@@ -238,6 +239,14 @@ export class ServicesRequestComponent implements OnInit {
   validateSelectedService() {
     if (this.selectedService == null) {
       this.utils.showSnackBar('Por favor seleccione el tipo de servicio.');
+      return;
+    }
+    this.stepper.next();
+  }
+
+  validateSelectedPlan() {
+    if (this.selectedPlan == null) {
+      this.utils.showSnackBar('Por favor seleccione un plan.');
       return;
     }
     this.stepper.next();
