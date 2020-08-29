@@ -206,40 +206,6 @@ export class ServicesRequestComponent implements OnInit {
     this.setAddressView('address');
   }
 
-  async pickAddress() {
-    console.log("pickAddress this.currentLocation", this.currentLocation);
-    const coords = {
-      latitude: 10.502456738546742,
-      longitude: -66.85264314414663,
-    };
-    if (this.currentLocation != null) {
-      (coords.latitude = this.currentLocation.latitude),
-        (coords.longitude = this.currentLocation.longitude);
-    }
-    /*const dialogRef = this.dialog.open(ModalPickAddressComponent, {
-      width: '600px',
-      data: {
-        address: this.myAddress,
-        latitude: coords.latitude,
-        longitude: coords.longitude
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result.res) {
-        this.currentLocation = result.currentLocation;
-        console.log('__ this.currentLocation.latitude', this.currentLocation.latitude);
-        console.log('__ this.currentLocation', this.currentLocation);
-
-        this.getAddress({
-          latitude: this.currentLocation.latitude,
-          longitude: this.currentLocation.longitude
-        });
-      }
-    });*/
-  }
-
   validatePersonalForm() {
     if (!this.personalDataFormGroup.valid) {
       return;

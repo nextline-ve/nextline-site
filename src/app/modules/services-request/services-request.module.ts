@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 import { ServicesRequestRoutingModule } from "./services-request-routing.module";
 import { ServicesRequestComponent } from "./services-request.component";
 import { MatStepperModule } from "@angular/material/stepper";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -20,6 +20,8 @@ import { AddressMapComponent } from './components/address-map/address-map.compon
 @NgModule({
   declarations: [ServicesRequestComponent, ServicesComponent, PlansComponent, AddressMapComponent],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     ServicesRequestRoutingModule,
     MatStepperModule,
