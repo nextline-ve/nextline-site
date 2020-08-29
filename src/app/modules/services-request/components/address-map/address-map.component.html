@@ -1,0 +1,19 @@
+<agm-map
+  *ngIf="isMapReady"
+  [latitude]="currentLocation.latitude"
+  [longitude]="currentLocation.longitude"
+  (mapClick)="mapClicked($event)"
+  [disableDefaultUI]="true"
+  [controlSize]="true"
+>
+  <agm-marker
+    [latitude]="currentLocation.latitude"
+    [longitude]="currentLocation.longitude"
+  ></agm-marker>
+</agm-map>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>
+    Confirmar
+  </button>
+</div>

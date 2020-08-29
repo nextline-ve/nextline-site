@@ -27,10 +27,10 @@
           <p>No existen planes aun para este tipo de servicio</p>
         </div>
         <div class="row w-100">
-          <app-plans 
+          <app-plans
             [name]="item.plan"
-            *ngFor="let item of plans" 
-            (click)="setPlan(item.id)"
+            *ngFor="let item of plans"
+            (click)="setPlan(item)"
           ></app-plans>
         </div>
         <div class="row center-lg">
@@ -45,7 +45,7 @@
       <form [formGroup]="personalDataFormGroup">
         <ng-template matStepLabel>Ingresa tus datos</ng-template>
         <div class="row">
-          <div class="col-lg-6 avatar-container">
+          <!-- <div class="col-lg-6 avatar-container">
             <div
               class="avatar-select"
               (change)="onFileChanged($event)"
@@ -72,7 +72,7 @@
                 >camera_alt</mat-icon
               >
             </div>
-          </div>
+          </div> -->
           <div class="col-lg-6">
             <div>
               <mat-form-field>
@@ -148,35 +148,65 @@
 
     <mat-step>
       <ng-template matStepLabel></ng-template>
-      <div *ngIf="isGettingLocation">
-        <mat-spinner></mat-spinner>
-      </div>
-      <p>Todo listo.</p>
-      <p *ngIf="isGettingLocation">Cargando localizacion.</p>
-      <p *ngIf="!isGettingLocation">{{ doesItHaveLocation }}.</p>
-      <p *ngIf="doesItHaveLocation">{{ currentLocation.latitude }}.</p>
-      <p *ngIf="doesItHaveLocation">{{ currentLocation.longitude }}.</p>
-      <p *ngIf="doesItHaveAddress">{{ myAddress }}.</p>
 
-      <div class="row">
-        <div class="col-lg-4">
-          <button
-            [disabled]="isLoading"
-            mat-raised-button
-            color="primary"
-            (click)="confirmAddress()"
-          >
-            Confirmar direccion
-          </button>
-          <button
-            [disabled]="isLoading"
-            mat-raised-button
-            color="primary"
-            (click)="requestService()"
-          >
-            Contratar Servicio
-          </button>
+      <div *ngIf="addressView === 'confirm'">
+        <div *ngIf="isGettingLocation">
+          cargando localizacion
+          <mat-spinner></mat-spinner>
         </div>
+        <p *ngIf="isGettingLocation">Cargando localizacion.</p>
+        <p *ngIf="!isGettingLocation">{{ doesItHaveLocation }}.</p>
+        <p *ngIf="doesItHaveLocation">{{ currentLocation.latitude }}.</p>
+        <p *ngIf="doesItHaveLocation">{{ currentLocation.longitude }}.</p>
+        <p *ngIf="doesItHaveAddress">{{ myAddress }}.</p>
+        <p>¿Esta usted en el sitio donde se va a instalar el servicios?</p>
+        <div class="row">
+          <div class="col-lg-4">
+            <button
+              [disabled]="isLoading"
+              mat-raised-button
+              color="primary"
+              (click)="setAddressView('address')"
+            >
+              Si
+            </button>
+            <button
+              [disabled]="isLoading"
+              mat-raised-button
+              color="primary"
+              (click)="setAddressView('map')"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="addressView === 'map'">
+        <div *ngIf="isGettingLocation">
+          cargando localizacion
+          <mat-spinner></mat-spinner>
+        </div>
+        <div id="map">
+          <app-address-map
+            [inputLatitude]="currentLocation.latitude"
+            [inputLongitude]="currentLocation.longitude"
+            (setNewLocation)="setLocation($event)"
+          >
+          </app-address-map>
+        </div>
+      </div>
+
+      <div *ngIf="addressView === 'address'">
+        <p>Todo listo.</p>
+        <button
+          [disabled]="isLoading"
+          mat-raised-button
+          color="primary"
+          (click)="requestService()"
+        >
+          Finalizar Solicitud
+        </button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
