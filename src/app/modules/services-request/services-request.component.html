@@ -1,25 +1,27 @@
 
 <div class="container">
   <mat-horizontal-stepper linear #stepper (selectionChange)="onStepChange($event)">
+
     <mat-step [stepControl]="serviceFormGroup" [editable]="isEditable">
-      <form [formGroup]="serviceFormGroup">
-        <ng-template matStepLabel>!Selecciona el tipo de servicio!</ng-template>
-        <div class="row">
-          <div class="col-lg-4" *ngFor="let item of services">
-            <button mat-raised-button color="primary" matStepperNext (click)="setService(item)">{{ item.servicio }}</button>
-          </div>
+      <div class="row w-100">
+        <app-services [name]="item.servicio" (click)="setService(item.id)" *ngFor="let item of services"></app-services>
+      </div>
+      <div class = "row center-lg">
+        <div class="col-lg-4">
+          <button mat-button (click)="validateSelectedService()">Next</button>
         </div>
-      </form>
+      </div>
+
     </mat-step>
 
     <mat-step [stepControl]="plansFormGroup" [editable]="isEditable">
       <form [formGroup]="plansFormGroup">
         <ng-template matStepLabel>Selecciona el plan</ng-template>
         <div class="row">
-          <div *ngIf="preparedPlans.length == 0">
+          <div *ngIf="plans.length == 0">
             <p>No existen planes aun para este tipo de servicio</p>
           </div>
-          <div class="col-md-3" *ngFor="let item of preparedPlans">
+          <div class="col-md-3" *ngFor="let item of plans">
             <mat-card class="example-card plan-card" matStepperNext (click)="setPlan(item)">
               <mat-card-header matStepperNext>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -149,5 +151,6 @@
       </div>
 
     </mat-step>
+
   </mat-horizontal-stepper>
 </div>

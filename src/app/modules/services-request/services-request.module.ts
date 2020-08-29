@@ -11,10 +11,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import { ServicesComponent } from './components/services/services.component';
 
 
 @NgModule({
-  declarations: [ServicesRequestComponent],
+  declarations: [ServicesRequestComponent, ServicesComponent],
   imports: [
     CommonModule,
     ServicesRequestRoutingModule,

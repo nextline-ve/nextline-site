@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {GeoUtilsService} from '../../services/geo-utils.service';
 import {RequestApiService} from '../../services/request-api.service';
 import {SessionsClientService} from '../../services/sessions-client.service';
 import {UtilsService} from '../../services/utils.service';
+import {MatStepper} from '@angular/material/stepper';
 
 @Component({
   selector: 'app-services-request',
@@ -13,8 +13,9 @@ import {UtilsService} from '../../services/utils.service';
   styleUrls: ['./services-request.component.scss']
 })
 export class ServicesRequestComponent implements OnInit {
+  @ViewChild('stepper', { static: true }) stepper: MatStepper;
   serviceFormGroup: FormGroup;
-  selectedService = null;
+  selectedService: any;
   selectedPlan = null;
   plansFormGroup: FormGroup;
   personalDataFormGroup: FormGroup;
@@ -84,15 +85,12 @@ export class ServicesRequestComponent implements OnInit {
     });
   }
 
-  async setService(item: any) {
+  async setService(item) {
     this.selectedService = item;
-    if (item != null) {
-      this.preparedPlans = await this.plans.filter((plan) => (
-        plan.tipo_servicio.id === item.id
-      ));
-    } else {
-      console.log('erro');
-    }
+
+    this.http.get('config/planes/', {tipo_servicio__id: item}, false).subscribe( (response: any) => {
+      this.plans = response.results;
+    });
   }
 
   async setPlan(item) {
@@ -111,6 +109,7 @@ export class ServicesRequestComponent implements OnInit {
   }
 
   public onStepChange(event: any): void {
+    console.log(this.selectedService);
     if (event.selectedIndex == 3) {
       this.geoUtils.askLocation().then(res => {
         console.log('_ promise res', res);
@@ -234,6 +233,14 @@ export class ServicesRequestComponent implements OnInit {
       this.utils.showSnackBar(JSON.stringify(msg), 15000);
       this.isLoading = false;
     });
+  }
+
+  validateSelectedService() {
+    if (this.selectedService == null) {
+      this.utils.showSnackBar('Por favor seleccione el tipo de servicio.');
+      return;
+    }
+    this.stepper.next();
   }
 
 }

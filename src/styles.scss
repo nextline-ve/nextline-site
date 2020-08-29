@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/css/style.css";
+@import "assets/css/flexboxgrid.css";
 html, body { height: 100%;}
 body { margin: 0; font-family: PoppinsRegular !important;}
+
+
+.radius-20 {
+  border-radius: 20px;
+}
