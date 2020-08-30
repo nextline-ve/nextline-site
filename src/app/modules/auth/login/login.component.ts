@@ -1,8 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { RequestApiService } from 'src/app/services/request-api.service';
-import { SessionsClientService } from 'src/app/services/sessions-client.service';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { UtilsService } from 'src/app/services/utils.service';
+import { RequestApiService } from "src/app/services/request-api.service";
+import { SessionsClientService } from "src/app/services/sessions-client.service";
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  FormControl,
+} from "@angular/forms";
+import { UtilsService } from "src/app/services/utils.service";
 
 @Component({
   selector: "app-login",
@@ -50,11 +55,10 @@ export class LoginComponent implements OnInit {
     this.http.post("config/auth/", this.form.getRawValue(), false).subscribe(
       (response: any) => {
         console.log("response", response);
-
         this.isLoading = false;
         this.session.registerSession(response);
-        console.log("Bem-vindo");
-        window.location.replace("/home");
+
+        window.location.replace("/panel");
       },
       (error) => {
         console.log(error.error);
