@@ -5,10 +5,13 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
 import { HeaderComponent } from './components/header/header.component';
 import {MatButtonModule} from '@angular/material/button';
+import { PresentationComponent } from './components/presentation/presentation.component';
+import { HireNowComponent } from './components/hire-now/hire-now.component';
+import { PlansComponent } from './components/plans/plans.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, HeaderComponent],
+  declarations: [LandingComponent, HeaderComponent, PresentationComponent, HireNowComponent, PlansComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,

@@ -5,7 +5,9 @@
 html, body { height: 100%;}
 body { margin: 0; font-family: PoppinsRegular !important;}
 
-
+.position-fixed {
+  position: fixed!important;
+}
 .radius-20 {
   border-radius: 20px;
 }
