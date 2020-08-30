@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "nextline-site"
+  "defaultProject": "nextline-site",
+  "cli": {
+    "analytics": "5bad1975-e771-431b-9506-7730afd4086a"
+  }
 }

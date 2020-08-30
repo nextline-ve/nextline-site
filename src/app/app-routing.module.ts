@@ -3,11 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'service-request',
-    pathMatch: 'full'
-  },
   { path: '', loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule) },
   { path: 'service-request', loadChildren: () => import(
     './modules/services-request/services-request.module'
