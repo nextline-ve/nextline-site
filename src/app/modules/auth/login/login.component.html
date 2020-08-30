@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row form-container">
+    <div>
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <h2>Inicia Sesion</h2>
+            <mat-error *ngIf="loginInvalid">
+              Error en el email y/o la clave
+            </mat-error>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+              <mat-error> Email invalido </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                type="password"
+                placeholder="Password"
+                formControlName="clave"
+                required
+              />
+              <mat-error> Clave invalida </mat-error>
+            </mat-form-field>
+            <button [disabled]="isLoading" mat-raised-button color="primary">
+              Login
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

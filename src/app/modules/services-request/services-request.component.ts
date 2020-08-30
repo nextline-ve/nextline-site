@@ -252,7 +252,7 @@ export class ServicesRequestComponent implements OnInit {
           15000
         );
 
-        this.router.navigate(["login"]);
+        this.router.navigate(["auth"]);
       },
       (err) => {
         const keyWithError = [];
