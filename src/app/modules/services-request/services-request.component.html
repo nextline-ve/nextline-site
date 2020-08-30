@@ -150,40 +150,48 @@
       <ng-template matStepLabel></ng-template>
 
       <div *ngIf="addressView === 'confirm'">
-        <div *ngIf="isGettingLocation">
+        <div *ngIf="isLoadingLocation">
           cargando localizacion
           <mat-spinner></mat-spinner>
         </div>
-        <p *ngIf="isGettingLocation">Cargando localizacion.</p>
-        <p *ngIf="!isGettingLocation">{{ doesItHaveLocation }}.</p>
-        <p *ngIf="doesItHaveLocation">{{ currentLocation.latitude }}.</p>
-        <p *ngIf="doesItHaveLocation">{{ currentLocation.longitude }}.</p>
-        <p *ngIf="doesItHaveAddress">{{ myAddress }}.</p>
-        <p>¿Esta usted en el sitio donde se va a instalar el servicios?</p>
-        <div class="row">
-          <div class="col-lg-4">
-            <button
-              [disabled]="isLoading"
-              mat-raised-button
-              color="primary"
-              (click)="setAddressView('address')"
-            >
-              Si
-            </button>
-            <button
-              [disabled]="isLoading"
-              mat-raised-button
-              color="primary"
-              (click)="setAddressView('map')"
-            >
-              No
-            </button>
+        <div *ngIf="!didAskedLocationFailed && !isLoadingLocation">
+          <p>¿Esta usted en el sitio donde se va a instalar el servicios?</p>
+          <div class="row">
+            <div class="col-lg-4">
+              <button
+                [disabled]="isLoading"
+                mat-raised-button
+                color="primary"
+                (click)="setAddressView('address')"
+              >
+                Si
+              </button>
+              <button
+                [disabled]="isLoading"
+                mat-raised-button
+                color="primary"
+                (click)="setAddressView('map')"
+              >
+                No
+              </button>
+            </div>
           </div>
+        </div>
+
+        <div *ngIf="didAskedLocationFailed">
+          <button
+            [disabled]="isLoading"
+            mat-raised-button
+            color="primary"
+            (click)="setAddressView('map')"
+          >
+            Escoje tu direccion desde el mapa
+          </button>
         </div>
       </div>
 
       <div *ngIf="addressView === 'map'">
-        <div *ngIf="isGettingLocation">
+        <div *ngIf="isLoadingLocation">
           cargando localizacion
           <mat-spinner></mat-spinner>
         </div>
@@ -198,15 +206,21 @@
       </div>
 
       <div *ngIf="addressView === 'address'">
-        <input type="text" [(ngModel)]="myAddress" />
-        <button
-          [disabled]="isLoading"
-          mat-raised-button
-          color="primary"
-          (click)="requestService()"
-        >
-          Finalizar Solicitud
-        </button>
+        <div *ngIf="isLoadingLocation">
+          cargando localizacion
+          <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="!isLoadingLocation">
+          <input type="text" [(ngModel)]="myAddress" />
+          <button
+            [disabled]="isLoading"
+            mat-raised-button
+            color="primary"
+            (click)="requestService()"
+          >
+            Finalizar Solicitud
+          </button>
+        </div>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

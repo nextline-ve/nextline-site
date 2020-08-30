@@ -25,18 +25,18 @@ export class ServicesRequestComponent implements OnInit {
   public plansFormGroup: FormGroup;
   public personalDataFormGroup: FormGroup;
   public isEditable = true;
-  public isGettingLocation = false;
+  public isLoadingLocation = false;
   public doesLocationDidLoad = false;
   public doesItHaveLocation = false;
+  public didAskedLocationFailed = false;
   public doesItHaveAddress = false;
   public isConfirmedAddress = false;
   public addressView = "confirm";
-  public isLoading = false;
-  public currentLocation = null;
   public myAddress = null;
+  public currentLocation = null;
+  public isLoading = false;
   public services = [];
   public plans = [];
-  public preparedPlans = [];
   public avatar: File;
   public imageSrc: string;
 
@@ -147,9 +147,8 @@ export class ServicesRequestComponent implements OnInit {
   }
 
   onStepChange(event: any): void {
-    console.log(this.selectedService);
-    console.log(this.selectedPlan);
     if (event.selectedIndex == 3) {
+      this.isLoadingLocation = true;
       this.geoUtils
         .askLocation()
         .then((res) => {
@@ -157,10 +156,12 @@ export class ServicesRequestComponent implements OnInit {
           this.doesItHaveLocation = true;
           this.currentLocation = res;
           this.getAddress(res);
+          this.didAskedLocationFailed = false;
           console.log(res);
         })
         .catch((e) => {
           this.doesItHaveLocation = false;
+          this.didAskedLocationFailed = true;
           this.utils.showSnackBar("No se pudo obtener tu localizacion actual.");
           console.error(e);
         });
@@ -171,19 +172,22 @@ export class ServicesRequestComponent implements OnInit {
     this.geoUtils
       .getAddress(coords)
       .then((res: any) => {
-        console.log("results", res);
-        console.log("proper address", res.formatted_address);
+        console.log("getAddress proper address", res.formatted_address);
         this.myAddress = res.formatted_address;
         this.doesItHaveAddress = true;
+        this.isLoadingLocation = false;
       })
       .catch((e) => {
+        console.error(e);
+        this.didAskedLocationFailed = true;
+        this.isLoadingLocation = false;
         this.utils.showSnackBar(e);
       });
   }
 
   async setAddressView(type) {
     console.log("setAddressView");
-    
+
     if (type == "map") {
       console.log("setAddressView map");
       if (this.currentLocation == null) {
@@ -192,7 +196,7 @@ export class ServicesRequestComponent implements OnInit {
           longitude: -66.85264314414663,
         };
         console.log("setAddressView null current", this.currentLocation);
-      }else{
+      } else {
         console.log("setAddressView not null current", this.currentLocation);
       }
     }
@@ -203,7 +207,7 @@ export class ServicesRequestComponent implements OnInit {
     console.log("set", e);
     this.currentLocation = e;
     this.getAddress(e);
-    this.setAddressView('address');
+    this.setAddressView("address");
   }
 
   validatePersonalForm() {
@@ -243,6 +247,11 @@ export class ServicesRequestComponent implements OnInit {
       (res: any) => {
         this.plans = res.results;
         this.isLoading = false;
+        this.utils.showSnackBar(
+          JSON.stringify("Registrado con exito, por favor inicie sesion"),
+          15000
+        );
+
         this.router.navigate(["login"]);
       },
       (err) => {
