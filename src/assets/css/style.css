@@ -14,6 +14,9 @@
   font-family: PoppinsRegular;
   src: url("../fonts/PoppinsRegular.ttf");
 }
+.font-regular {
+  font-family: PoppinsRegular;
+}
 .btn-primary{background-color: blue!important;}
 .mat-form-field{width: 100%;}
 .plan-card{
