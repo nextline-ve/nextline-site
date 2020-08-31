@@ -8,10 +8,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { HireNowComponent } from './components/hire-now/hire-now.component';
 import { PlansComponent } from './components/plans/plans.component';
+import { AppComponent } from './components/app/app.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, HeaderComponent, PresentationComponent, HireNowComponent, PlansComponent],
+  declarations: [LandingComponent, HeaderComponent, PresentationComponent, HireNowComponent, PlansComponent, AppComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
