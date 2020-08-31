@@ -9,14 +9,16 @@ import { PresentationComponent } from './components/presentation/presentation.co
 import { HireNowComponent } from './components/hire-now/hire-now.component';
 import { PlansComponent } from './components/plans/plans.component';
 import { AppComponent } from './components/app/app.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [LandingComponent, HeaderComponent, PresentationComponent, HireNowComponent, PlansComponent, AppComponent],
-  imports: [
-    CommonModule,
-    LandingRoutingModule,
-    MatButtonModule
-  ]
+    imports: [
+        CommonModule,
+        LandingRoutingModule,
+        MatButtonModule,
+        MatIconModule
+    ]
 })
 export class LandingModule { }
