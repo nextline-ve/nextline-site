@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/css/style.css";
+@import "assets/css/style_text.css";
 @import "assets/css/flexboxgrid.css";
 @import "~@angular/material/theming";
 @include mat-core();
@@ -27,6 +28,15 @@ body {
   font-family: PoppinsRegular !important;
 }
 
+.position-fixed {
+  position: fixed!important;
+}
+.position-absolute {
+  position: absolute!important;
+}
+.position-relative {
+  position: relative!important;
+}
 .radius-20 {
   border-radius: 20px;
 }
