@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ElementRef,
-} from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-services",
@@ -21,7 +14,7 @@ export class ServicesComponent implements OnInit {
   public serv_ded = "serv_ded";
   public icon = "";
 
-  constructor(private elementRef: ElementRef) {}
+  constructor() {}
 
   ngOnInit(): void {
     switch (this.name) {
@@ -38,5 +31,4 @@ export class ServicesComponent implements OnInit {
         break;
     }
   }
-
 }
