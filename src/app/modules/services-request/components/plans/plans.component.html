@@ -33,9 +33,23 @@
   </div>
 
   <div class="price-container">
-    <div class="price">
-      <p>{{ dolarPrice }} /</p>
-      <small> {{ bolivarPrice }}</small>
+    <div [ngClass]="id == selectedPlanId ? 'price-selected' : 'price'">
+      <div class="row prices">
+        <p
+          [ngClass]="
+            id == selectedPlanId ? 'value-item-selected' : 'value-item'
+          "
+        >
+          {{ dolarPrice }}
+        </p>
+        <small
+          [ngClass]="
+            id == selectedPlanId ? 'value-item-selected' : 'value-item'
+          "
+        >
+          {{ bolivarPrice }}</small
+        >
+      </div>
     </div>
   </div>
 </div>
