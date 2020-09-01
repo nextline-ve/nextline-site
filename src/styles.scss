@@ -29,32 +29,43 @@ body {
 }
 
 .position-fixed {
-  position: fixed!important;
+  position: fixed !important;
 }
 .position-absolute {
-  position: absolute!important;
+  position: absolute !important;
 }
 .position-relative {
-  position: relative!important;
+  position: relative !important;
 }
 .radius-20 {
   border-radius: 20px;
 }
-.primary-color{
-  color: #005FAB;
+.primary-color {
+  color: #005fab;
 }
-.blue-line{
-  border: 1px solid #005FAB;
+.blue-line {
+  border: 1px solid #005fab;
   margin: 8%;
 }
-.service-item{
+.service-item {
   background: #fff;
+  color: #005fab;
   width: 300px;
   height: 230px;
-  border: 1px solid #005FAB;
+  border: 1px solid #005fab;
   border-radius: 24px;
+  cursor: pointer;
 }
-app-services{
+.service-item-selected {
+  background: #0090df;
+  color: #fff !important;
+  width: 300px;
+  height: 230px;
+  border: 1px solid #005fab;
+  border-radius: 24px;
+  cursor: pointer;
+}
+app-services {
   margin-top: 3%;
   margin-left: 2%;
   margin-right: 2%;

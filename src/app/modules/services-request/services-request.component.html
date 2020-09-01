@@ -16,7 +16,9 @@
       <div class="row w-100 element-container">
         <!-- <div class="service-container"> -->
           <app-services
+            [id]="item.id"
             [name]="item.servicio"
+            [selectedServiceId]="selectedService"
             (click)="setService(item.id)"
             *ngFor="let item of services"
           ></app-services>

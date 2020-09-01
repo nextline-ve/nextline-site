@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ElementRef,
+} from "@angular/core";
 
 @Component({
   selector: "app-services",
@@ -6,23 +13,30 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
   styleUrls: ["./services.component.scss"],
 })
 export class ServicesComponent implements OnInit {
+  @Input() id: any;
   @Input() name: string;
-  public serv_res = "serv_res.svg";
-  public serv_emp = "serv_emp.svg";
-  public serv_ded = "serv_ded.svg";
+  @Input() selectedServiceId: any;
+  public serv_res = "serv_res";
+  public serv_emp = "serv_emp";
+  public serv_ded = "serv_ded";
   public icon = "";
 
-  constructor() {}
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    if (this.name == "Residencial") {
-      this.icon = this.serv_res;
-    }
-    if (this.name == "Empresarial") {
-      this.icon = this.serv_emp;
-    }
-    if (this.name == "Dedicado") {
-      this.icon = this.serv_ded;
+    switch (this.name) {
+      case "Residencial":
+        this.icon = this.serv_res;
+        break;
+      case "Empresarial":
+        this.icon = this.serv_emp;
+        break;
+      case "Dedicado":
+        this.icon = this.serv_ded;
+        break;
+      default:
+        break;
     }
   }
+
 }

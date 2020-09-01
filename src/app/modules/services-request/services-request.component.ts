@@ -50,6 +50,8 @@ export class ServicesRequestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.error("service-request");
+
     this.prepareForms();
     this.getServices();
     this.getPlans();
@@ -104,7 +106,8 @@ export class ServicesRequestComponent implements OnInit {
 
   async setService(item) {
     this.selectedService = item;
-
+    console.log("this.selectedService", this.selectedService);
+    
     this.http
       .get("config/planes/", { tipo_servicio__id: item }, false)
       .subscribe((response: any) => {

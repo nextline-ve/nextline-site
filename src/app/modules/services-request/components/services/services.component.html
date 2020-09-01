@@ -1,9 +1,23 @@
-<div class="col-lg-12 service-item" style="cursor: pointer">
+<div
+  id="id"
+  class="col-lg-12 service-item"
+  [ngClass]="
+    id == selectedServiceId ? 'service-item-selected' : 'service-item'
+  "
+>
   <div class="img-container">
-    <img src="../../../../../assets/images/{{ icon }}" alt="" />
-    <img src="../../../../../assets/images/1selected.svg" alt="" />
+    <img
+      *ngIf="id != selectedServiceId"
+      src="../../../../../assets/images/{{ icon }}.svg"
+      alt=""
+    />
+    <img
+      *ngIf="id == selectedServiceId"
+      src="../../../../../assets/images/{{ icon }}_selected.svg"
+      alt=""
+    />
   </div>
   <div class="title-container">
-    <h2 class="title">{{ name }}</h2>
+    <h2 class="title">{{ name }} {{ id }} {{ selectedServiceId }}</h2>
   </div>
 </div>
