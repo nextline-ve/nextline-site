@@ -3,22 +3,39 @@
   [ngClass]="id == selectedPlanId ? 'plan-item-selected' : 'plan-item'"
 >
   <div class="title-container">
-    <h2 class="title">{{ name }}</h2>
+    <h1 class="title">{{ name }}</h1>
   </div>
 
   <div class="arrows-container">
-    <div>
+    <div class="arrow-container">
       <img src="../../../../../assets/images/arrow_up.svg" alt="" />
-      <p>{{ upSpeed }}</p>
+      <p
+        [ngClass]="id == selectedPlanId ? 'speed-item-selected' : 'speed-item'"
+      >
+        {{ upSpeed }} MB
+      </p>
     </div>
-    <div>
+
+    <div class="arrow-container">
       <img src="../../../../../assets/images/arrow_down.svg" alt="" />
-      <p>{{ downSpeed }}</p>
+      <p
+        [ngClass]="id == selectedPlanId ? 'speed-item-selected' : 'speed-item'"
+      >
+        {{ downSpeed }} MB
+      </p>
     </div>
   </div>
 
+  <div class="month-container">
+    <p [ngClass]="id == selectedPlanId ? 'speed-item-selected' : 'speed-item'">
+      Precio Mes
+    </p>
+  </div>
+
   <div class="price-container">
-    {{ bolivarPrice }}
-    {{ dolarPrice }}
+    <div class="price">
+      <p>{{ dolarPrice }} /</p>
+      <small> {{ bolivarPrice }}</small>
+    </div>
   </div>
 </div>
