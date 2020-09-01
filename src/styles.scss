@@ -43,29 +43,12 @@ body {
 .primary-color {
   color: #005fab;
 }
-.blue-line {
-  border: 1px solid #005fab;
-  margin: 8%;
-}
-.service-item {
-  background: #fff;
-  color: #005fab;
-  width: 300px;
-  height: 230px;
-  border: 1px solid #005fab;
-  border-radius: 24px;
-  cursor: pointer;
-}
-.service-item-selected {
-  background: #0090df;
-  color: #fff !important;
-  width: 300px;
-  height: 230px;
-  border: 1px solid #005fab;
-  border-radius: 24px;
-  cursor: pointer;
-}
 app-services {
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+app-plans {
   margin-top: 3%;
   margin-left: 2%;
   margin-right: 2%;

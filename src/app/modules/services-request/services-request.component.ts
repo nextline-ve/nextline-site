@@ -80,7 +80,6 @@ export class ServicesRequestComponent implements OnInit {
   async getServices() {
     this.http.get("config/tipo-servicios/", null, false).subscribe(
       (res: any) => {
-        console.log("servicios", res);
         this.services = res.results;
       },
       (err) => {
@@ -106,11 +105,12 @@ export class ServicesRequestComponent implements OnInit {
 
   async setService(item) {
     this.selectedService = item;
-    console.log("this.selectedService", this.selectedService);
-    
+
     this.http
       .get("config/planes/", { tipo_servicio__id: item }, false)
       .subscribe((response: any) => {
+        console.log(response.results);
+        
         this.plans = response.results;
       });
   }

@@ -37,21 +37,40 @@
     </mat-step>
 
     <mat-step [stepControl]="plansFormGroup" [editable]="isEditable">
-      <div class="row">
+      <div class="row center-lg element-container">
         <div *ngIf="plans.length == 0">
           <p>No existen planes aun para este tipo de servicio</p>
         </div>
-        <div class="row w-100">
-          <app-plans
-            [name]="item.plan"
-            *ngFor="let item of plans"
-            (click)="setPlan(item.id)"
-          ></app-plans>
+        <div class="col-lg-4">
+          <h2 class="primary-color">Planes de Internet</h2>
+          <div class="element-container blue-line"></div>
+          <div><small>Selecciona el plan de tu preferencia</small></div>
         </div>
-        <div class="row center-lg">
-          <div class="col-lg-4">
-            <button mat-button (click)="validateSelectedPlan()">Next</button>
-          </div>
+      </div>
+      <div class="row w-100 element-container">
+        <app-plans
+          [id]="item.id"
+          [name]="item.plan"
+          [dolarPrice]="item.precio"
+          [bolivarPrice]="item.precio_bs"
+          [downSpeed]="item.velocidad_baja"
+          [upSpeed]="item.velocidad_subida"
+          [selectedPlanId]="selectedPlan"
+          *ngFor="let item of plans"
+          (click)="setPlan(item.id)"
+        ></app-plans>
+      </div>
+      <div class="row center-lg element-container">
+        <div class="col-lg-4 container-button">
+          <button
+            mat-button
+            mat-raised-button
+            color="primary"
+            (click)="validateSelectedPlan()"
+          >
+            Continuar
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
         </div>
       </div>
     </mat-step>

@@ -1,0 +1,31 @@
+.blue-line {
+  border: 1px solid #005fab;
+  margin: 8%;
+}
+.plan-item {
+  background: #fff;
+  color: #005fab;
+  top: 369px;
+  left: 883px;
+  width: 233px;
+  height: 237px;
+  border: 1px solid #005fab;
+  border-radius: 24px;
+  cursor: pointer;
+}
+.plan-item-selected {
+  background: #0090df;
+  color: #fff !important;
+  top: 369px;
+  left: 883px;
+  width: 233px;
+  height: 237px;
+  border: 1px solid #005fab;
+  border-radius: 24px;
+  cursor: pointer;
+}
+app-services {
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+}

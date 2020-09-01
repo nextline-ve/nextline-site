@@ -1,3 +1,24 @@
-<div class="col-lg-12 border radius-20" style="cursor: pointer">
-  <h4 class="title">{{ name }}</h4>
+<div
+  class="col-lg-12 plan-item"
+  [ngClass]="id == selectedPlanId ? 'plan-item-selected' : 'plan-item'"
+>
+  <div class="title-container">
+    <h2 class="title">{{ name }}</h2>
+  </div>
+
+  <div class="arrows-container">
+    <div>
+      <img src="../../../../../assets/images/arrow_up.svg" alt="" />
+      <p>{{ upSpeed }}</p>
+    </div>
+    <div>
+      <img src="../../../../../assets/images/arrow_down.svg" alt="" />
+      <p>{{ downSpeed }}</p>
+    </div>
+  </div>
+
+  <div class="price-container">
+    {{ bolivarPrice }}
+    {{ dolarPrice }}
+  </div>
 </div>

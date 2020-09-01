@@ -6,7 +6,13 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./plans.component.scss"],
 })
 export class PlansComponent implements OnInit {
-  @Input() name: String;
+  @Input() id: any;
+  @Input() name: any;
+  @Input() bolivarPrice: any;
+  @Input() dolarPrice: any;
+  @Input() downSpeed: any;
+  @Input() upSpeed: any;
+  @Input() selectedPlanId: any;
   constructor() {}
 
   ngOnInit(): void {}
