@@ -1,9 +1,21 @@
 agm-map {
   height: 300px;
 }
-.element-container{
+.element-container {
   justify-content: center !important;
 }
-.container-button{
+.container-button {
   margin-top: 5%;
+}
+.request-header {
+  display: flex;
+}
+.close-div {
+  text-align: right;
+  margin-right: 20%;
+  margin-top: 1%;
+}
+.close {
+  color: #005fab;
+  cursor: pointer;
 }

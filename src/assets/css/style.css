@@ -62,3 +62,6 @@ p {
 button, .mat-raised-button {
   border-radius: 20px;
 }
+.text-center{
+  text-align: center !important;
+}
