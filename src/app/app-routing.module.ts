@@ -1,35 +1,19 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { AuthGuardService } from "./services/auth-guard.service";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import {AuthGuardService} from './services/auth-guard.service';
+
 
 const routes: Routes = [
-  // {
-  //   path: "",
-  //   redirectTo: "panel",
-  //   pathMatch: "full",
-  // },
+  { path: '', loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule) },
+  { path: 'service-request', loadChildren: () => import(
+    './modules/services-request/services-request.module'
+      ).then(m => m.ServicesRequestModule) },
+  {path: 'auth', loadChildren:  () => import('./modules/auth/auth.module').then(m => m.AuthModule)},
   {
-    path: "",
-    loadChildren: () =>
-      import("./modules/landing/landing.module").then((m) => m.LandingModule),
-  },
-  {
-    path: "service-request",
-    loadChildren: () =>
-      import("./modules/services-request/services-request.module").then(
-        (m) => m.ServicesRequestModule
-      ),
-  },
-  {
-    path: "auth",
-    loadChildren: () =>
-      import("./modules/auth/auth.module").then((m) => m.AuthModule),
-  },
-  {
-    path: "panel",
+    path: 'panel',
     canActivate: [AuthGuardService],
     loadChildren: () =>
-      import("./modules/dashboard/dashboard.module").then(
+      import('./modules/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
   },
@@ -37,6 +21,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

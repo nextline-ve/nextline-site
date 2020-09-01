@@ -1,32 +1,64 @@
-/* @font-face {
-  font-family: AzoSansRegular;
-  src: url("../fonts/RuiAbreuAzoSansRegular.otf");
-}
+
 @font-face {
-  font-family: AzoSansBold;
-  src: url("../fonts/RuiAbreuAzoSansBold.otf");
+  font-family: PoppinsLight;
+  src: url("../fonts/PoppinsLight.ttf");
 }
-@font-face {
-  font-family: AzoSansMedium;
-  src: url("../fonts/RuiAbreuAzoSansMedium.otf");
-}*/
 @font-face {
   font-family: PoppinsRegular;
   src: url("../fonts/PoppinsRegular.ttf");
 }
-.btn-primary{background-color: blue!important;}
-.mat-form-field{width: 100%;}
-.plan-card{
-  background: blue
+@font-face {
+  font-family: PoppinsBold;
+  src: url("../fonts/PoppinsBold.ttf");
 }
-.avatar-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@font-face {
+  font-family: TrebuchetBold;
+  src: url("../fonts/TrebuchetBold.TTF");
 }
-.avatar-select{
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  background-color: red;
+@font-face {
+  font-family: TrebuchetRegular;
+  src: url("../fonts/TrebuchetRegular.TTF");
+}
+
+.trebuchetbold {
+  font-family: TrebuchetBold !important;
+}
+.trebuchetregular {
+  font-family: TrebuchetRegular !important;
+}
+.font-regular {
+  font-family: PoppinsRegular !important;
+}
+.font-light {
+  font-family: PoppinsLight !important;
+}
+.font-bold {
+  font-family: PoppinsBold !important;
+}
+
+.bg-blue {
+  background-color: #005FAB;
+}
+.bg-white {
+  background-color: white;
+}
+
+p {
+  color: #6D7783;
+}
+
+.font-white {
+  color: white;
+}
+
+.font-gray {
+  color: #464545;
+}
+
+.font-blue {
+  color: #005FAB;
+}
+
+button, .mat-raised-button {
+  border-radius: 20px;
 }
