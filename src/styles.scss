@@ -1,10 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 @import "assets/css/style.css";
 @import "assets/css/flexboxgrid.css";
-html, body { height: 100%;}
-body { margin: 0; font-family: PoppinsRegular !important;}
+@import "~@angular/material/theming";
+@include mat-core();
 
+$my-app-primary: mat-palette($mat-blue);
+$my-app-accent: mat-palette($mat-yellow, 400);
+$my-app-warn: mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-blue);
+  $alternate-accent: mat-palette($mat-yellow, 400);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+  @include angular-material-theme($alternate-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: PoppinsRegular !important;
+}
 
 .radius-20 {
   border-radius: 20px;
+}
+.primary-color{
+  color: #005FAB;
+}
+.blue-line{
+  border: 1px solid #005FAB;
+  margin: 8%;
+}
+.service-item{
+  background: #fff;
+  width: 300px;
+  height: 230px;
+  border: 1px solid #005FAB;
+  border-radius: 24px;
+}
+app-services{
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
 }

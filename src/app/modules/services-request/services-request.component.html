@@ -1,19 +1,28 @@
 <div class="container">
   <mat-horizontal-stepper
+    class="alternate-theme"
     linear
     #stepper
     (selectionChange)="onStepChange($event)"
   >
     <mat-step [stepControl]="serviceFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel>Selecciona el servicio</ng-template>
-      <div class="row w-100">
-        <app-services
-          [name]="item.servicio"
-          (click)="setService(item.id)"
-          *ngFor="let item of services"
-        ></app-services>
+      <!-- <ng-template matStepLabel>Selecciona el servicio</ng-template> -->
+      <div class="row center-lg element-container">
+        <div class="col-lg-4">
+          <h2 class="primary-color">Selecciona el servicio</h2>
+          <div class="element-container blue-line"></div>
+        </div>
       </div>
-      <div class="row center-lg">
+      <div class="row w-100 element-container">
+        <!-- <div class="service-container"> -->
+          <app-services
+            [name]="item.servicio"
+            (click)="setService(item.id)"
+            *ngFor="let item of services"
+          ></app-services>
+        <!-- </div> -->
+      </div>
+      <div class="row center-lg element-container">
         <div class="col-lg-4">
           <button mat-button (click)="validateSelectedService()">Next</button>
         </div>
@@ -21,7 +30,7 @@
     </mat-step>
 
     <mat-step [stepControl]="plansFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel>Selecciona el plan</ng-template>
+      <!-- <ng-template matStepLabel>Selecciona el plan</ng-template> -->
       <div class="row">
         <div *ngIf="plans.length == 0">
           <p>No existen planes aun para este tipo de servicio</p>
@@ -43,7 +52,7 @@
 
     <mat-step [stepControl]="personalDataFormGroup" [editable]="isEditable">
       <form [formGroup]="personalDataFormGroup">
-        <ng-template matStepLabel>Ingresa tus datos</ng-template>
+        <!-- <ng-template matStepLabel>Ingresa tus datos</ng-template> -->
         <div class="row">
           <div class="col-lg-6 avatar-container">
             <div
