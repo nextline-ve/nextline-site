@@ -10,10 +10,12 @@ import { HireNowComponent } from './components/hire-now/hire-now.component';
 import { PlansComponent } from './components/plans/plans.component';
 import { AppComponent } from './components/app/app.component';
 import {MatIconModule} from '@angular/material/icon';
+import { InfoCompanyComponent } from './components/info-company/info-company.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, HeaderComponent, PresentationComponent, HireNowComponent, PlansComponent, AppComponent],
+  declarations: [LandingComponent, HeaderComponent, PresentationComponent, HireNowComponent,
+    PlansComponent, AppComponent, InfoCompanyComponent],
     imports: [
         CommonModule,
         LandingRoutingModule,
