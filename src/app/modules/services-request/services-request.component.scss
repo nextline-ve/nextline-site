@@ -1,3 +1,9 @@
+input {
+  color: #005fab;
+}
+::placeholder {
+  color: #005fab !important;
+}
 agm-map {
   height: 300px;
 }
@@ -18,4 +24,25 @@ agm-map {
 .close {
   color: #005fab;
   cursor: pointer;
+}
+.blue-line {
+  border: 1px solid #005fab;
+  margin: 8%;
+}
+.mat-form-field-infix {
+  width: 500px !important;
+}
+.avatar-container {
+  display: flex;
+  justify-content: center;
+}
+.form-container {
+  margin-top: 8%;
+  text-align: center;
+}
+.col-left{
+  text-align: end;
+}
+.col-right{
+  text-align: start;
 }
