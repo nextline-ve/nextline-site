@@ -71,7 +71,7 @@
   class="col-lg-12 avatar-container form-container"
   style="text-align: center"
 >
-  <button (click)="close()" [routerLink]="'/service-request'" [disabled]="isLoading" mat-raised-button color="accent" class="my-button green-button">
+  <button (click)="login()" [disabled]="isLoading" mat-raised-button color="accent" class="my-button green-button">
     INGRESAR
   </button>
 </div>
@@ -82,7 +82,7 @@
   class="col-lg-12 avatar-container form-container"
   style="text-align: center; margin-top: 5%;"
 >
-  <button (click)="login()" [disabled]="isLoading" mat-raised-button color="primary" class="my-button">
+  <button (click)="close()" [routerLink]="'/service-request'"  [disabled]="isLoading" mat-raised-button color="primary" class="my-button">
       CONTRATRAR AHORA
   </button>
 </div>
