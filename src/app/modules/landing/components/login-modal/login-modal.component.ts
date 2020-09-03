@@ -28,12 +28,14 @@ export class LoginModalComponent implements OnInit {
     private utils: UtilsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.prepareForm();
+  }
 
   prepareForm() {
     this.loginFormGroup = this.formBuilder.group({
       email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [
+      clave: new FormControl("", [
         Validators.minLength(6),
         Validators.required,
       ]),
@@ -66,10 +68,11 @@ export class LoginModalComponent implements OnInit {
           console.log("Bem-vindo");
           window.location.replace("/panel");
         },
-        (error) => {
-          console.log(error.error.message);
-          console.log(error.error.message);
-          this.utils.showSnackBar(error.error.message, 5000);
+        (err) => {
+          console.log(err);
+          console.log(err.error);
+          console.log(err.error.message);
+          this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
           this.isLoading = false;
         }
       );

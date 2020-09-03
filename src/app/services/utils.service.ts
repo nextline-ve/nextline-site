@@ -1,25 +1,21 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+} from "@angular/material/snack-bar";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class UtilsService {
+  horizontalPosition: MatSnackBarHorizontalPosition = "start";
+  verticalPosition: MatSnackBarVerticalPosition = "bottom";
 
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-
-  constructor(
-    private snackBar: MatSnackBar
-  ) {
-  }
+  constructor(private snackBar: MatSnackBar) {}
 
   showSnackBar(msg: string, duration: number = 2000) {
-    this.snackBar.open(msg, 'O.K.', {
+    this.snackBar.open(msg, "O.K.", {
       duration,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
@@ -36,8 +32,25 @@ export class UtilsService {
           resolve(reader.result as string);
         };
       } else {
-        reject('error');
+        reject("error");
       }
     });
+  }
+
+  formatErrors(err) {
+    const keyWithError = [];
+    for (const key in err.error) {
+      if (Object.prototype.hasOwnProperty.call(err.error, key)) {
+        if (err.error[key] != "") {
+          keyWithError.push(`${err.error[key]} `);
+        }
+      }
+    }
+    const msg =
+      keyWithError.length == 1
+        ? `Error: ${keyWithError}`
+        : `Errores: ${keyWithError.join(", ")}`;
+
+    return JSON.stringify(msg);
   }
 }

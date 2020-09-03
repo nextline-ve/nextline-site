@@ -110,7 +110,7 @@ export class ServicesRequestComponent implements OnInit {
       .get("config/planes/", { tipo_servicio__id: item }, false)
       .subscribe((response: any) => {
         console.log(response.results);
-        
+
         this.plans = response.results;
       });
   }
@@ -258,20 +258,20 @@ export class ServicesRequestComponent implements OnInit {
         this.router.navigate(["auth"]);
       },
       (err) => {
-        const keyWithError = [];
-        for (const key in err.error) {
-          if (Object.prototype.hasOwnProperty.call(err.error, key)) {
-            if (err.error[key] != "") {
-              keyWithError.push(`${err.error[key]} `);
-            }
-          }
-        }
-        const msg =
-          keyWithError.length == 1
-            ? `Error: ${keyWithError}`
-            : `Errores: ${keyWithError.join(", ")}`;
+        // const keyWithError = [];
+        // for (const key in err.error) {
+        //   if (Object.prototype.hasOwnProperty.call(err.error, key)) {
+        //     if (err.error[key] != "") {
+        //       keyWithError.push(`${err.error[key]} `);
+        //     }
+        //   }
+        // }
+        // const msg =
+        //   keyWithError.length == 1
+        //     ? `Error: ${keyWithError}`
+        //     : `Errores: ${keyWithError.join(", ")}`;
 
-        this.utils.showSnackBar(JSON.stringify(msg), 15000);
+        this.utils.showSnackBar(this.utils.formatErrors(err), 15000);
         this.isLoading = false;
       }
     );
