@@ -8,7 +8,7 @@
 $my-app-primary: mat-palette($mat-blue);
 $my-app-accent: mat-palette($mat-yellow, 400);
 $my-app-warn: mat-palette($mat-deep-orange);
-$my-app-white: mat-palette( $mat-deep-orange);
+$my-app-white: mat-palette($mat-deep-orange);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);
@@ -58,10 +58,19 @@ app-plans {
   border: 1px solid #005fab;
   margin: 8%;
 }
-.my-button{
+.my-button {
   width: 200px !important;
 }
 .green-button {
   background: #52e0a0 !important;
   color: #fff !important;
+}
+app-nav-bar-link {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  cursor: pointer;
+}
+app-nav-bar-link-divider {
+  display: flex;
+  justify-content: center;
 }

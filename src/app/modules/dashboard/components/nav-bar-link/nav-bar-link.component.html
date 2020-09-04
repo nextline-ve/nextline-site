@@ -1,0 +1,21 @@
+<div class="menu-item-container">
+  <div class="menu-item" *ngIf="iconPosition == 'left'">
+    <img
+      class="menu-item-icon"
+      width="30"
+      src="../../../../../assets/images/empresarial.svg"
+      alt=""
+    />
+    <p class="menu-item-text">{{ name }}</p>
+  </div>
+  <div class="menu-item" *ngIf="iconPosition == 'right'">
+    <p class="menu-item-text-right">{{ name }}</p>
+
+    <img
+      class="menu-item-icon-right"
+      width="30"
+      src="../../../../../assets/images/empresarial.svg"
+      alt=""
+    />
+  </div>
+</div>

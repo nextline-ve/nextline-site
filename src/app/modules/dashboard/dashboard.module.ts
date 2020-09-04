@@ -17,10 +17,12 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { NavBarLinkComponent } from './components/nav-bar-link/nav-bar-link.component';
+import { NavBarLinkDividerComponent } from './components/nav-bar-link-divider/nav-bar-link-divider.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, ChangePlanComponent, NavBarComponent],
+  declarations: [HomeComponent, ChangePlanComponent, NavBarComponent, NavBarLinkComponent, NavBarLinkDividerComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

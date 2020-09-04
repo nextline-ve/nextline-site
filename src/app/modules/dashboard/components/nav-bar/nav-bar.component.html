@@ -15,21 +15,35 @@
         alt=""
       />
     </div>
-    <mat-nav-list>
-      <div class="menu-item-container">
-        <div class="menu-item">
-          <img
-            class="menu-item-icon"
-            width="30"
-            src="../../../../../assets/images/empresarial.svg"
-            alt=""
-          />
-          <p class="menu-item-text">Escritorio</p>
-        </div>
-      </div>
-      <div class="line-divider">
-        <!-- <hr> -->
-      </div>
+    <mat-nav-list class="nav-list">
+      <app-nav-bar-link
+        [routerLink]="''"
+        [name]="'Escritorio'"
+      ></app-nav-bar-link>
+      <app-nav-bar-link-divider></app-nav-bar-link-divider>
+      <app-nav-bar-link
+        [routerLink]="''"
+        [name]="'Escritorio'"
+      ></app-nav-bar-link>
+      <app-nav-bar-link
+        [routerLink]="''"
+        [name]="'Escritorio'"
+      ></app-nav-bar-link>
+      <app-nav-bar-link
+        [routerLink]="''"
+        [name]="'Escritorio'"
+      ></app-nav-bar-link>
+      <app-nav-bar-link-divider></app-nav-bar-link-divider>
+      <app-nav-bar-link
+        [routerLink]="''"
+        [name]="'Escritorio'"
+      ></app-nav-bar-link>
+
+      <app-nav-bar-link
+        [name]="'Sair'"
+        [iconPosition]="'right'"
+        style="margin-top: 40%"
+      ></app-nav-bar-link>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -54,6 +68,7 @@
         <img src="{{ user.pic }}" class="mini-avatar" alt="" />
       </div>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+    <!-- <div class="container">asdasd</div> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
