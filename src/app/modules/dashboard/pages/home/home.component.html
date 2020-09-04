@@ -1,56 +1,5 @@
 <div class="content" role="main">
-  <div class="row form-container">
-    <div class="card highlight-card card-small">
-      
-      <div class="col-lg-6 avatar-container">
-        <mat-spinner *ngIf="isUpdatingAvatar"></mat-spinner>
-        <div *ngIf="!isUpdatingAvatar" class="avatar-select"  (change)="imageSelected($event)"
-          [ngStyle]="{
-            'text-align': 'center',
-            'color':'#fff',
-            'background-color':'#EBEBEB',
-            'background-image': 'url(' + imageSrc + ')',
-            'background-repeat': 'no-repeat',
-            'background-size': 'cover'
-          }"
-        >
-          <input
-            style="display: none"
-            type="file" (change)="imageSelected($event)"
-            #fileInput>
-          <mat-icon color="primary" style="margin-top: 85%; cursor: pointer" (click)="fileInput.click()">camera_alt</mat-icon>
-        </div>
-      </div>
-
-      <br />
-      <br />
-
-      <div *ngIf="!isLoggedIn" routerLink="/login">
-        login!
-      </div>
-
-      <div *ngIf="isLoggedIn && contracts">
-        <div *ngFor="let contract of contracts">
-          <span>contratos!</span>
-          <p>dia de corte {{ contract.dia_corte }} </p>
-        </div>
-      </div>
-      
-      <div *ngIf="isLoggedIn && solicitation">
-        <p>{{ solicitation.get_status_display }} </p>
-        <p>{{ solicitation.plan.precio }} </p>
-        <p>{{ solicitation.plan.precio_bs }} </p>
-        <p>{{ solicitation.plan.tipo_servicio.servicio }}</p>
-      </div>
-
-      <div *ngIf="isLoggedIn && contracts">
-        <button mat-raised-button color="primary" [routerLink]="'/facturation'" >Facturacion</button>
-        <button mat-raised-button color="primary" [routerLink]="'/plan-change'" >Cambio de Plan</button>
-        <button mat-raised-button color="primary" [routerLink]="'/technical-support'">Asistencia</button>
-      </div>
-
-    </div>
-  </div>
+  asd
 
 
 </div>

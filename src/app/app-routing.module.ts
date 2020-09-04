@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'auth', loadChildren:  () => import('./modules/auth/auth.module').then(m => m.AuthModule)},
   {
     path: 'panel',
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
