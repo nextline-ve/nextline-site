@@ -17,26 +17,27 @@
     </div>
     <mat-nav-list class="nav-list">
       <app-nav-bar-link
-        [routerLink]="''"
+        [routerLink]="'/panel'"
         [name]="'Escritorio'"
       ></app-nav-bar-link>
       <app-nav-bar-link-divider></app-nav-bar-link-divider>
       <app-nav-bar-link
-        [routerLink]="''"
-        [name]="'Escritorio'"
+        [routerLink]="'/panel/change-plan'"
+        [name]="'Cambiar Plan'"
       ></app-nav-bar-link>
       <app-nav-bar-link
         [routerLink]="''"
-        [name]="'Escritorio'"
+        [name]="'Facturacion'"
       ></app-nav-bar-link>
       <app-nav-bar-link
         [routerLink]="''"
-        [name]="'Escritorio'"
+        [name]="'Asistencia Tecnica'"
       ></app-nav-bar-link>
+      
       <app-nav-bar-link-divider></app-nav-bar-link-divider>
       <app-nav-bar-link
         [routerLink]="''"
-        [name]="'Escritorio'"
+        [name]="'Mi Perfil'"
       ></app-nav-bar-link>
 
       <app-nav-bar-link
@@ -69,6 +70,5 @@
       </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <!-- <div class="container">asdasd</div> -->
   </mat-sidenav-content>
 </mat-sidenav-container>

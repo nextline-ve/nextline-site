@@ -1,0 +1,20 @@
+<mat-toolbar class="tool-bar">
+    <div class="hamburguer-container">
+      <!--<button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button        
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>-->
+    </div>
+    <div class="profile-container">
+      <p
+        style="margin-top: 4%; margin-right: 6%; font-size: 0.7em !important"
+      >
+        {{ user.name }}
+      </p>
+      <img src="{{ user.pic }}" class="mini-avatar" alt="" />
+    </div>
+  </mat-toolbar>
