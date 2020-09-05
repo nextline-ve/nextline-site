@@ -20,6 +20,8 @@ import { NavBarLinkComponent } from "./components/nav-bar-link/nav-bar-link.comp
 import { NavBarLinkDividerComponent } from "./components/nav-bar-link-divider/nav-bar-link-divider.component";
 import { HomeComponent } from './pages/home/home.component';
 import { CurrentPlanComponent } from './components/current-plan/current-plan.component';
+import { TechnicalAssitanceComponent } from './components/technical-assitance/technical-assitance.component';
+import { BillsComponent } from './components/bills/bills.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { CurrentPlanComponent } from './components/current-plan/current-plan.com
     NavBarLinkDividerComponent,
     HomeComponent,
     CurrentPlanComponent,
+    TechnicalAssitanceComponent,
+    BillsComponent,
   ],
   imports: [
     CommonModule,

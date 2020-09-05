@@ -1,6 +1,25 @@
 .plan-header {
+  top: 104px;
+  left: 263px;
+  width: 360px;
+  height: 85px;
+  text-align: center;
+  font: normal normal normal 18px/27px Poppins;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  text-transform: uppercase;
+  opacity: 1;
   background: transparent
     linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
     no-repeat padding-box;
+  opacity: 1;
+}
+.header-title {
+  align-items: center;
+  text-align: center;
+  font: normal normal normal 18px/27px Poppins;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  text-transform: uppercase;
   opacity: 1;
 }
