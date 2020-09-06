@@ -1,1 +1,34 @@
-<p>technical-assitance works!</p>
+<div class="home-item-container">
+  <div
+    class="home-item-header"
+    style="background: #f9f9f9 0% 0% no-repeat padding-box; opacity: 1"
+  >
+    <div class="home-item-header-title" style="color: #005fab">
+      <h4 class="home-sub-title">ASISTENCIA TECNICA</h4>
+    </div>
+  </div>
+
+  <div class="create-ticket-container">
+    <div class="create-ticket-item">
+      <div class="ticket-button-container">
+        <div class="ticket-button">
+          <div class="ticket-plus-hr">
+            <div class="ticket-plus-vr"></div>
+          </div>
+        </div>
+      </div>
+      <div class="text-container">
+        <h6 class="create-ticket">Crear nuevo ticket</h6>
+        <p class="report">Crea un nuevo ticket para reportar una avería</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 8%; margin-bottom: 3%">
+    <h5 class="title-3">Historico de tickets</h5>
+  </div>
+
+  <div class="tickets-container">
+		<app-ticket-item-box *ngFor="let ticket of tickets"></app-ticket-item-box>
+	</div>
+</div>

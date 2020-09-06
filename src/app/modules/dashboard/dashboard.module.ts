@@ -25,6 +25,7 @@ import { BillsComponent } from './components/bills/bills.component';
 import { PlanSpeedBoxComponent } from './components/plan-speed-box/plan-speed-box.component';
 import { PlanPriceBoxComponent } from './components/plan-price-box/plan-price-box.component';
 import { PlanDateBoxComponent } from './components/plan-date-box/plan-date-box.component';
+import { TicketItemBoxComponent } from './components/ticket-item-box/ticket-item-box.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PlanDateBoxComponent } from './components/plan-date-box/plan-date-box.c
     PlanSpeedBoxComponent,
     PlanPriceBoxComponent,
     PlanDateBoxComponent,
+    TicketItemBoxComponent,
   ],
   imports: [
     CommonModule,

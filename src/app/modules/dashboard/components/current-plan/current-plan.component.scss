@@ -1,34 +1,4 @@
-.plan-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: center;
-}
-.plan-header {
-  top: 104px;
-  left: 263px;
-  width: 100%;
-  height: 85px;
-  text-align: center;
-  font: normal normal normal 18px/27px Poppins;
-  letter-spacing: 0.9px;
-  color: #ffffff;
-  text-transform: uppercase;
-  opacity: 1;
-  background: transparent
-    linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
-    no-repeat padding-box;
-  opacity: 1;
-}
-.header-title {
-  align-items: center;
-  text-align: center;
-  font: normal normal normal 18px/27px Poppins;
-  letter-spacing: 0.9px;
-  color: #ffffff;
-  text-transform: uppercase;
-  opacity: 1;
-}
+
 .plan-name {
   width: 100%;
   text-align: center;

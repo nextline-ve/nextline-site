@@ -74,6 +74,46 @@ app-nav-bar-link-divider {
   display: flex;
   justify-content: center;
 }
+.home-item-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+.home-item-header {
+  top: 104px;
+  left: 263px;
+  width: 100%;
+  height: 85px;
+  text-align: center;
+  font: normal normal normal 18px/27px Poppins;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  text-transform: uppercase;
+  opacity: 1;
+  background: transparent
+    linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
+    no-repeat padding-box;
+  opacity: 1;
+}
+.home-item-header-title {
+  align-items: center;
+  text-align: center;
+  font: normal normal normal 18px/27px Poppins;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  text-transform: uppercase;
+  opacity: 1;
+}
+.home-sub-title {
+  color: #005fab;
+  text-align: center;
+  font: normal normal normal 18px/27px Poppins;
+  letter-spacing: 0.9px;
+  color: #005fab;
+  text-transform: uppercase;
+  opacity: 1;
+}
 .price-container {
   align-self: center;
   display: flex;
@@ -115,4 +155,11 @@ app-nav-bar-link-divider {
   color: #005fab;
   font-size: 1.1em;
   margin-bottom: 2px !important;
+}
+app-ticket-item-box{
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 5%;
 }
