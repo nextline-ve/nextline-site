@@ -1,6 +1,7 @@
 .main-container {
   display: flex;
   justify-content: space-around !important;
+  flex-wrap: wrap;
 }
 .plan-container {
   flex: 3;
@@ -37,4 +38,3 @@
   box-shadow: 0px 10px 20px #005fab33;
   opacity: 1;
 }
-

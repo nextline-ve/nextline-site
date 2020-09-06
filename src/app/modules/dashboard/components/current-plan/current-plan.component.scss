@@ -1,3 +1,9 @@
+.plan-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
 .plan-header {
   top: 104px;
   left: 263px;
@@ -22,4 +28,105 @@
   color: #ffffff;
   text-transform: uppercase;
   opacity: 1;
+}
+.plan-name {
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
+  color: #fff;
+  h5 {
+    font-size: 1.5em !important;
+  }
+}
+.plan-circle-container {
+  margin-top: 8%;
+  width: 190px;
+  height: 190px;
+  background: transparent
+    linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
+    no-repeat padding-box;
+  border: 10px solid #0090df border-radius 50%;
+  border-radius: 50%;
+}
+.white-circle {
+  flex: 1;
+  height: 100px;
+  width: 100px;
+  background: transparent
+    linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
+    no-repeat padding-box;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+  padding: 9%;
+}
+.white-circle-row {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #fff;
+}
+.plan-speed-container {
+  margin-top: 5%;
+  display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+}
+.speed-box {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+.plan-speed-text {
+  color: #fff;
+}
+.price-container {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  width: 327px;
+  height: 93px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 10px 20px #005fab33;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  opacity: 0.95;
+}
+.date-container {
+  margin-top: 3%;
+  display: flex;
+  flex: 6;
+  flex-direction: column;
+  border-right: 1px solid #005fab;
+  height: 70px;
+  text-align: center;
+  p {
+    margin-bottom: 1px !important;
+  }
+}
+.price-box {
+  margin-top: 3%;
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.price-text {
+  color: #52c0f2;
+  font-size: 0.8em;
+  margin-bottom: 3px !important;
+}
+.price-sub-text {
+  color: #005fab;
+  font-size: 1.1em;
+  margin-bottom: 2px !important;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 7%;
 }
