@@ -74,3 +74,45 @@ app-nav-bar-link-divider {
   display: flex;
   justify-content: center;
 }
+.price-container {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  width: 327px;
+  height: 93px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 10px 20px #005fab33;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  opacity: 0.95;
+}
+.date-container {
+  margin-top: 3%;
+  display: flex;
+  flex: 6;
+  flex-direction: column;
+  border-right: 1px solid #005fab;
+  height: 70px;
+  text-align: center;
+  p {
+    margin-bottom: 1px !important;
+  }
+}
+.price-box {
+  margin-top: 3%;
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.price-text {
+  color: #52c0f2;
+  font-size: 0.8em;
+  margin-bottom: 3px !important;
+}
+.price-sub-text {
+  color: #005fab;
+  font-size: 1.1em;
+  margin-bottom: 2px !important;
+}

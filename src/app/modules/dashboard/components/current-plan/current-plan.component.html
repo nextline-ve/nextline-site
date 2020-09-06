@@ -38,15 +38,15 @@
   </div>
 
   <div class="price-container">
-    <div class="date-container">
-      <p class="price-text">FECHA DE PAGO</p>
-      <p class="price-sub-text" style="margin-top: 5%">04/12/2020</p>
-    </div>
-    <div class="price-box">
-      <p class="price-text">TOTAL A PAGAR</p>
-      <p class="price-sub-text">$20</p>
-      <p class="price-sub-text">Bs 2.000.000</p>
-    </div>
+    <app-plan-date-box
+      [date]="'04/12/2020'"
+      style="flex: 6"
+    ></app-plan-date-box>
+    <app-plan-price-box
+      [bsPrice]="'Bs 2.000.000'"
+      [$Price]="'$20'"
+      style="flex: 6"
+    ></app-plan-price-box>
   </div>
 
   <div class="button-container">

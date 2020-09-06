@@ -22,6 +22,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { CurrentPlanComponent } from './components/current-plan/current-plan.component';
 import { TechnicalAssitanceComponent } from './components/technical-assitance/technical-assitance.component';
 import { BillsComponent } from './components/bills/bills.component';
+import { PlanSpeedBoxComponent } from './components/plan-speed-box/plan-speed-box.component';
+import { PlanPriceBoxComponent } from './components/plan-price-box/plan-price-box.component';
+import { PlanDateBoxComponent } from './components/plan-date-box/plan-date-box.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { BillsComponent } from './components/bills/bills.component';
     CurrentPlanComponent,
     TechnicalAssitanceComponent,
     BillsComponent,
+    PlanSpeedBoxComponent,
+    PlanPriceBoxComponent,
+    PlanDateBoxComponent,
   ],
   imports: [
     CommonModule,
