@@ -29,6 +29,12 @@
   </div>
 
   <div class="tickets-container">
-		<app-ticket-item-box *ngFor="let ticket of tickets"></app-ticket-item-box>
-	</div>
+    <app-ticket-item-box
+      *ngFor="let ticket of tickets"
+      [id]="ticket.id"
+      [subject]="ticket.asunto"
+      [status]="ticket.status"
+      [date]="ticket.date"
+    ></app-ticket-item-box>
+  </div>
 </div>

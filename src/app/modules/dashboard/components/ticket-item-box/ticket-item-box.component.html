@@ -1,4 +1,12 @@
 <div class="ticket-container">
-	<div class="ticket-title-row"></div>
-	<div class="ticket-info-row"></div>
+  <div class="ticket-title-row">
+    <div class="ticket-title-row-l ticket-id">Ticket {{ id }}</div>
+    <div class="ticket-title-row-r ticket-asunto">
+      <small class="ticket-status">Status</small>
+    </div>
+  </div>
+  <div class="ticket-info-row">
+    <div class="ticket-title-row-l">{{ subject }}</div>
+    <div class="ticket-title-row-r ticket-asunto">{{ date }}</div>
+  </div>
 </div>
