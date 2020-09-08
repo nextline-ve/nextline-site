@@ -81,6 +81,9 @@ app-nav-bar-link-divider {
   justify-content: center;
 }
 .home-item-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 104px;
   left: 263px;
   width: 100%;
@@ -156,7 +159,7 @@ app-nav-bar-link-divider {
   font-size: 1.1em;
   margin-bottom: 2px !important;
 }
-app-ticket-item-box{
+app-ticket-item-box {
   align-self: center;
   display: flex;
   justify-content: center;
