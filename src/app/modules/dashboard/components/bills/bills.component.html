@@ -8,18 +8,11 @@
     </div>
   </div>
 
-  <div class="tickets-container">
-    <app-ticket-item-box
-      *ngFor="let bill of bills"
-      [id]="bill.id"
-      [subject]="bill.asunto"
-      [status]="bill.status"
-      [date]="bill.date"
-    ></app-ticket-item-box>
-
+  <div class="bills-container">
     <app-bill-item-box
-      *ngFor="let bill of bills"
+      *ngFor="let bill of bills; let i = index"
       [id]="bill.id"
+      [index]="i"
       [date]="bill.date"
       [status]="bill.status"
       [bolivar]="bill.bolivar"
