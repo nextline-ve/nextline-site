@@ -28,6 +28,8 @@ import { PlanDateBoxComponent } from './components/plan-date-box/plan-date-box.c
 import { TicketItemBoxComponent } from './components/ticket-item-box/ticket-item-box.component';
 import { StatusBoxComponent } from './components/status-box/status-box.component';
 import { BillItemBoxComponent } from './components/bill-item-box/bill-item-box.component';
+import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { BillItemBoxComponent } from './components/bill-item-box/bill-item-box.c
     TicketItemBoxComponent,
     StatusBoxComponent,
     BillItemBoxComponent,
+    CreateTicketComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +64,7 @@ import { BillItemBoxComponent } from './components/bill-item-box/bill-item-box.c
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatSelectModule,
   ],
 })
 export class DashboardModule {}

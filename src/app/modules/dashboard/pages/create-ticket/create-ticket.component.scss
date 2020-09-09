@@ -1,0 +1,27 @@
+.title-container {
+  display: flex;
+	justify-content: space-between;
+	margin-top: 10%;
+}
+.ticket-text {
+  width: 173px;
+  height: 33px;
+  /* UI Properties */
+  color: var(--unnamed-color-005fab);
+  text-align: left;
+  font: normal normal bold 24px/35px Poppins;
+  letter-spacing: 1.2px;
+  color: #005fab;
+  opacity: 1;
+}
+
+.ticket-date {
+  text-align: left;
+  font: normal normal normal 14px/21px Poppins;
+  letter-spacing: 0.28px;
+  color: #0c0c0c;
+  opacity: 1;
+}
+.button-container{
+	justify-content: flex-end;
+}
