@@ -16,5 +16,15 @@
       [status]="bill.status"
       [date]="bill.date"
     ></app-ticket-item-box>
+
+    <app-bill-item-box
+      *ngFor="let bill of bills"
+      [id]="bill.id"
+      [date]="bill.date"
+      [status]="bill.status"
+      [bolivar]="bill.bolivar"
+      [dolar]="bill.dolar"
+    >
+    </app-bill-item-box>
   </div>
 </div>

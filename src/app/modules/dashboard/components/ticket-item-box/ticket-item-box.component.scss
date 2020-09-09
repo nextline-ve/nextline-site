@@ -44,8 +44,5 @@
   opacity: 1;
 }
 .ticket-status {
-  background: #52C0F2 0% 0% no-repeat padding-box;;
-  border-radius: 40px;
-  width: 60%;
-  text-align: center;
+  display: flex;
 }

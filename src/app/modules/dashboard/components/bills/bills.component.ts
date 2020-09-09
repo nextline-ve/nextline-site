@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import mocks from "../../../../mocks";
 
 @Component({
   selector: "app-bills",
@@ -10,5 +11,7 @@ export class BillsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bills = mocks.bills;
+  }
 }

@@ -166,3 +166,8 @@ app-ticket-item-box {
   flex-direction: row;
   margin-top: 5%;
 }
+app-status-box {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
