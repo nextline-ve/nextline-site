@@ -30,6 +30,7 @@ import { StatusBoxComponent } from './components/status-box/status-box.component
 import { BillItemBoxComponent } from './components/bill-item-box/bill-item-box.component';
 import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
 import {MatSelectModule} from '@angular/material/select';
+import { TicketDetailComponent } from './pages/ticket-detail/ticket-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {MatSelectModule} from '@angular/material/select';
     StatusBoxComponent,
     BillItemBoxComponent,
     CreateTicketComponent,
+    TicketDetailComponent,
   ],
   imports: [
     CommonModule,
