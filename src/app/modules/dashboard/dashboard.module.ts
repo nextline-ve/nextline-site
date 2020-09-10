@@ -31,6 +31,7 @@ import { BillItemBoxComponent } from './components/bill-item-box/bill-item-box.c
 import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
 import {MatSelectModule} from '@angular/material/select';
 import { TicketDetailComponent } from './pages/ticket-detail/ticket-detail.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TicketDetailComponent } from './pages/ticket-detail/ticket-detail.compo
     BillItemBoxComponent,
     CreateTicketComponent,
     TicketDetailComponent,
+    ChatComponent,
   ],
   imports: [
     CommonModule,
