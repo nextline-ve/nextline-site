@@ -5,6 +5,7 @@ import {
   FormGroup,
   FormControl,
 } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-create-ticket",
@@ -17,7 +18,7 @@ export class CreateTicketComponent implements OnInit {
   public ticketsCategories;
   public isLoading = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.prepareForm();
@@ -36,5 +37,7 @@ export class CreateTicketComponent implements OnInit {
     });
   }
 
-  enviar() {}
+  enviar() {
+    this.router.navigate(["/panel/ticket-detail"]);
+  }
 }

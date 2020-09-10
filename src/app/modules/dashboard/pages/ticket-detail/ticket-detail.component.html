@@ -1,1 +1,34 @@
-<p>ticket-detail works!</p>
+<div class="detail-container">
+  <div class="title-container">
+    <h1 class="ticket-title">Su ticket se a creado con éxito</h1>
+    <p class="ticket-sub">
+      Un técnico se pondrá en contacto con usted en un plazo de 24 horas.
+    </p>
+  </div>
+
+  <div class="card-container">
+    <div class="ticket-card">
+      <div class="card-title">
+        <p class="card-title-text">Ticket</p>
+      </div>
+      <div class="ticket-number">
+        <h1 class="ticket-number-text">343434</h1>
+      </div>
+      <div class="ticket-date">
+        <p class="ticket-date-text">12/12/2020</p>
+      </div>
+      <div class="ticket-subject">
+        <h2 class="ticket-subject-text">Sin Internet</h2>
+      </div>
+      <div class="ticket-status">
+        <app-status-box [status]="'tecnico asignado'" style="justify-content: center;"></app-status-box>
+      </div>
+      <div class="ticket-button">
+        <button mat-raised-button color="primary">
+          VER TICKET
+          <mat-icon>remove_red_eye </mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
