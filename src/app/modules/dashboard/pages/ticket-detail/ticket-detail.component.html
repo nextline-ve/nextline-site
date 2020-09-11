@@ -21,10 +21,13 @@
         <h2 class="ticket-subject-text">Sin Internet</h2>
       </div>
       <div class="ticket-status">
-        <app-status-box [status]="'tecnico asignado'" style="justify-content: center;"></app-status-box>
+        <app-status-box
+          [status]="'tecnico asignado'"
+          style="justify-content: center"
+        ></app-status-box>
       </div>
       <div class="ticket-button">
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" [routerLink]="'/panel/chat'">
           VER TICKET
           <mat-icon>remove_red_eye </mat-icon>
         </button>
