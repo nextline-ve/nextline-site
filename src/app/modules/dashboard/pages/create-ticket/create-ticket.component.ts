@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CreateTicketComponent implements OnInit {
   public dateNow = "12/12/2020";
   public form: FormGroup;
-  public ticketsCategories;
+  public ticketsCategories = [];
   public isLoading = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {}
@@ -25,7 +25,7 @@ export class CreateTicketComponent implements OnInit {
   }
 
   prepareForm() {
-    this.form = new FormGroup({
+    /*this.form = new FormGroup({
       categories: new FormControl("", [
         Validators.minLength(1),
         Validators.required,
@@ -34,6 +34,10 @@ export class CreateTicketComponent implements OnInit {
         Validators.minLength(1),
         Validators.required,
       ]),
+    });*/
+    this.form = new FormGroup({
+      categories: new FormControl('', [Validators.required]),
+      coment: new FormControl('', [ Validators.required]),
     });
   }
 

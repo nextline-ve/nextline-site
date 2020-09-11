@@ -17,13 +17,12 @@ export class CurrentPlanComponent implements OnInit {
 
   constructor(
     private sessions: SessionsClientService,
-    private http: RequestApiService,
-    private utils: UtilsService
+    private http: RequestApiService
   ) {}
 
   ngOnInit(): void {
-    let session: any = this.sessions.getCurrentSession();
-    if (session.es_cliente) {
+    const session: any = this.sessions.getCurrentSession();
+    if (session.es_cliente && session.isAuthenticated()) {
       this.getContractStatus();
     } else {
       this.getSolicitationStatus();
