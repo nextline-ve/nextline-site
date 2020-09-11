@@ -4,11 +4,6 @@
   flex-wrap: wrap;
 }
 .plan-container {
-  flex: 3;
-  top: 104px;
-  left: 263px;
-  width: 360px;
-  height: 672px;
 
   background: transparent
     linear-gradient(180deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
@@ -17,24 +12,23 @@
   opacity: 1;
 }
 .technical-container {
-  flex: 3;
-  top: 104px;
-  left: 659px;
-  width: 360px;
-  height: 672px;
   /* UI Properties */
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 10px 20px #005fab33;
   opacity: 1;
 }
 .bills-container {
-  flex: 3;
-  top: 104px;
-  left: 659px;
-  width: 360px;
-  height: 672px;
   /* UI Properties */
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 10px 20px #005fab33;
   opacity: 1;
 }
+
+
+@media only screen and (min-width: 64em) {
+  .col-md-3 {
+    flex-basis: 30%;
+    max-width: 30%;
+  }
+}
+

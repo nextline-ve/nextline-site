@@ -8,19 +8,9 @@
     font-size: 1.5em !important;
   }
 }
-.plan-circle-container {
-  margin-top: 8%;
-  width: 190px;
-  height: 190px;
-  background: transparent
-    linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
-    no-repeat padding-box;
-  border: 10px solid #0090df border-radius 50%;
-  border-radius: 50%;
-}
 .white-circle {
   flex: 1;
-  height: 100px;
+  position: relative;
   width: 100px;
   background: transparent
     linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
@@ -31,7 +21,9 @@
   justify-content: space-evenly;
   align-items: center;
   overflow: hidden;
-  padding: 9%;
+  padding: 7%;
+  box-shadow: 2px 4px 6px #52c0f2;
+
 }
 .white-circle-row {
   display: flex;
