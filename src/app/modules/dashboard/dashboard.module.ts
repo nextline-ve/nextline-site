@@ -33,6 +33,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { TicketDetailComponent } from './pages/ticket-detail/ticket-detail.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ChatItemComponent } from './components/chat-item/chat-item.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { TechnicalAssitancePageComponent } from './pages/technical-assitance-page/technical-assitance-page.component';
+import { BillsPageComponent } from './pages/bills-page/bills-page.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
     TicketDetailComponent,
     ChatComponent,
     ChatItemComponent,
+    ProfileComponent,
+    TechnicalAssitancePageComponent,
+    BillsPageComponent,
   ],
   imports: [
     CommonModule,

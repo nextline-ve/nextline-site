@@ -21,6 +21,7 @@
         [icon]="'icono_dashboard'"
         [name]="'Escritorio'"
       ></app-nav-bar-link>
+
       <app-nav-bar-link-divider></app-nav-bar-link-divider>
       <app-nav-bar-link
         [routerLink]="'/panel/change-plan'"
@@ -28,19 +29,20 @@
         [name]="'Cambiar Plan'"
       ></app-nav-bar-link>
       <app-nav-bar-link
-        [routerLink]="''"
+        [routerLink]="'/panel/bills'"
         [icon]="'facturacion'"
         [name]="'Facturacion'"
       ></app-nav-bar-link>
+
       <app-nav-bar-link
-        [routerLink]="''"
+        [routerLink]="'/panel/technical-assitance'"
         [icon]="'asistencia_tecnica'"
         [name]="'Asistencia Tecnica'"
       ></app-nav-bar-link>
 
       <app-nav-bar-link-divider></app-nav-bar-link-divider>
       <app-nav-bar-link
-        [routerLink]="''"
+        [routerLink]="'/panel/profile'"
         [icon]="'icono_perfil'"
         [name]="'Mi Perfil'"
       ></app-nav-bar-link>
@@ -50,6 +52,7 @@
         [icon]="'cerrar_sesion'"
         [iconPosition]="'right'"
         style="margin-top: 40%"
+        (click)="logOut()"
       ></app-nav-bar-link>
     </mat-nav-list>
   </mat-sidenav>
