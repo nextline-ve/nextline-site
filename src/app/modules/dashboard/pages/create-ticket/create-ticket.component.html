@@ -12,7 +12,7 @@
       <div class="ticket-category">
         <mat-form-field appearance="fill" class="alternate-theme">
           <mat-label>TIPO DE AVERIA</mat-label>
-          <mat-select formControlName="detalle" required>
+          <mat-select formControlName="asunto" required>
             <mat-option *ngFor="let item of failures" [value]="item.id">{{
               item.descripcion
             }}</mat-option>

@@ -69,21 +69,19 @@ export class CreateTicketComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.http
-      .post("support/tickets/", this.form.getRawValue(), false)
-      .subscribe(
-        (response: any) => {
-          console.log("response", response);
-          this.isLoading = false;
+    this.http.post("support/tickets/", this.form.getRawValue(), true).subscribe(
+      (response: any) => {
+        console.log("response", response);
+        this.isLoading = false;
 
-          this.router.navigate(["/panel/ticket-detail"]);
-        },
-        (error) => {
-          console.log(error.error);
-          console.log(error.error.message);
-          this.utils.showSnackBar("Error al hacer la solicitud", 10000);
-          this.isLoading = false;
-        }
-      );
+        this.router.navigate(["/panel/ticket-detail"]);
+      },
+      (error) => {
+        console.log(error.error);
+        console.log(error.error.message);
+        this.utils.showSnackBar("Error al hacer la solicitud", 10000);
+        this.isLoading = false;
+      }
+    );
   }
 }
