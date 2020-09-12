@@ -11,7 +11,8 @@
   </div>
   <div class="row center-lg mb-5">
     <div class="col-md-6">
-      <img style="max-width: 100%"
+      <img
+        style="max-width: 100%"
         src="../../../../../assets/images/logo.svg"
         alt=""
       />
@@ -47,37 +48,37 @@
       <div class="col-lg-6 col-md-6 col-right">
         <div style="width: 300px"></div>
       </div>
-
     </div>
   </form>
 
-
-  <div
-    class="col-md-12 text-center"
-  >
-    <p class="text-reset">
-      ¿Olvido la contraseña?
-    </p>
+  <div class="col-md-12 text-center">
+    <p class="text-reset">¿Olvido la contraseña?</p>
   </div>
-  <div
-    class="col-md-12 text-center"
-  >
+  <div class="col-md-12 text-center">
     <button
-      (click)="login()" [disabled]="isLoading"
-      mat-raised-button color="accent" class="my-button green-button">
+      (click)="login()"
+      [disabled]="isLoading"
+      mat-raised-button
+      color="accent"
+      class="my-button green-button"
+      [class.spinner]="isLoading"
+    >
       INGRESAR
     </button>
   </div>
 
   <div class="element-container blue-line"></div>
 
-  <div
-    class="col-md-12 text-center"
-  >
+  <div class="col-md-12 text-center">
     <button
-      (click)="close()" [routerLink]="'/service-request'"  [disabled]="isLoading"
-      mat-raised-button color="primary" class="my-button">
-        CONTRATRAR AHORA
+      (click)="close()"
+      [routerLink]="'/service-request'"
+      [disabled]="isLoading"
+      mat-raised-button
+      color="primary"
+      class="my-button"
+    >
+      CONTRATRAR AHORA
     </button>
   </div>
 </div>

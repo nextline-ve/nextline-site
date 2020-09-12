@@ -87,10 +87,12 @@ app-nav-bar-link-divider {
   color: #ffffff;
   text-transform: uppercase;
   opacity: 1;
-  background: transparent linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0% no-repeat padding-box;
+  background: transparent
+    linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
+    no-repeat padding-box;
   opacity: 1;
 }
-.home-item-header > h4{
+.home-item-header > h4 {
   margin: 0;
   padding: 20px;
 }
@@ -166,7 +168,28 @@ app-status-box {
   flex: 1;
   justify-content: flex-end;
 }
-app-chat-item{
+app-chat-item {
   width: 100%;
   margin-top: 4%;
+}
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #52e0a0;
+  animation: spinner 0.8s linear infinite;
 }
