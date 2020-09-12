@@ -1,4 +1,4 @@
-<app-header class="position-fixed w-100 header p-1"></app-header>
+<app-header id="header" class="position-fixed w-100 header p-1" (window:scroll)="scroll($event)"></app-header>
 <app-presentation></app-presentation>
 <section id = "bg" class="mb-5">
   <app-hire-now></app-hire-now>
