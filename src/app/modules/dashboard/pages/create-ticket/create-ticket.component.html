@@ -10,14 +10,12 @@
   <form [formGroup]="form">
     <div class="row title-container" style="margin-top: 10%">
       <div class="ticket-category">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="alternate-theme">
           <mat-label>TIPO DE AVERIA</mat-label>
-          <mat-select formControl="categories">
-            <mat-option
-              *ngFor="let subject of ticketsCategories"
-              [value]="subject"
-            >{{ subject }}</mat-option
-            >
+          <mat-select formControlName="detalle" required>
+            <mat-option *ngFor="let item of failures" [value]="item.id">{{
+              item.descripcion
+            }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -25,35 +23,41 @@
 
     <div class="row title-container" style="margin-top: 2%">
       <div class="ticket-coment" style="width: 100%">
-        <mat-form-field class="example-full-width" style="width: 100%">
+        <mat-form-field
+          class="example-full-width"
+          style="width: 100%"
+          class="alternate-theme"
+        >
           <mat-label>COMENTARIO</mat-label>
           <textarea
-            formControl="coment"
+            formControlName="detalle"
             matInput
             rows="5"
             cols="40"
+            required
             placeholder="Explique en breves palabras el problema de su avería, y un técnico se pondrá en contacto con usted en un plazo de 24 horas."
           ></textarea>
         </mat-form-field>
       </div>
     </div>
-  </form>
 
-
-  <div class="row end-lg">
-    <div class="col-md-4">
-      <div class="button-container ">
-        <button
-          (click)="enviar()"
-          [disabled]="isLoading"
-          mat-raised-button
-          color="accent"
-          class="my-button green-button"
-        >
-          <mat-icon style="position: absolute; left: 18px;top: 6px; ">send</mat-icon>
-          ENVIAR
-        </button>
+    <div class="row end-lg">
+      <div class="col-md-4">
+        <div class="button-container">
+          <button
+            (click)="send()"
+            [disabled]="isLoading"
+            mat-raised-button
+            color="accent"
+            class="my-button green-button"
+          >
+            <mat-icon style="position: absolute; left: 18px; top: 6px"
+              >send</mat-icon
+            >
+            ENVIAR
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
