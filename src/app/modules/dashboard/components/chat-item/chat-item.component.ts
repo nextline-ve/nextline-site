@@ -7,10 +7,12 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ChatItemComponent implements OnInit {
   @Input() userType;
+  @Input() type;
   @Input() name;
   @Input() date;
   @Input() avatar;
   @Input() message;
+  public defaultAvatar = "../../../../../assets/images/imagotipo.png";
 
   constructor() {}
 

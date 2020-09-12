@@ -8,6 +8,11 @@ import mocks from "../../../../mocks";
 })
 export class ChatComponent implements OnInit {
   public chats = mocks.chats;
+  public cliente = {
+    id: 1,
+    avatar:
+      "https://s.abcnews.com/images/Entertainment/HT_TBarker1_MEM_151019_16x9_992.jpg",
+  };
 
   constructor() {}
 

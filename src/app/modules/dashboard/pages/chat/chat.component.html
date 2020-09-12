@@ -9,6 +9,14 @@
       <app-status-box [status]="'Tecnico Asignado'"></app-status-box>
     </div>
 
-    <app-chat-item *ngFor="let chat of chats" [userType]="chat.id == 1" [name]="chat.name"></app-chat-item>
+    <app-chat-item
+      *ngFor="let chat of chats"
+      [userType]="chat.id == cliente.id"
+      [type]="chat.type"
+      [name]="chat.name"
+      [avatar]="cliente.avatar"
+      [message]="chat.message"
+      [date]="chat.date"
+    ></app-chat-item>
   </div>
 </div>

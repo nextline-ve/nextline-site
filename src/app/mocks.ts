@@ -121,6 +121,7 @@ export default {
     {
       id: 1,
       avatar: "../../../../../assets/images/imagotipo.png",
+      type: "text",
       name: "Fulano de Tal",
       message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ipsa
       voluptatem libero saepe voluptate veniam, molestias, quia sequi sunt
@@ -131,6 +132,7 @@ export default {
     {
       id: 2,
       avatar: "../../../../../assets/images/imagotipo.png",
+      type: "text",
       name: "Admin",
       message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ipsa
       voluptatem libero saepe voluptate veniam, molestias, quia sequi sunt
