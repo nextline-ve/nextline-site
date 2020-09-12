@@ -11,37 +11,43 @@
     <div class="logo-container">
       <img
         width="140"
-        src="../../../../../assets/images/logo_white.svg"
+        src="../../../../../assets/images/icon_white_test.svg"
         alt=""
       />
     </div>
     <mat-nav-list class="nav-list">
       <app-nav-bar-link
         [routerLink]="'/panel'"
+        [icon]="'icono_dashboard'"
         [name]="'Escritorio'"
       ></app-nav-bar-link>
       <app-nav-bar-link-divider></app-nav-bar-link-divider>
       <app-nav-bar-link
         [routerLink]="'/panel/change-plan'"
+        [icon]="'cambio_de_plan'"
         [name]="'Cambiar Plan'"
       ></app-nav-bar-link>
       <app-nav-bar-link
         [routerLink]="''"
+        [icon]="'facturacion'"
         [name]="'Facturacion'"
       ></app-nav-bar-link>
       <app-nav-bar-link
         [routerLink]="''"
+        [icon]="'asistencia_tecnica'"
         [name]="'Asistencia Tecnica'"
       ></app-nav-bar-link>
-      
+
       <app-nav-bar-link-divider></app-nav-bar-link-divider>
       <app-nav-bar-link
         [routerLink]="''"
+        [icon]="'icono_perfil'"
         [name]="'Mi Perfil'"
       ></app-nav-bar-link>
 
       <app-nav-bar-link
-        [name]="'Sair'"
+        [name]="'Salir'"
+        [icon]="'cerrar_sesion'"
         [iconPosition]="'right'"
         style="margin-top: 40%"
       ></app-nav-bar-link>

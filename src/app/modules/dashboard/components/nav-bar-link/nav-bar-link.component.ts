@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class NavBarLinkComponent implements OnInit {
   @Input() name;
+  @Input() icon;
   @Input() iconPosition = "left";
   constructor() {}
 
