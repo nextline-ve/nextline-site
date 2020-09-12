@@ -9,11 +9,9 @@ import { UtilsService } from "src/app/services/utils.service";
   styleUrls: ["./current-plan.component.scss"],
 })
 export class CurrentPlanComponent implements OnInit {
-  public plan;
-  public cliente;
+  public plan: any = {};
   public solicitation: any = null;
   public contracts: any = [];
-
 
   constructor(
     private sessions: SessionsClientService,
@@ -34,6 +32,7 @@ export class CurrentPlanComponent implements OnInit {
       (response: any) => {
         console.log("response, getContractStatus", response);
         this.contracts = response.results;
+        this.plan = response.plan;
         console.log(this.contracts);
       },
       (error) => {
@@ -46,8 +45,9 @@ export class CurrentPlanComponent implements OnInit {
   async getSolicitationStatus() {
     this.http.get("admon/solicitud-status", null, true).subscribe(
       (response: any) => {
-        console.log("response, getSolicitationStatus", response);
+        // console.log("response, getSolicitationStatus", response);
         this.solicitation = response;
+        this.plan = response.plan;
       },
       (error) => {
         console.log(error.error.message);

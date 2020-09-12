@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  GOOGLE_MAPS_KEY: 'AIzaSyBMAbWtexOQ_qiuGvHXxAGp-455u8WWkOk',
-  URL_API: 'https://nextline.jaspesoft.com/api/v1/',
+  GOOGLE_MAPS_KEY: "AIzaSyBMAbWtexOQ_qiuGvHXxAGp-455u8WWkOk",
+  URL_API: "https://nextline.jaspesoft.com/api/v1/",
+  DOMAIN: "https://nextline.jaspesoft.com",
 };
 
 /*

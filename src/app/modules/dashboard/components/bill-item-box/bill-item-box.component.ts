@@ -17,9 +17,7 @@ export class BillItemBoxComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // console.log("index", this.index);
     if (this.index % 2 !== 0) {
-      console.log("this.index", this.index, this.index % 2);
       this.isBgWhite = false;
     }
   }
