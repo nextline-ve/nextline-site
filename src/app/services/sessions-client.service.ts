@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Router} from "@angular/router";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 interface Session {
   id: number;
@@ -7,7 +7,7 @@ interface Session {
   email: string;
   count_items_car: number;
   id_usuario: number;
-  es_cliente: Boolean,
+  es_cliente: Boolean;
   id_servicio: number;
   id_plan: number;
   nombre: string;
@@ -16,13 +16,12 @@ interface Session {
   first_name: string;
   last_name: string;
   token: string;
-} 
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SessionsClientService {
-
   private router: Router;
   private currentSession: any;
 
@@ -42,27 +41,26 @@ export class SessionsClientService {
   }
 
   public removeCurrentSession(): void {
-    localStorage.removeItem('currentClient');
+    localStorage.removeItem("nextline-currentClient");
     this.currentSession = null;
   }
 
   public logout(): void {
     this.removeCurrentSession();
-    window.location.href = '/';
+    window.location.href = "/";
   }
 
   public registerSession(sesion: Session) {
     this.currentSession = sesion;
-    localStorage.setItem('nextline-currentClient', JSON.stringify(sesion));
+    localStorage.setItem("nextline-currentClient", JSON.stringify(sesion));
   }
 
   private loadSessionData(): any {
     try {
-      const sessionStr = localStorage.getItem('nextline-currentClient');
-      return (sessionStr) ? <SessionsClientService> JSON.parse(sessionStr) : null;
+      const sessionStr = localStorage.getItem("nextline-currentClient");
+      return sessionStr ? <SessionsClientService>JSON.parse(sessionStr) : null;
     } catch (e) {
       return [];
     }
   }
-
 }

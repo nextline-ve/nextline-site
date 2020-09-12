@@ -32,7 +32,15 @@
     </p>
   </div>
 
-  <div class="price-container">
+  <div
+    class="price-container"
+    style="
+      width: 100% !important;
+      background: none;
+      box-shadow: none;
+      border: none;
+    "
+  >
     <div [ngClass]="id == selectedPlanId ? 'price-selected' : 'price'">
       <div class="row prices">
         <p

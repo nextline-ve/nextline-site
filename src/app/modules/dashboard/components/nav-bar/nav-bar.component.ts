@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
+import { SessionsClientService } from 'src/app/services/sessions-client.service';
 
 @Component({
   selector: "app-nav-bar",
@@ -22,9 +23,10 @@ export class NavBarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private session: SessionsClientService,) {}
 
-  logOut() {
-    console.log("_ logOut");
+  logout() {
+    console.log("_ logout");
+    this.session.logout();
   }
 }
