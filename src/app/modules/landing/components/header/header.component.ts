@@ -18,13 +18,8 @@ export class HeaderComponent implements OnInit {
 
   showLodingModal() {
     const dialogRef = this.dialog.open(LoginModalComponent, {
-      width: "350px",
-      height: "600px",
-      data: {},
+      width: "420px",
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-    });
   }
 }
