@@ -1,8 +1,14 @@
-<div class="chat-container">
-  <div class="title-container">
-    <h1 class="ticket-title">Su ticket se a creado con éxito</h1>
-    <p class="ticket-sub">
-      Un técnico se pondrá en contacto con usted en un plazo de 24 horas.
-    </p>
+<div class="container chat-container">
+  <div class="row" style="margin-left: 10%; margin-right: 10%">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h1>Nuevo 234234</h1>
+      <p>Sin Internet</p>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left-col">
+      <p>12/12/2020</p>
+      <app-status-box [status]="'Tecnico Asignado'"></app-status-box>
+    </div>
+
+    <app-chat-item *ngFor="let chat of chats" [userType]="chat.id == 1" [name]="chat.name"></app-chat-item>
   </div>
 </div>

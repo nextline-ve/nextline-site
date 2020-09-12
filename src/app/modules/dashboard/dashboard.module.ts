@@ -32,6 +32,7 @@ import { CreateTicketComponent } from './pages/create-ticket/create-ticket.compo
 import {MatSelectModule} from '@angular/material/select';
 import { TicketDetailComponent } from './pages/ticket-detail/ticket-detail.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { ChatItemComponent } from './components/chat-item/chat-item.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ChatComponent } from './pages/chat/chat.component';
     CreateTicketComponent,
     TicketDetailComponent,
     ChatComponent,
+    ChatItemComponent,
   ],
   imports: [
     CommonModule,

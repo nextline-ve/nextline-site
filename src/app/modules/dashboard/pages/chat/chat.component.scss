@@ -1,25 +1,6 @@
 .chat-container {
   margin-top: 5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
-.card-container {
-  display: flex;
-  justify-content: center;
-}
-.ticket-title {
-  color: var(--unnamed-color-005fab);
-  text-align: center;
-  font: normal normal bold 24px/35px Poppins;
-  letter-spacing: 1.2px;
-  color: #005fab;
-  opacity: 1;
-}
-.ticket-sub {
-  text-align: center;
-  font: normal normal normal 12px/18px Poppins;
-  letter-spacing: 0.24px;
-  color: #0c0c0c;
-  opacity: 1;
+.left-col {
+  text-align: end;
 }

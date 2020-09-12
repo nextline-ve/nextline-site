@@ -117,4 +117,26 @@ export default {
       date: "25/07/2020",
     },
   ],
+  chats: [
+    {
+      id: 1,
+      avatar: "../../../../../assets/images/imagotipo.png",
+      name: "Fulano de Tal",
+      message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ipsa
+      voluptatem libero saepe voluptate veniam, molestias, quia sequi sunt
+      ea culpa quidem incidunt pariatur? Illo quia eveniet nobis iure
+      beatae?`,
+      date: "12/08/2020 12:00",
+    },
+    {
+      id: 2,
+      avatar: "../../../../../assets/images/imagotipo.png",
+      name: "Admin",
+      message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores ipsa
+      voluptatem libero saepe voluptate veniam, molestias, quia sequi sunt
+      ea culpa quidem incidunt pariatur? Illo quia eveniet nobis iure
+      beatae?`,
+      date: "12/08/2020 12:00",
+    },
+  ],
 };
