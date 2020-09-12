@@ -73,8 +73,15 @@ export class CreateTicketComponent implements OnInit {
       (response: any) => {
         console.log("response", response);
         this.isLoading = false;
-
-        this.router.navigate(["/panel/ticket-detail"]);
+        const ticket = {
+          id: 2,
+          tipo: "C, R, I ",
+          fecha_creacion: "12/12/2020",
+          status: " P, C, S, A, F",
+          get_status_display: "disoplay status",
+          detalle: "este es el detalle",
+        };
+        this.router.navigate(["/panel/ticket-detail"], { queryParams: ticket });
       },
       (error) => {
         console.log(error.error);
