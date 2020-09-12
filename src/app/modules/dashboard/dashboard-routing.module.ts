@@ -20,7 +20,7 @@ const routes: Routes = [
     children: [
       { path: "bills", component: BillsPageComponent },
       { path: "change-plan", component: ChangePlanComponent },
-      { path: "chat", component: ChatComponent },
+      { path: "chat/:id", component: ChatComponent },
       { path: "create-ticket", component: CreateTicketComponent },
       { path: "home", component: HomeComponent },
       { path: "profile", component: ProfileComponent },

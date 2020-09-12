@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import mocks from "../../../../mocks";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-chat",
@@ -8,13 +9,21 @@ import mocks from "../../../../mocks";
 })
 export class ChatComponent implements OnInit {
   public chats = mocks.chats;
+  public isLoading = true;
+  public ticketId = null;
   public cliente = {
     id: 1,
     avatar:
       "https://s.abcnews.com/images/Entertainment/HT_TBarker1_MEM_151019_16x9_992.jpg",
   };
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((res:any) =>{
+      console.log(res.params);
+      this.ticketId = res.params.id;
+      this.isLoading = false;
+    })
+  }
 }

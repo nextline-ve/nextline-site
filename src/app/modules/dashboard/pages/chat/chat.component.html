@@ -9,6 +9,10 @@
       <app-status-box [status]="'Tecnico Asignado'"></app-status-box>
     </div>
 
+    <div *ngIf="isLoading" style="display: flex; flex: 1; justify-content: center;">
+      <mat-spinner></mat-spinner>
+    </div>
+
     <app-chat-item
       *ngFor="let chat of chats"
       [userType]="chat.id == cliente.id"

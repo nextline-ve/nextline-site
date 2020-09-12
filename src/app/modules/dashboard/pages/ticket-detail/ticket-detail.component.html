@@ -12,22 +12,22 @@
         <p class="card-title-text">Ticket</p>
       </div>
       <div class="ticket-number">
-        <h1 class="ticket-number-text">343434</h1>
+        <h1 class="ticket-number-text">{{ ticket.id }}</h1>
       </div>
       <div class="ticket-date">
-        <p class="ticket-date-text">12/12/2020</p>
+        <p class="ticket-date-text">{{ ticket.fecha_creacion }}</p>
       </div>
       <div class="ticket-subject">
-        <h2 class="ticket-subject-text">Sin Internet</h2>
+        <h2 class="ticket-subject-text">{{ ticket.get_status_display }}</h2>
       </div>
       <div class="ticket-status">
         <app-status-box
-          [status]="'tecnico asignado'"
+          [status]="ticket.status"
           style="justify-content: center"
         ></app-status-box>
       </div>
       <div class="ticket-button">
-        <button mat-raised-button color="primary" [routerLink]="'/panel/chat'">
+        <button mat-raised-button color="primary" [routerLink]="['/panel/chat', ticket.id]">
           VER TICKET
           <mat-icon>remove_red_eye </mat-icon>
         </button>
