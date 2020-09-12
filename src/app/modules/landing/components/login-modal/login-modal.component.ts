@@ -47,9 +47,7 @@ export class LoginModalComponent implements OnInit {
   }
 
   login() {
-    console.log("login");
     if (this.loginFormGroup.invalid) {
-      console.log("Por favor, digite os campos corretamente...");
       this.utils.showSnackBar(
         "Por favor, digite os campos corretamente...",
         5000
@@ -62,16 +60,11 @@ export class LoginModalComponent implements OnInit {
       .post("config/auth/", this.loginFormGroup.getRawValue(), false)
       .subscribe(
         (response: any) => {
-          console.log("response", response);
           this.isLoading = false;
           this.session.registerSession(response);
-          console.log("Bem-vindo");
           window.location.replace("/panel");
         },
         (err) => {
-          console.log(err);
-          console.log(err.error);
-          console.log(err.error.message);
           this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
           this.isLoading = false;
         }

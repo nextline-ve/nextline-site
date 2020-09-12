@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-landing',
@@ -10,6 +10,15 @@ export class LandingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('scroll', ['$event'])
+  scroll(event) {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById('header').style.background = 'white';
+    } else {
+      document.getElementById('header').style.background = 'transparent';
+    }
   }
 
 }

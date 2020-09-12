@@ -37,7 +37,7 @@
 }
 
 .bg-blue {
-  background-color: #005FAB;
+  background-color: #005FAB !important;
 }
 .bg-white {
   background-color: white;
@@ -48,7 +48,7 @@ p {
 }
 
 .font-white {
-  color: white;
+  color: white !important;
 }
 
 .font-gray {

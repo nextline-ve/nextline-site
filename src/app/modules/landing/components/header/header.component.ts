@@ -1,8 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit} from '@angular/core';
 import {
   MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
 } from "@angular/material/dialog";
 import { LoginModalComponent } from "../login-modal/login-modal.component";
 
@@ -18,13 +16,9 @@ export class HeaderComponent implements OnInit {
 
   showLodingModal() {
     const dialogRef = this.dialog.open(LoginModalComponent, {
-      width: "350px",
-      height: "600px",
-      data: {},
+      width: "420px",
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-    });
   }
+
 }
