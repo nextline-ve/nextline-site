@@ -15,9 +15,9 @@ export class NavBarComponent implements OnInit {
   public domain = environment.DOMAIN;
   public cliente = {
     nombre_razsoc: "User Full Name Optional",
-    avatar:
-      "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg",
   };
+  public avatar =
+    "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -36,16 +36,31 @@ export class NavBarComponent implements OnInit {
     const session: any = this.session.getCurrentSession();
 
     if (session.es_cliente && this.session.isAuthenticated()) {
+      this.getProfile();
       this.getContractStatus();
     } else {
       this.getSolicitationStatus();
     }
   }
 
+  async getProfile() {
+    this.http.get("admon/perfil", null, true).subscribe(
+      (response: any) => {
+        console.log("response, getProfile", response);
+        this.cliente = response;
+        this.verifyAvatar(response.avatar);
+      },
+      (error) => {
+        console.log(error.error.message);
+        console.log(error);
+      }
+    );
+  }
+
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getContractStatus", response);
+        console.log("response, getContractStatus", response);
         this.cliente = response.results;
       },
       (error) => {
@@ -58,7 +73,7 @@ export class NavBarComponent implements OnInit {
   async getSolicitationStatus() {
     this.http.get("admon/solicitud-status", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getSolicitationStatus", response);
+        console.log("response, getSolicitationStatus", response);
         this.cliente = response;
       },
       (error) => {
@@ -66,6 +81,17 @@ export class NavBarComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  verifyAvatar(img) {
+    if (img == null) {
+      console.warn(" esta null");
+
+      this.avatar =
+        "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+    } else {
+      this.avatar = img;
+    }
   }
 
   logout() {
