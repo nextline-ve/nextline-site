@@ -23,6 +23,7 @@
       <div class="ticket-status">
         <app-status-box
           [status]="ticket.status"
+          [statusDetail]="ticket.get_status_display"
           style="justify-content: center"
         ></app-status-box>
       </div>

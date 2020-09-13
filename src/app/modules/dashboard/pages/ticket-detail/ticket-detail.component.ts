@@ -8,19 +8,20 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class TicketDetailComponent implements OnInit {
   public ticket = {
-    detalle: "este es el detalle",
-    fecha_creacion: "12/12/2020",
-    get_status_display: "disoplay status",
+    detalle: "...",
+    fecha_creacion: "...",
+    get_status_display: "...",
     id: "2",
-    status: " P, C, S, A, F",
-    tipo: "C, R, I ",
+    status: "...",
+    tipo: "...",
   };
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((res) => {
+    this.route.queryParams.subscribe((res: any) => {
       console.log(res);
+      this.ticket = res;
     });
   }
 }

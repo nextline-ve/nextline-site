@@ -62,16 +62,16 @@ export class CreateTicketComponent implements OnInit {
   }
 
   send() {
-    const ticket = {
-      id: 1,
-      tipo: "C, R, I ",
-      fecha_creacion: "12/12/2020",
-      status: " P, C, S, A, F",
-      get_status_display: "disoplay status",
-      detalle: "este es el detalle",
-    };
-    this.router.navigate(["/panel/ticket-detail"], { queryParams: ticket });
-    return;
+    // const ticket = {
+    //   id: 1,
+    //   tipo: "C, R, I ",
+    //   fecha_creacion: "12/12/2020",
+    //   status: " P, C, S, A, F",
+    //   get_status_display: "disoplay status",
+    //   detalle: "este es el detalle",
+    // };
+    // this.router.navigate(["/panel/ticket-detail"], { queryParams: ticket });
+    // return;
 
     if (!this.form.valid) {
       this.utils.showSnackBar("Todos los campos son requeridos.");
@@ -85,15 +85,15 @@ export class CreateTicketComponent implements OnInit {
         console.log("response", response);
         this.isLoading = false;
 
-        const ticket = {
-          id: 2,
-          tipo: "C, R, I ",
-          fecha_creacion: "12/12/2020",
-          status: " P, C, S, A, F",
-          get_status_display: "disoplay status",
-          detalle: "este es el detalle",
-        };
-        this.router.navigate(["/panel/ticket-detail"], { queryParams: ticket });
+        // const ticket = {
+        //   id: 2,
+        //   tipo: "C, R, I ",
+        //   fecha_creacion: "12/12/2020",
+        //   status: " P, C, S, A, F",
+        //   get_status_display: "disoplay status",
+        //   detalle: "este es el detalle",
+        // };
+        this.router.navigate(["/panel/ticket-detail"], { queryParams: response });
       },
       (error) => {
         console.log(error.error);
