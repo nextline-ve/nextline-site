@@ -1,11 +1,9 @@
 <div class="home-item-container">
   <div
     class="home-item-header"
-    style="background: #f9f9f9 0% 0% no-repeat padding-box;"
+    style="background: #f9f9f9 0% 0% no-repeat padding-box"
   >
-
-      <h4 class="home-sub-title">ASISTENCIA TECNICA</h4>
-
+    <h4 class="home-sub-title">ASISTENCIA TECNICA</h4>
   </div>
 
   <div class="create-ticket-container">
@@ -32,9 +30,10 @@
     <app-ticket-item-box
       *ngFor="let ticket of tickets"
       [id]="ticket.id"
-      [subject]="ticket.asunto"
+      [subject]="ticket.detalle"
       [status]="ticket.status"
-      [date]="ticket.date"
+      [statusDetail]="ticket.get_status_display"
+      [date]="ticket.fecha_creacion"
     ></app-ticket-item-box>
   </div>
 </div>

@@ -34,7 +34,8 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     const session: any = this.session.getCurrentSession();
-    if (session.es_cliente && session.isAuthenticated()) {
+
+    if (session.es_cliente && this.session.isAuthenticated()) {
       this.getContractStatus();
     } else {
       this.getSolicitationStatus();
@@ -44,7 +45,7 @@ export class NavBarComponent implements OnInit {
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        console.log("response, getContractStatus", response);
+        // console.log("response, getContractStatus", response);
         this.cliente = response.results;
       },
       (error) => {
@@ -58,7 +59,6 @@ export class NavBarComponent implements OnInit {
     this.http.get("admon/solicitud-status", null, true).subscribe(
       (response: any) => {
         // console.log("response, getSolicitationStatus", response);
-        console.log("response, getSolicitationStatus", response);
         this.cliente = response;
       },
       (error) => {

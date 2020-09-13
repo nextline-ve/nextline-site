@@ -2,7 +2,10 @@
   <div class="ticket-title-row">
     <div class="ticket-title-row-l ticket-id">Ticket {{ id }}</div>
     <div class="ticket-title-row-r ticket-asunto ticket-status">
-      <app-status-box [status]="status"></app-status-box>
+      <app-status-box
+        [statusDetail]="statusDetail"
+        [status]="status"
+      ></app-status-box>
     </div>
   </div>
   <div class="ticket-info-row">

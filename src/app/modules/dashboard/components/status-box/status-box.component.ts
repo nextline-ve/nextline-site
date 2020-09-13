@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class StatusBoxComponent implements OnInit {
   @Input() status;
+  @Input() statusDetail;
+
   constructor() {}
 
   ngOnInit(): void {}

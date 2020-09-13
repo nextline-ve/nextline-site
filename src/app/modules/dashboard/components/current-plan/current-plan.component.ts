@@ -20,7 +20,7 @@ export class CurrentPlanComponent implements OnInit {
 
   ngOnInit(): void {
     const session: any = this.sessions.getCurrentSession();
-    if (session.es_cliente && session.isAuthenticated()) {
+    if (session.es_cliente && this.sessions.isAuthenticated()) {
       this.getContractStatus();
     } else {
       this.getSolicitationStatus();
@@ -32,8 +32,10 @@ export class CurrentPlanComponent implements OnInit {
       (response: any) => {
         console.log("response, getContractStatus", response);
         this.contracts = response.results;
-        this.plan = response.plan;
-        console.log(this.contracts);
+        this.plan = response.results[0].plan;
+        // console.log(this.contracts);
+        console.log("response", response.results[0]);
+        
       },
       (error) => {
         console.log(error.error.message);
