@@ -9,7 +9,7 @@ import { SessionsClientService } from "src/app/services/sessions-client.service"
   styleUrls: ["./bills.component.scss"],
 })
 export class BillsComponent implements OnInit {
-  public bills;
+  public bills = [];
 
   constructor(
     private session: SessionsClientService,

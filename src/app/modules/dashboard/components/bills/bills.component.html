@@ -17,5 +17,9 @@
       [dolar]="bill.dolar"
     >
     </app-bill-item-box>
+
+    <div *ngIf="bills.length == 0" class="center-lg text-center">
+      <h3>Sin items</h3>
+    </div>
   </div>
 </div>

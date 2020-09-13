@@ -24,7 +24,7 @@ export class TechnicalAssitanceComponent implements OnInit {
   loadTickets() {
     this.http.get("support/tickets/", null, true).subscribe(
       (response: any) => {
-        console.log("response, loadTickets", response.results);
+        // console.log("response, loadTickets", response.results);
         this.tickets = response.results;
       },
       (error) => {
