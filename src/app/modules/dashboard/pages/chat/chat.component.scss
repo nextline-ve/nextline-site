@@ -4,3 +4,8 @@
 .left-col {
   text-align: end;
 }
+.chat-scroll {
+  height: 400px;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+}

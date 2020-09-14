@@ -9,18 +9,30 @@
       <app-status-box [status]="'Tecnico Asignado'"></app-status-box>
     </div>
 
-    <div *ngIf="isLoading" style="display: flex; flex: 1; justify-content: center;">
+    <div
+      *ngIf="isLoading"
+      style="display: flex; flex: 1; justify-content: center"
+    >
       <mat-spinner></mat-spinner>
     </div>
 
-    <app-chat-item
-      *ngFor="let chat of chats"
-      [userType]="chat.id == cliente.id"
-      [type]="chat.type"
-      [name]="chat.name"
-      [avatar]="cliente.avatar"
-      [message]="chat.message"
-      [date]="chat.date"
-    ></app-chat-item>
+    <div
+      #scrollMe
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-col chat-scroll"
+    >
+      <app-chat-item
+        *ngFor="let chat of chats"
+        [userType]="chat.id == cliente.id"
+        [type]="chat.type"
+        [name]="chat.name"
+        [avatar]="cliente.avatar"
+        [message]="chat.message"
+        [date]="chat.date"
+      ></app-chat-item>
+    </div>
+
+    <div #scrollMe class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-col">
+      <textarea placeholder="Escribe tu mensaje ..."></textarea>
+    </div>
   </div>
 </div>

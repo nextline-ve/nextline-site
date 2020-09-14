@@ -18,24 +18,28 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
 import { NavBarLinkComponent } from "./components/nav-bar-link/nav-bar-link.component";
 import { NavBarLinkDividerComponent } from "./components/nav-bar-link-divider/nav-bar-link-divider.component";
-import { HomeComponent } from './pages/home/home.component';
-import { CurrentPlanComponent } from './components/current-plan/current-plan.component';
-import { TechnicalAssitanceComponent } from './components/technical-assitance/technical-assitance.component';
-import { BillsComponent } from './components/bills/bills.component';
-import { PlanSpeedBoxComponent } from './components/plan-speed-box/plan-speed-box.component';
-import { PlanPriceBoxComponent } from './components/plan-price-box/plan-price-box.component';
-import { PlanDateBoxComponent } from './components/plan-date-box/plan-date-box.component';
-import { TicketItemBoxComponent } from './components/ticket-item-box/ticket-item-box.component';
-import { StatusBoxComponent } from './components/status-box/status-box.component';
-import { BillItemBoxComponent } from './components/bill-item-box/bill-item-box.component';
-import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
-import {MatSelectModule} from '@angular/material/select';
-import { TicketDetailComponent } from './pages/ticket-detail/ticket-detail.component';
-import { ChatComponent } from './pages/chat/chat.component';
-import { ChatItemComponent } from './components/chat-item/chat-item.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { TechnicalAssitancePageComponent } from './pages/technical-assitance-page/technical-assitance-page.component';
-import { BillsPageComponent } from './pages/bills-page/bills-page.component';
+import { HomeComponent } from "./pages/home/home.component";
+import { CurrentPlanComponent } from "./components/current-plan/current-plan.component";
+import { TechnicalAssitanceComponent } from "./components/technical-assitance/technical-assitance.component";
+import { BillsComponent } from "./components/bills/bills.component";
+import { PlanSpeedBoxComponent } from "./components/plan-speed-box/plan-speed-box.component";
+import { PlanPriceBoxComponent } from "./components/plan-price-box/plan-price-box.component";
+import { PlanDateBoxComponent } from "./components/plan-date-box/plan-date-box.component";
+import { TicketItemBoxComponent } from "./components/ticket-item-box/ticket-item-box.component";
+import { StatusBoxComponent } from "./components/status-box/status-box.component";
+import { BillItemBoxComponent } from "./components/bill-item-box/bill-item-box.component";
+import { CreateTicketComponent } from "./pages/create-ticket/create-ticket.component";
+import { MatSelectModule } from "@angular/material/select";
+import { TicketDetailComponent } from "./pages/ticket-detail/ticket-detail.component";
+import { ChatComponent } from "./pages/chat/chat.component";
+import { ChatItemComponent } from "./components/chat-item/chat-item.component";
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { TechnicalAssitancePageComponent } from "./pages/technical-assitance-page/technical-assitance-page.component";
+import { BillsPageComponent } from "./pages/bills-page/bills-page.component";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { environment } from "src/environments/environment.prod";
 
 @NgModule({
   declarations: [
@@ -77,6 +81,9 @@ import { BillsPageComponent } from './pages/bills-page/bills-page.component';
     MatSidenavModule,
     MatListModule,
     MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
 })
 export class DashboardModule {}
