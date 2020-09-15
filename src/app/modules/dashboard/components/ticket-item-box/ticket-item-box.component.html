@@ -1,4 +1,4 @@
-<div class="ticket-container">
+<!-- <div class="ticket-container">
   <div class="ticket-title-row">
     <div class="ticket-title-row-l ticket-id">Ticket {{ id }}</div>
     <div class="ticket-title-row-r ticket-asunto ticket-status">
@@ -11,5 +11,22 @@
   <div class="ticket-info-row">
     <div class="ticket-title-row-l">{{ subject }}</div>
     <div class="ticket-title-row-r ticket-asunto">{{ date }}</div>
+  </div>
+</div> -->
+<div class="container ticket-container">
+  <div class="row ticket-title-row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="ticket-title-row-l ticket-id">Ticket {{ id }}</div>
+      <div class="ticket-title-row-l">{{ subject }}</div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <app-status-box
+        [statusDetail]="statusDetail"
+        [status]="status"
+      ></app-status-box>
+      <div class="date">
+        <small>{{ date }}</small>
+      </div>
+    </div>
   </div>
 </div>

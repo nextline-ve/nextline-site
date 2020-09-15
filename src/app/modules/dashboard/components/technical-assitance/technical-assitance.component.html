@@ -1,4 +1,4 @@
-<div class="home-item-container">
+<!-- <div class="home-item-container">
   <div
     class="home-item-header"
     style="background: #f9f9f9 0% 0% no-repeat padding-box"
@@ -27,6 +27,49 @@
   </div>
 
   <div class="tickets-container">
+    <app-ticket-item-box
+      *ngFor="let ticket of tickets"
+      [id]="ticket.id"
+      [subject]="ticket.detalle"
+      [status]="ticket.status"
+      [statusDetail]="ticket.get_status_display"
+      [date]="ticket.fecha_creacion"
+    ></app-ticket-item-box>
+
+    <div *ngIf="tickets.length == 0" class="center-lg text-center">
+      <h3>Sin items</h3>
+    </div>
+  </div>
+</div> -->
+<div class="home-item-container">
+  <div
+    class="home-item-header"
+    style="background: #f9f9f9 0% 0% no-repeat padding-box"
+  >
+    <h4 class="home-sub-title">ASISTENCIA TECNICA</h4>
+  </div>
+
+  <div class="create-ticket-container">
+    <div class="create-ticket-item">
+      <div class="ticket-button-container">
+        <div [routerLink]="'/panel/create-ticket'" class="ticket-button">
+          <div class="ticket-plus-hr">
+            <div class="ticket-plus-vr"></div>
+          </div>
+        </div>
+      </div>
+      <div class="text-container">
+        <h6 class="create-ticket">Crear nuevo ticket</h6>
+        <p class="report">Crea un nuevo ticket para reportar una avería</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 8%; margin-bottom: 3%">
+    <h5 class="title-3">Historico de tickets</h5>
+  </div>
+
+  <div class="row" style="padding-left: 2%; padding-right: 2%">
     <app-ticket-item-box
       *ngFor="let ticket of tickets"
       [id]="ticket.id"
