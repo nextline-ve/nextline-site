@@ -69,7 +69,11 @@
     <h5 class="title-3">Historico de tickets</h5>
   </div>
 
-  <div class="row" style="padding-left: 2%; padding-right: 2%">
+  <div
+    class="row items-container"
+    style=""
+
+  >
     <app-ticket-item-box
       *ngFor="let ticket of tickets"
       [id]="ticket.id"

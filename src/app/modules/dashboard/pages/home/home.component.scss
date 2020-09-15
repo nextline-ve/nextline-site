@@ -4,7 +4,7 @@
   flex-wrap: wrap;
 }
 .plan-container {
-
+  height: 600px;
   background: transparent
     linear-gradient(180deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
     no-repeat padding-box;
@@ -12,18 +12,17 @@
   opacity: 1;
 }
 .technical-container {
-  /* UI Properties */
+  height: 600px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 10px 20px #005fab33;
   opacity: 1;
 }
 .bills-container {
-  /* UI Properties */
+  height: 600px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 10px 20px #005fab33;
   opacity: 1;
 }
-
 
 @media only screen and (min-width: 64em) {
   .col-md-3 {
@@ -31,4 +30,3 @@
     max-width: 30%;
   }
 }
-
