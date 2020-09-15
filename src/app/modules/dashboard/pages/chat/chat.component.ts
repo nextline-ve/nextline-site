@@ -16,16 +16,15 @@ import { AngularFireDatabase } from "@angular/fire/database";
 })
 export class ChatComponent implements OnInit {
   @ViewChild("scrollMe") private myScrollContainer: ElementRef;
-
+  public msg = "";
+  public regex: any;
+  public fullMessage: any = {};
+  public result: any;
   public chats = [];
-  public message = '';
+  public message = "";
   public isLoading = true;
   public ticketId = null;
-  public cliente = {
-    id: 1,
-    avatar:
-      "https://s.abcnews.com/images/Entertainment/HT_TBarker1_MEM_151019_16x9_992.jpg",
-  };
+  public cliente: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -88,7 +87,82 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  verifyEnter(e){
-    
+  async salvarEnderecoDeAnexoEmFirebase(arquivo, fileName, tipo = "outro") {
+    // const msg = tipo === "img" ? arquivo.data : arquivo;
+    // const now = new Date();
+    // this.mensagem = {
+    //   id_usuario: this.usuario.id,
+    //   mensagem: msg,
+    //   hora_mensagem: now.toLocaleString(),
+    //   tipo_mensagem: tipo,
+    //   perfil: this.perfil,
+    //   nome_arquivo: fileName,
+    // };
+    // this.db.database.ref("Conversas/" + this.chatId).push(this.mensagem);
+    // await this.aumentarContadorMensagem();
+  }
+
+  async validateSend() {
+    // console.log("send", this.form.get("msg").value);
+    // const camposDados = {
+    //   mensagem: this.msg,
+    // };
+    // let camposVazios;
+    // camposVazios = await this.utils.verificaCamposVazios(
+    //   camposDados,
+    //   ["mensagem"],
+    //   false
+    // );
+    let isMsgInvalid = false;
+    // camposVazios.forEach((dado) => {
+    //   if (dado.status === "vazio") {
+    //     isMsgInvalid = true;
+    //   }
+    // });
+    this.regex = /[0-9]/;
+    this.result = this.regex.test(this.msg);
+    if (!this.result) {
+      this.regex = /[a-z]/;
+      this.result = this.regex.test(this.msg);
+      if (!this.result) {
+        this.regex = /[A-Z]/;
+        this.result = this.regex.test(this.msg);
+        if (!this.result) {
+          isMsgInvalid = true;
+        }
+      }
+    }
+    if (isMsgInvalid) {
+      return false;
+    }
+
+    this.send();
+  }
+
+  uploadFile() {}
+
+  send() {
+    console.log("ok");
+
+    const now = new Date();
+    const day = now.getDate() <= 9 ? `0${now.getDate()}` : now.getDate();
+    const month =
+      now.getMonth() + 1 <= 9 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
+    const hour = now.getHours() <= 9 ? `0${now.getHours()}` : now.getHours();
+    const minutes =
+      now.getMinutes() <= 9 ? `0${now.getMinutes()}` : now.getMinutes();
+    const dataFormatada = `${day}/${month}/${now.getFullYear()} - ${hour}:${minutes}`;
+
+    this.fullMessage = {
+      id_usuario: this.usuario.id,
+      mensagem: this.msg,
+      hora_mensagem: dataFormatada,
+      tipo_mensagem: "texto",
+      perfil: this.perfil,
+    };
+
+    this.db.database
+      .ref("chatsCollections/" + this.ticketId)
+      .push(this.fullMessage);
   }
 }

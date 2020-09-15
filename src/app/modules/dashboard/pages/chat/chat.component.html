@@ -31,8 +31,49 @@
       ></app-chat-item>
     </div>
 
-    <div #scrollMe class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-col">
-      <textarea placeholder="Escribe tu mensaje ..."></textarea>
+    <div
+      #scrollMe
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-col text-box-container"
+    >
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <textarea
+            tabindex="1"
+            [(ngModel)]="msg"
+            class="text-box"
+            cols="30"
+            rows="5"
+            placeholder="Escribe tu mensaje ..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="row controls-container">
+        <div class="col-xs-10 col-sm-10 col-md-2 col-lg-2 start-xs">
+          <h4>Adjuntar archivo</h4>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 start-xs">
+          <mat-icon (click)="uploadFile()" aria-label="Subir" tabindex="3"
+            >cloud_upload</mat-icon
+          >
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 end-xs">
+          <button
+            tabindex="2"
+            (click)="validateSend()"
+            [disabled]="isLoading"
+            mat-raised-button
+            color="accent"
+            class="my-button green-button"
+            [class.spinner]="isLoading"
+          >
+            ENVIAR
+            <mat-icon style="position: absolute; right: 20px; top: 6px"
+              >send</mat-icon
+            >
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
