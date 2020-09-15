@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import * as moment from "moment";
 
 @Component({
   selector: "app-ticket-detail",
@@ -15,6 +16,7 @@ export class TicketDetailComponent implements OnInit {
     status: "...",
     tipo: "...",
   };
+  public dateFormated = null;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -22,6 +24,14 @@ export class TicketDetailComponent implements OnInit {
     this.route.queryParams.subscribe((res: any) => {
       console.log(res);
       this.ticket = res;
+      this.formatDate();
     });
+  }
+
+  formatDate() {
+    // ticket.fecha_creacion
+    this.dateFormated = moment(this.ticket.fecha_creacion, "YYYY-MM-DD").format(
+      "DD/MM/YYYY"
+    );
   }
 }

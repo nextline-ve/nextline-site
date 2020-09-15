@@ -15,7 +15,7 @@
         <h1 class="ticket-number-text">{{ ticket.id }}</h1>
       </div>
       <div class="ticket-date">
-        <p class="ticket-date-text">{{ ticket.fecha_creacion }}</p>
+        <p class="ticket-date-text">{{ dateFormated }}</p>
       </div>
       <div class="ticket-subject">
         <h2 class="ticket-subject-text">{{ ticket.get_status_display }}</h2>
@@ -24,11 +24,15 @@
         <app-status-box
           [status]="ticket.status"
           [statusDetail]="ticket.get_status_display"
-          style="justify-content: center"
+          style="justify-content: center; width: 70%"
         ></app-status-box>
       </div>
       <div class="ticket-button">
-        <button mat-raised-button color="primary" [routerLink]="['/panel/chat', ticket.id]">
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/panel/chat', ticket.id]"
+        >
           VER TICKET
           <mat-icon>remove_red_eye </mat-icon>
         </button>
@@ -36,3 +40,4 @@
     </div>
   </div>
 </div>
+<!-- http://localhost:4200/panel/ticket-detail?id=25&tipo=R&fecha_creacion=2020-09-15&status=P&get_status_display=Pendiente%20por%20Atenci%C3%B3n&asunto=2&detalle=test&cliente=2&asunto__descripcion=Intermitencia%20en%20el%20servicio -->
