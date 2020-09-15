@@ -27,8 +27,9 @@ export class PlanDateBoxComponent implements OnInit {
     const day = now.get("day");
     const currentMonth = this.date >= day ? 2 : 1;
 
-    const planDate = `${this.date}-${month + currentMonth}-${year}`;
-    console.log(planDate);
-    this.dateFormated = moment(planDate, "DD-MM-YYYY").format("DD/MM/YYYY");
+    this.dateFormated = moment(
+      `${this.date}-${month + currentMonth}-${year}`,
+      "DD-MM-YYYY"
+    ).format("DD/MM/YYYY");
   }
 }
