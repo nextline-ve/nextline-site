@@ -24,16 +24,16 @@
   <div class="plan-speed-container">
     <div class="speed-box">
       <img src="../../../../../assets/images/arrow_up.svg" alt="" />
-      <p class="plan-speed-text">{{ plan.velocidad_subida }}</p>
+      <p class="plan-speed-text">{{ plan.velocidad_subida }} Mb</p>
     </div>
     <div class="speed-box">
       <img src="../../../../../assets/images/arrow_down.svg" alt="" />
-      <p class="plan-speed-text">{{ plan.velocidad_bajada }}</p>
+      <p class="plan-speed-text">{{ plan.velocidad_bajada }} Mb</p>
     </div>
   </div>
 
   <div class="price-container">
-    <app-plan-date-box [date]="" style="flex: 6"></app-plan-date-box>
+    <app-plan-date-box [date]="datePlan" style="flex: 6"></app-plan-date-box>
     <app-plan-price-box
       [bsPrice]="plan.precio_bs"
       [$Price]="plan.precio"

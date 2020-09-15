@@ -17,7 +17,9 @@
   <div class="row ticket-title-row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <div class="ticket-title-row-l ticket-id">Ticket {{ id }}</div>
-      <div class="ticket-title-row-l">{{ subject }}</div>
+      <div class="ticket-title-row-l">
+        <small>{{ subject.slice(0, 40) }}</small>
+      </div>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <app-status-box
