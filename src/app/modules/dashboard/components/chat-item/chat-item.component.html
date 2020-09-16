@@ -4,19 +4,19 @@
     <img *ngIf="!userType" class="avatar" src="{{ defaultAvatar }}" alt="" />
   </div>
   <div
-    class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-box-user"
+    class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-box-admin"
     [ngClass]="{ 'text-box-user': userType }"
   >
     <div class="row" style="padding: 2%">
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <p class="name">{{ name }} {{ userType }}</p>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 start-md">
+        <p class="name">{{ name }}</p>
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <p class="date">{{ date }}</p>
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <p>
+        <p style="text-align: justify">
           {{ message }}
         </p>
       </div>

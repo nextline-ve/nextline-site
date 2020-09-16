@@ -70,6 +70,7 @@ export class ChatComponent implements OnInit {
     const user: any = await localStorage.getItem("nextline-currentClient");
     this.cliente.id = JSON.parse(user).id_usuario;
     this.isLoading = false;
+    console.log(this.cliente);
   }
 
   verifyAvatar(img) {

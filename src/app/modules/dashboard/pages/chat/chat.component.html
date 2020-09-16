@@ -23,12 +23,12 @@
     >
       <app-chat-item
         *ngFor="let chat of chats"
-        [userType]="chat.id == cliente.id"
+        [userType]="chat.customId == cliente.id"
         [type]="chat.type"
-        [name]="chat.name"
+        [name]="cliente.nombre_razsoc"
         [avatar]="avatar"
         [message]="chat.message"
-        [date]="chat.date"
+        [date]="chat.dateMessage"
       ></app-chat-item>
     </div>
 
