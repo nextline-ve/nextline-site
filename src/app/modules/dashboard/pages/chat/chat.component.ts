@@ -19,12 +19,14 @@ import { RequestApiService } from "src/app/services/request-api.service";
 export class ChatComponent implements OnInit {
   @ViewChild("scrollMe") private myScrollContainer: ElementRef;
   public msg = "";
+  public myFile: any;
   public regex: any;
   public fullMessage: any = {};
   public result: any;
   public chats = [];
   public message = "";
   public isLoading = true;
+  public isFileLoading = false;
   public ticketId = null;
   public cliente: any = {};
   public avatar =
@@ -122,6 +124,22 @@ export class ChatComponent implements OnInit {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  onFileChanged(event: any) {
+    this.isFileLoading = true;
+    console.log("file change", event);
+    this.myFile = event.target.files[0];
+    console.log(event.target.files[0]);
+    // this.utils
+    //   .imageFileToURI(event)
+    //   .then((res: string) => {
+    //     this.imageSrc = res;
+    //   })
+    //   .catch((e) => {
+    //     console.error(e);
+    //     this.imageSrc = e;
+    //   });
   }
 
   async salvarEnderecoDeAnexoEmFirebase(arquivo, fileName, tipo = "outro") {

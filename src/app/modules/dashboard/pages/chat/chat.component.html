@@ -17,7 +17,7 @@
     </div>
 
     <div
-    *ngIf="!isLoading"
+      *ngIf="!isLoading"
       #scrollMe
       class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-col chat-scroll"
     >
@@ -50,13 +50,25 @@
       </div>
 
       <div class="row controls-container">
+        <input
+          style="display: none"
+          id="myFile"
+          type="file"
+          (change)="onFileChanged($event)"
+          #fileInput
+        />
         <div class="col-xs-10 col-sm-10 col-md-2 col-lg-2 start-xs">
           <h4>Adjuntar archivo</h4>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1 start-xs">
-          <mat-icon (click)="uploadFile()" aria-label="Subir" tabindex="3"
+          <mat-icon
+            *ngIf="!isFileLoading"
+            (click)="fileInput.click()"
+            aria-label="Subir"
+            tabindex="3"
             >cloud_upload</mat-icon
           >
+          <h4 *ngIf="isFileLoading">Subiendo ...</h4>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 end-xs">
           <button
