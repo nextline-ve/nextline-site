@@ -17,6 +17,7 @@
     </div>
 
     <div
+    *ngIf="!isLoading"
       #scrollMe
       class="col-xs-12 col-sm-12 col-md-12 col-lg-12 left-col chat-scroll"
     >
@@ -25,7 +26,7 @@
         [userType]="chat.id == cliente.id"
         [type]="chat.type"
         [name]="chat.name"
-        [avatar]="cliente.avatar"
+        [avatar]="avatar"
         [message]="chat.message"
         [date]="chat.date"
       ></app-chat-item>

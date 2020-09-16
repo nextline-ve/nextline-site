@@ -16,5 +16,9 @@ export class ChatItemComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.avatar);
+    console.log(this.userType);
+    
+  }
 }

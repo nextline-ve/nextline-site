@@ -8,6 +8,8 @@ import {
 import mocks from "../../../../mocks";
 import { ActivatedRoute } from "@angular/router";
 import { AngularFireDatabase } from "@angular/fire/database";
+import { SessionsClientService } from "src/app/services/sessions-client.service";
+import { RequestApiService } from "src/app/services/request-api.service";
 
 @Component({
   selector: "app-chat",
@@ -25,24 +27,58 @@ export class ChatComponent implements OnInit {
   public isLoading = true;
   public ticketId = null;
   public cliente: any = {};
+  public avatar =
+    "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
 
   constructor(
     private route: ActivatedRoute,
     private db: AngularFireDatabase,
-    private zone: NgZone
+    private zone: NgZone,
+    private session: SessionsClientService,
+    private http: RequestApiService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((res: any) => {
       console.log(res.params);
       this.ticketId = res.params.id;
-      this.isLoading = false;
+      // this.isLoading = false;
       this.loadChats();
+      this.getProfile();
     });
   }
 
   ngAfterViewChecked() {
     this.scrollToBottomContent();
+  }
+
+  async getProfile() {
+    this.http.get("admon/perfil", null, true).subscribe(
+      (response: any) => {
+        this.cliente = response;
+        this.verifyAvatar(response.avatar);
+        this.getClientId();
+      },
+      (error) => {
+        console.log(error.error.message);
+        console.log(error);
+      }
+    );
+  }
+
+  async getClientId() {
+    const user: any = await localStorage.getItem("nextline-currentClient");
+    this.cliente.id = JSON.parse(user).id_usuario;
+    this.isLoading = false;
+  }
+
+  verifyAvatar(img) {
+    if (img == null) {
+      this.avatar =
+        "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+    } else {
+      this.avatar = img;
+    }
   }
 
   loadChats() {
@@ -102,23 +138,22 @@ export class ChatComponent implements OnInit {
     // await this.aumentarContadorMensagem();
   }
 
+  getData() {
+    const now = new Date();
+    const day = now.getDate() <= 9 ? `0${now.getDate()}` : now.getDate();
+    const month =
+      now.getMonth() + 1 <= 9 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
+    const hour = now.getHours() <= 9 ? `0${now.getHours()}` : now.getHours();
+    const minutes =
+      now.getMinutes() <= 9 ? `0${now.getMinutes()}` : now.getMinutes();
+    const dataFormatada = `${day}/${month}/${now.getFullYear()} - ${hour}:${minutes}`;
+
+    return dataFormatada;
+  }
+
   async validateSend() {
-    // console.log("send", this.form.get("msg").value);
-    // const camposDados = {
-    //   mensagem: this.msg,
-    // };
-    // let camposVazios;
-    // camposVazios = await this.utils.verificaCamposVazios(
-    //   camposDados,
-    //   ["mensagem"],
-    //   false
-    // );
     let isMsgInvalid = false;
-    // camposVazios.forEach((dado) => {
-    //   if (dado.status === "vazio") {
-    //     isMsgInvalid = true;
-    //   }
-    // });
+
     this.regex = /[0-9]/;
     this.result = this.regex.test(this.msg);
     if (!this.result) {
@@ -132,6 +167,7 @@ export class ChatComponent implements OnInit {
         }
       }
     }
+
     if (isMsgInvalid) {
       return false;
     }
@@ -142,24 +178,14 @@ export class ChatComponent implements OnInit {
   uploadFile() {}
 
   send() {
-    console.log("ok");
-
-    const now = new Date();
-    const day = now.getDate() <= 9 ? `0${now.getDate()}` : now.getDate();
-    const month =
-      now.getMonth() + 1 <= 9 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
-    const hour = now.getHours() <= 9 ? `0${now.getHours()}` : now.getHours();
-    const minutes =
-      now.getMinutes() <= 9 ? `0${now.getMinutes()}` : now.getMinutes();
-    const dataFormatada = `${day}/${month}/${now.getFullYear()} - ${hour}:${minutes}`;
-
     this.fullMessage = {
-      id_usuario: this.usuario.id,
-      mensagem: this.msg,
-      hora_mensagem: dataFormatada,
-      tipo_mensagem: "texto",
-      perfil: this.perfil,
+      customId: this.cliente.id,
+      message: this.msg,
+      dateMessage: this.getData(),
+      typeMessage: "text",
     };
+
+    this.msg = "";
 
     this.db.database
       .ref("chatsCollections/" + this.ticketId)
