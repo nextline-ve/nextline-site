@@ -189,20 +189,26 @@
           <div class="col-lg-6 col-md-6 col-right">
             <div style="width: 300px"></div>
           </div>
-          <div class="col-lg-12 col-md-12 text-center">
-            <button mat-button matStepperPrevious mat-raised-button>
-              Atras
-            </button>
-
-            <button
-              mat-button
-              matStepperNext
-              mat-raised-button
-              color="primary"
-              (click)="validatePersonalForm()"
-            >
-              Siguiente
-            </button>
+          <div class="col-lg-12 col-md-12 text-center " style="margin-top: 5%;">
+            <div class="row">
+              <div class="col-xs-6 col-sm-6 col-md-6 end-xs end-sm end-md">
+                <button mat-button matStepperPrevious mat-raised-button style="margin-left: 4%;">
+                  Atras
+                </button>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6 start-xs start-sm start-md">
+                <button
+                  mat-button
+                  matStepperNext
+                  mat-raised-button
+                  color="primary"
+                  (click)="validatePersonalForm()"
+                  style="margin-right: 4%;"
+                >
+                  Siguiente
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </form>

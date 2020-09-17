@@ -3,8 +3,9 @@
   [latitude]="currentLocation.latitude"
   [longitude]="currentLocation.longitude"
   (mapClick)="mapClicked($event)"
-  [disableDefaultUI]="true"
-  [controlSize]="true"
+  [streetViewControl]="false"
+  [zoomControl]="true"
+  [zoom]="14"
 >
   <agm-marker
     [latitude]="currentLocation.latitude"
@@ -12,7 +13,7 @@
   ></agm-marker>
 </agm-map>
 
-<div mat-dialog-actions>
+<div mat-dialog-actions style="margin-top: 5%">
   <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>
     Confirmar
   </button>
