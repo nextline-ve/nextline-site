@@ -16,9 +16,10 @@
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <p style="text-align: justify">
+        <p *ngIf="type == 'text'" style="text-align: justify">
           {{ message }}
         </p>
+        <img *ngIf="type == 'img'" width="60" src="{{ message }}" alt="" />
       </div>
     </div>
   </div>

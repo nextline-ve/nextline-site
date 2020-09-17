@@ -24,7 +24,7 @@
       <app-chat-item
         *ngFor="let chat of chats"
         [userType]="chat.customId == cliente.id"
-        [type]="chat.type"
+        [type]="chat.typeMessage"
         [name]="cliente.nombre_razsoc"
         [avatar]="avatar"
         [message]="chat.message"
