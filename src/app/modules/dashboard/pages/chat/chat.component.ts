@@ -4,12 +4,19 @@ import {
   NgZone,
   ViewChild,
   ElementRef,
+  Inject,
 } from "@angular/core";
 import mocks from "../../../../mocks";
 import { ActivatedRoute } from "@angular/router";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { SessionsClientService } from "src/app/services/sessions-client.service";
 import { RequestApiService } from "src/app/services/request-api.service";
+import {
+  AngularFireStorage,
+  AngularFireUploadTask,
+} from "@angular/fire/storage";
+import { finalize, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-chat",
@@ -31,13 +38,17 @@ export class ChatComponent implements OnInit {
   public cliente: any = {};
   public avatar =
     "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+  public percentage: Observable<number>;
+  public task: AngularFireUploadTask;
+  public snapshot: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
     private db: AngularFireDatabase,
     private zone: NgZone,
     private session: SessionsClientService,
-    private http: RequestApiService
+    private http: RequestApiService,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit(): void {
@@ -128,33 +139,64 @@ export class ChatComponent implements OnInit {
 
   onFileChanged(event: any) {
     this.isFileLoading = true;
-    console.log("file change", event);
     this.myFile = event.target.files[0];
-    console.log(event.target.files[0]);
-    // this.utils
-    //   .imageFileToURI(event)
-    //   .then((res: string) => {
-    //     this.imageSrc = res;
-    //   })
-    //   .catch((e) => {
-    //     console.error(e);
-    //     this.imageSrc = e;
-    //   });
+    // this.uploadFile();
+
+    const file = event.target.files[0];
+    const filePath = `images/${this.myFile.name}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    // observe percentage changes
+    this.percentage = task.percentageChanges();
+    // get notified when the download URL is available
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            console.log(url);
+            this.isFileLoading = false;
+            this.saveFileToFirebase(url);
+          });
+        })
+      )
+      .subscribe();
   }
 
-  async salvarEnderecoDeAnexoEmFirebase(arquivo, fileName, tipo = "outro") {
-    // const msg = tipo === "img" ? arquivo.data : arquivo;
-    // const now = new Date();
-    // this.mensagem = {
-    //   id_usuario: this.usuario.id,
-    //   mensagem: msg,
-    //   hora_mensagem: now.toLocaleString(),
-    //   tipo_mensagem: tipo,
-    //   perfil: this.perfil,
-    //   nome_arquivo: fileName,
-    // };
-    // this.db.database.ref("Conversas/" + this.chatId).push(this.mensagem);
-    // await this.aumentarContadorMensagem();
+  uploadFile() {
+    // const fileRef = this.storage.ref(`images/${this.myFile.name}`);
+    // this.percentage = task.percentageChanges();
+    // this.storage
+    //   .upload(`images/${this.myFile.name}`, this.myFile)
+    //   .snapshotChanges()
+    //   .pipe(
+    //     finalize(() => {
+    //       fileRef.getDownloadURL().subscribe((url) => {
+    //         console.log(url);
+    //         this.isFileLoading = false;
+    //         this.saveFileToFirebase(url);
+    //       });
+    //     })
+    //   )
+    //   .subscribe();
+  }
+
+  async saveFileToFirebase(url) {
+    console.log("url", url);
+    this.isFileLoading = false;
+
+    const msg = "img";
+    const now = new Date();
+    this.fullMessage = {
+      customId: this.cliente.id,
+      message: url,
+      dateMessage: this.getData(),
+      typeMessage: "img",
+    };
+    this.db.database
+      .ref("chatsCollections/" + this.ticketId)
+      .push(this.fullMessage);
   }
 
   getData() {
@@ -193,8 +235,6 @@ export class ChatComponent implements OnInit {
 
     this.send();
   }
-
-  uploadFile() {}
 
   send() {
     this.fullMessage = {

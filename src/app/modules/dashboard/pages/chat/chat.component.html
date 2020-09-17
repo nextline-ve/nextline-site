@@ -66,9 +66,15 @@
             (click)="fileInput.click()"
             aria-label="Subir"
             tabindex="3"
+            [class.spinner]="isFileLoading"
             >cloud_upload</mat-icon
           >
-          <h4 *ngIf="isFileLoading">Subiendo ...</h4>
+          <div *ngIf="isFileLoading">
+            <div *ngIf="percentage | async as pct">
+              <progress [value]="pct" max="100"></progress>
+              {{ pct | number }}%
+            </div>
+          </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 end-xs">
           <button
