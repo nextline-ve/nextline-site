@@ -33,6 +33,7 @@ export class ServicesRequestComponent implements OnInit {
   public isConfirmedAddress = false;
   public addressView = "confirm";
   public myAddress = null;
+  public reference = null;
   public currentLocation = null;
   public isLoading = false;
   public services = [];
@@ -160,11 +161,13 @@ export class ServicesRequestComponent implements OnInit {
           this.currentLocation = res;
           this.getAddress(res);
           this.didAskedLocationFailed = false;
+          this.isLoadingLocation = false;
           console.log(res);
         })
         .catch((e) => {
           this.doesItHaveLocation = false;
           this.didAskedLocationFailed = true;
+          this.isLoadingLocation = false;
           this.utils.showSnackBar("No se pudo obtener tu localizacion actual.");
           console.error(e);
         });
@@ -176,7 +179,8 @@ export class ServicesRequestComponent implements OnInit {
       .getAddress(coords)
       .then((res: any) => {
         console.log("getAddress proper address", res.formatted_address);
-        this.myAddress = res.formatted_address;
+        // this.myAddress = res.formatted_address;
+        this.myAddress = `Parroquia: - Estado ${res.address_components[4].long_name} - Municipio: ${res.address_components[3].long_name}, Calle: ${res.address_components[1].long_name} ${res.address_components[0].long_name}. `;
         this.doesItHaveAddress = true;
         this.isLoadingLocation = false;
       })
@@ -237,7 +241,10 @@ export class ServicesRequestComponent implements OnInit {
     myFormData.append("correo", this.personalDataFormGroup.get("email").value);
     myFormData.append("celular", this.personalDataFormGroup.get("phone").value);
     myFormData.append("plan", this.selectedPlan);
-    myFormData.append("direccion", this.myAddress);
+    myFormData.append(
+      "direccion",
+      this.myAddress + `Punto de Referencia: ${this.reference}`
+    );
     myFormData.append(
       "clave",
       this.personalDataFormGroup.get("password").value
