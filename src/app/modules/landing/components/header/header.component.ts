@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {
-  MatDialog,
-} from "@angular/material/dialog";
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { LoginModalComponent } from "../login-modal/login-modal.component";
 
 @Component({
@@ -12,13 +10,17 @@ import { LoginModalComponent } from "../login-modal/login-modal.component";
 export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    const action = await localStorage.getItem("nextline-actions-open-login");
+    if (action == "open") {
+      await localStorage.removeItem("nextline-actions-open-login");
+      this.showLodingModal();
+    }
+  }
 
   showLodingModal() {
     const dialogRef = this.dialog.open(LoginModalComponent, {
       width: "420px",
     });
-
   }
-
 }

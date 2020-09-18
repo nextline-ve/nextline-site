@@ -254,13 +254,14 @@ export class ServicesRequestComponent implements OnInit {
     myFormData.append("longitud", this.currentLocation.longitude);
 
     this.http.post("admon/service-request", myFormData, false).subscribe(
-      (res: any) => {
+      async (res: any) => {
         this.plans = res.results;
-        this.isLoading = false;
         this.utils.showSnackBar(
           JSON.stringify("Registrado con exito, por favor inicie sesion"),
           15000
         );
+        await localStorage.setItem("nextline-actions-open-login", "open");
+        this.isLoading = false;
 
         this.router.navigate([""]);
       },
