@@ -3,7 +3,7 @@
     <div class="col-md-12 center-md mt-20">
       <h1 class="font-blue">Cambio de Plan</h1>
     </div>
-    <div class="col-md-12 center-md" style="margin-top: 4%">
+    <div class="col-md-12 center-md" style="margin-top: 2%">
       <h1 class="font-blue">PLAN</h1>
       <h1
         class="font-blue"
@@ -18,8 +18,33 @@
       </h1>
     </div>
     <div class="col-md-12">
-      <div class="row w-100 element-container"></div>
+      <div class="row w-100 element-container">
+        <div class="arrows-container">
+          <div class="arrow-container">
+            <img src="../../../../../assets/images/arrow_up.svg" alt="" />
+            <p>{{ plan.velocidad_subida }} MB</p>
+          </div>
+
+          <div class="arrow-container">
+            <img src="../../../../../assets/images/arrow_down.svg" alt="" />
+            <p>{{ plan.velocidad_bajada }} MB</p>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="col-md-12 center-md">
+      <h4 style="color: #005fab; text-transform: capitalize">total a pagar</h4>
+      <h3>{{ plan.precio }}</h3>
+      <h3>{{ plan.precio_bs }}</h3>
+    </div>
+
+    <div class="col-md-12 center-md">
+      <h4 style="color: #005fab; text-transform: capitalize">Fecha de pago</h4>
+      <h3>{{ plan.precio }}</h3>
+      <h3>{{ plan.precio_bs }}</h3>
+    </div>
+
     <div class="col-md-12 center-md">
       <button
         mat-button
