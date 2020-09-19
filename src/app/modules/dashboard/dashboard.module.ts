@@ -42,6 +42,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 import { environment } from "src/environments/environment.prod";
 import { SharedModule } from '../shared/shared.module';
 import { PlansComponent } from '../landing/components/plans/plans.component';
+import { SuccessMessageComponent } from './pages/success-message/success-message.component';
+import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { PlansComponent } from '../landing/components/plans/plans.component';
     ProfileComponent,
     TechnicalAssitancePageComponent,
     BillsPageComponent,
-    PlansComponent
+    SuccessMessageComponent,
+    PlanDetailComponent,
+    // PlansComponent
   ],
   imports: [
     SharedModule,

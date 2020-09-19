@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { SessionsClientService } from "src/app/services/sessions-client.service";
 import { UtilsService } from "src/app/services/utils.service";
@@ -15,7 +16,8 @@ export class ChangePlanComponent implements OnInit {
   constructor(
     private http: RequestApiService,
     private session: SessionsClientService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class ChangePlanComponent implements OnInit {
     this.http.get("config/planes/", null, false).subscribe(
       (res: any) => {
         this.plans = res.results;
+        console.log("a", this.plans);
       },
       (err) => {
         console.error(err);
@@ -38,9 +41,15 @@ export class ChangePlanComponent implements OnInit {
   }
 
   validateSelectedPlan() {
-    if (this.selectedPlan == null) {
-      this.utils.showSnackBar("Por favor seleccione un plan.");
-      return;
-    }
+    // if (this.selectedPlan == null) {
+    //   this.utils.showSnackBar("Por favor seleccione un plan.");
+    //   return;
+    // }
+
+    this.router.navigate(["/panel/change-plan/plan-detail"], {
+      queryParams: this.plans[0],
+      // todo
+      // queryParams: this.selectedPlan,
+    });
   }
 }

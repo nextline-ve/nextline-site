@@ -23,7 +23,7 @@ import { MatInputModule } from "@angular/material/input";
     HeaderComponent,
     PresentationComponent,
     HireNowComponent,
-    PlansComponent,
+    // PlansComponent,
     AppComponent,
     InfoCompanyComponent,
     LoginModalComponent,

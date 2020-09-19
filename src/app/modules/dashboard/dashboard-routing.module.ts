@@ -10,6 +10,8 @@ import { ChatComponent } from "./pages/chat/chat.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { TechnicalAssitancePageComponent } from './pages/technical-assitance-page/technical-assitance-page.component';
 import { BillsPageComponent } from './pages/bills-page/bills-page.component';
+import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
+import { SuccessMessageComponent } from './pages/success-message/success-message.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/panel/home", pathMatch: "full" },
@@ -20,6 +22,8 @@ const routes: Routes = [
     children: [
       { path: "bills", component: BillsPageComponent },
       { path: "change-plan", component: ChangePlanComponent },
+      { path: "change-plan/plan-detail", component: PlanDetailComponent },
+      { path: "change-plan/success-message", component: SuccessMessageComponent },
       { path: "chat/:id", component: ChatComponent },
       { path: "create-ticket", component: CreateTicketComponent },
       { path: "home", component: HomeComponent },

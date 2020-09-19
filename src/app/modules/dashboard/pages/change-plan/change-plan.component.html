@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" style="margin-top: 10%">
   <div class="row">
     <div class="col-md-12 center-md mt-20">
-      <h1>Cambio de Plan</h1>
+      <h1 class="font-blue">Cambio de Plan</h1>
     </div>
     <div class="col-md-12 center-md">
       <p>Selecciona el plan al que quieras cambiar</p>
@@ -17,24 +17,22 @@
           [upSpeed]="item.velocidad_subida"
           [selectedPlanId]="selectedPlan"
           *ngFor="let item of plans"
-          (click)="setPlan(item.id)"
+          (click)="setPlan(item)"
         ></app-plans>
         <!--  -->
       </div>
     </div>
     <div class="col-md-12 center-md">
-      <div class="row center-lg element-container">
-        <button
-          *ngIf="plans.length > 0"
-          mat-button
-          mat-raised-button
-          color="primary"
-          (click)="validateSelectedPlan()"
-        >
-          Continuar
-          <mat-icon>keyboard_arrow_right</mat-icon>
-        </button>
-      </div>
+      <button
+        *ngIf="plans.length > 0"
+        mat-button
+        mat-raised-button
+        color="primary"
+        (click)="validateSelectedPlan()"
+      >
+        Continuar
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
     </div>
   </div>
 </div>
