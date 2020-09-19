@@ -1,1 +1,40 @@
-<p>change-plan works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 center-md mt-20">
+      <h1>Cambio de Plan</h1>
+    </div>
+    <div class="col-md-12 center-md">
+      <p>Selecciona el plan al que quieras cambiar</p>
+    </div>
+    <div class="col-md-12">
+      <div class="row w-100 element-container">
+        <app-plans
+          [id]="item.id"
+          [name]="item.plan"
+          [dolarPrice]="item.precio"
+          [bolivarPrice]="item.precio_bs"
+          [downSpeed]="item.velocidad_baja"
+          [upSpeed]="item.velocidad_subida"
+          [selectedPlanId]="selectedPlan"
+          *ngFor="let item of plans"
+          (click)="setPlan(item.id)"
+        ></app-plans>
+        <!--  -->
+      </div>
+    </div>
+    <div class="col-md-12 center-md">
+      <div class="row center-lg element-container">
+        <button
+          *ngIf="plans.length > 0"
+          mat-button
+          mat-raised-button
+          color="primary"
+          (click)="validateSelectedPlan()"
+        >
+          Continuar
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

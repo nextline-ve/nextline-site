@@ -40,6 +40,8 @@ import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { environment } from "src/environments/environment.prod";
+import { SharedModule } from '../shared/shared.module';
+import { PlansComponent } from '../landing/components/plans/plans.component';
 
 @NgModule({
   declarations: [
@@ -64,8 +66,10 @@ import { environment } from "src/environments/environment.prod";
     ProfileComponent,
     TechnicalAssitancePageComponent,
     BillsPageComponent,
+    PlansComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     DashboardRoutingModule,
     MatStepperModule,
