@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { UtilsService } from "src/app/services/utils.service";
-import * as moment from "moment";
 
 @Component({
   selector: "app-plan-detail",
@@ -26,21 +25,39 @@ export class PlanDetailComponent implements OnInit {
     this.route.queryParams.subscribe((res: any) => {
       console.log(res);
       this.plan = res;
-      // to do
-      // this.formatDate();
+      this.getContractStatus();
     });
     const user: any = await localStorage.getItem("nextline-currentClient");
     this.cliente = JSON.parse(user);
-    console.log("this.cliente", this.cliente);
   }
 
-  formatDate() {
-    this.dateFormated = moment(this.plan.fecha_creacion, "YYYY-MM-DD").format(
-      "DD/MM/YYYY"
+  async getContractStatus() {
+    this.http.get("admon/contratos-status", null, true).subscribe(
+      (response: any) => {
+        this.formatDate(response.results[0].dia_corte);
+      },
+      (error) => {
+        console.log(error.error.message);
+        console.log(error);
+      }
     );
   }
 
+  formatDate(day) {
+    this.dateFormated = this.utils.calculatePaymentDay(day);
+  }
+
   comfirm() {
+    let obj3 = {
+      title: "Su cambio de plan esta en proceso",
+      icon: "success-plan-change.png",
+    };
+
+    this.router.navigate(["/panel/change-plan/success-message"], {
+      queryParams: obj3,
+    });
+    return;
+    // todo
     this.isLoading = true;
 
     let obj = {
@@ -52,8 +69,14 @@ export class PlanDetailComponent implements OnInit {
         console.log("response", response);
         this.isLoading = false;
 
-        this.router.navigate(["/panel/success-message"], {
-          queryParams: response,
+        const obj = {
+          msg: "Su cambio de plan esta en proceso",
+          icon: "success-plan-change.png",
+          ...response,
+        };
+
+        this.router.navigate(["/panel/change-plan/success-message"], {
+          queryParams: obj,
         });
       },
       (error) => {

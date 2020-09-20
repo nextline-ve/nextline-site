@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import * as moment from "moment";
+import { UtilsService } from "src/app/services/utils.service";
 
 @Component({
   selector: "app-plan-date-box",
@@ -10,7 +10,7 @@ export class PlanDateBoxComponent implements OnInit {
   @Input() date = null;
   public dateFormated;
 
-  constructor() {}
+  constructor(private utils: UtilsService) {}
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -21,15 +21,6 @@ export class PlanDateBoxComponent implements OnInit {
   ngAfterContentInit() {}
 
   calculateDate() {
-    const now = moment();
-    const year = now.get("year");
-    const month = now.get("month");
-    const day = now.get("day");
-    const currentMonth = this.date >= day ? 2 : 1;
-
-    this.dateFormated = moment(
-      `${this.date}-${month + currentMonth}-${year}`,
-      "DD-MM-YYYY"
-    ).format("DD/MM/YYYY");
+    this.dateFormated = this.utils.calculatePaymentDay(this.date);
   }
 }

@@ -4,6 +4,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from "@angular/material/snack-bar";
+import * as moment from "moment";
 
 @Injectable({
   providedIn: "root",
@@ -52,5 +53,18 @@ export class UtilsService {
         : `Errores: ${keyWithError.join(", ")}`;
 
     return JSON.stringify(msg);
+  }
+
+  calculatePaymentDay(dayDate) {
+    const now = moment();
+    const year = now.get("year");
+    const month = now.get("month");
+    const day = now.get("day");
+    const currentMonth = dayDate >= day ? 2 : 1;
+
+    return moment(
+      `${dayDate}-${month + currentMonth}-${year}`,
+      "DD-MM-YYYY"
+    ).format("DD/MM/YYYY");
   }
 }
