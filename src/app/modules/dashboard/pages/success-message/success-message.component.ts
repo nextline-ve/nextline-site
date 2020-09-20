@@ -8,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class SuccessMessageComponent implements OnInit {
   public data: any = {};
+  public isContentLoaded = false;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -15,6 +16,7 @@ export class SuccessMessageComponent implements OnInit {
     this.route.queryParams.subscribe((res: any) => {
       console.log(res);
       this.data = res;
+      this.isContentLoaded = true;
     });
   }
 }

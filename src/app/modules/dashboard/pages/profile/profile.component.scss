@@ -1,0 +1,16 @@
+.main-row {
+  width: 55%;
+  margin: auto;
+}
+@media only screen and (max-width: 500px) {
+  .main-row {
+    width: 100%;
+    margin: auto;
+  }
+}
+.edit-button {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+}

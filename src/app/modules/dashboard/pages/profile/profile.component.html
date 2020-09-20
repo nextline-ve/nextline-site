@@ -1,1 +1,163 @@
-<p>profile works!</p>
+<div
+  *ngIf="isContentLoaded"
+  class="container"
+  style="height: 100%; margin-top: 3%"
+>
+  <form [formGroup]="personalDataFormGroup">
+    <div class="row main-row">
+      <!-- titles -->
+      <div
+        class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+        style="margin-bottom: 5%; border-bottom: 1px solid #abe4f5"
+      >
+        <div class="row">
+          <div
+            class="col-xs-12 col-sm-6 col-md-6 col-lg-6 start-xs start-sm start-md start-lg"
+          >
+            <h1 class="font-blue">Mi Perfil</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
+          >
+            <h2 class="font-blue" style="font-weight: 300">Editar Perfil</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- avatar -->
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="row">
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs end-sm end-md end-lg"
+          >
+            <div
+              (change)="onFileChanged($event)"
+              [ngStyle]="{
+                margin: 'auto',
+                'text-align': 'center',
+                color: '#fff',
+                'background-color': '#EBEBEB',
+                'background-image': 'url(' + avatar + ')',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover',
+                height: '200px',
+                width: '200px',
+                'border-radius': '50%'
+              }"
+            >
+              <input
+                style="display: none"
+                formControlName="avatar"
+                type="file"
+                (change)="onFileChanged($event)"
+                #fileInput
+              />
+              <mat-icon
+                color="primary"
+                style="margin-top: 85%; cursor: pointer"
+                (click)="fileInput.click()"
+                >camera_alt</mat-icon
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- inputs -->
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="row">
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+          >
+            <mat-form-field style="width: 300px">
+              <mat-label>Nombre o Razon social</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Nombre"
+                required
+              />
+              <mat-icon class="edit-button" (click)="toggleInput('name')">edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+          >
+            <mat-form-field style="width: 300px">
+              <mat-label>Cedula o Rif</mat-label>
+              <input
+                matInput
+                formControlName="identification"
+                placeholder="Cedula"
+                required
+							/>
+							<mat-icon class="edit-button" (click)="toggleInput('identification')">edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+          >
+            <mat-form-field style="width: 300px">
+              <mat-label>Correo</mat-label>
+              <input
+                matInput
+                formControlName="email"
+                placeholder="Email"
+                type="email"
+                required
+							/>
+							<mat-icon class="edit-button" (click)="toggleInput('email')">edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg col-right"
+          >
+            <mat-form-field style="width: 300px">
+              <mat-label>Telefono</mat-label>
+              <input
+                matInput
+                formControlName="phone"
+                placeholder="Celular"
+                required
+							/>
+							<mat-icon class="edit-button" (click)="toggleInput('phone')">edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+          >
+            <mat-form-field style="width: 300px">
+              <mat-label>Clave</mat-label>
+              <input
+                matInput
+                color="primary"
+                formControlName="password"
+                placeholder="Clave"
+                type="password"
+                required
+							/>
+							<mat-icon class="edit-button" (click)="toggleInput('password')">edit</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
+        style="margin-top: 3%; border-top: 1px solid #abe4f5"
+      >
+        <button
+          mat-button
+          mat-raised-button
+          color="primary"
+          style="margin-top: 4%"
+        >
+          VOLVER AL ESCRITORIO
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

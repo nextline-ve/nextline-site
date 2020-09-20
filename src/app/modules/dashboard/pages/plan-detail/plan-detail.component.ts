@@ -51,13 +51,14 @@ export class PlanDetailComponent implements OnInit {
     let obj3 = {
       title: "Su cambio de plan esta en proceso",
       icon: "success-plan-change.png",
+      // icon: "success-payed-bill.png",
     };
 
     this.router.navigate(["/panel/change-plan/success-message"], {
       queryParams: obj3,
     });
     return;
-    // todo
+    // to do
     this.isLoading = true;
 
     let obj = {
@@ -70,9 +71,9 @@ export class PlanDetailComponent implements OnInit {
         this.isLoading = false;
 
         const obj = {
-          msg: "Su cambio de plan esta en proceso",
+          title: "Su cambio de plan esta en proceso",
           icon: "success-plan-change.png",
-          ...response,
+          // icon: "success-payed-bill.png",
         };
 
         this.router.navigate(["/panel/change-plan/success-message"], {
