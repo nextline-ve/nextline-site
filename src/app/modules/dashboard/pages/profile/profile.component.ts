@@ -144,7 +144,6 @@ export class ProfileComponent implements OnInit {
 
   save() {
     if (this.personalDataFormGroup.invalid) {
-      //
       const invalid = [];
       const controls = this.personalDataFormGroup.controls;
       for (const name in controls) {
@@ -154,8 +153,6 @@ export class ProfileComponent implements OnInit {
       }
       console.log("invalid", invalid);
 
-      return invalid;
-      //
       this.utils.showSnackBar(
         "Por favor, digite os campos corretamente...",
         5000
