@@ -79,7 +79,9 @@
                 placeholder="Nombre"
                 required
               />
-              <mat-icon class="edit-button" (click)="toggleInput('name')">edit</mat-icon>
+              <mat-icon class="edit-button" (click)="toggleInput('name')"
+                >edit</mat-icon
+              >
             </mat-form-field>
           </div>
           <div
@@ -92,8 +94,12 @@
                 formControlName="identification"
                 placeholder="Cedula"
                 required
-							/>
-							<mat-icon class="edit-button" (click)="toggleInput('identification')">edit</mat-icon>
+              />
+              <mat-icon
+                class="edit-button"
+                (click)="toggleInput('identification')"
+                >edit</mat-icon
+              >
             </mat-form-field>
           </div>
           <div
@@ -107,8 +113,10 @@
                 placeholder="Email"
                 type="email"
                 required
-							/>
-							<mat-icon class="edit-button" (click)="toggleInput('email')">edit</mat-icon>
+              />
+              <mat-icon class="edit-button" (click)="toggleInput('email')"
+                >edit</mat-icon
+              >
             </mat-form-field>
           </div>
           <div
@@ -121,8 +129,10 @@
                 formControlName="phone"
                 placeholder="Celular"
                 required
-							/>
-							<mat-icon class="edit-button" (click)="toggleInput('phone')">edit</mat-icon>
+              />
+              <mat-icon class="edit-button" (click)="toggleInput('phone')"
+                >edit</mat-icon
+              >
             </mat-form-field>
           </div>
           <div
@@ -137,8 +147,10 @@
                 placeholder="Clave"
                 type="password"
                 required
-							/>
-							<mat-icon class="edit-button" (click)="toggleInput('password')">edit</mat-icon>
+              />
+              <mat-icon class="edit-button" (click)="toggleInput('password')"
+                >edit</mat-icon
+              >
             </mat-form-field>
           </div>
         </div>
@@ -149,12 +161,15 @@
         style="margin-top: 3%; border-top: 1px solid #abe4f5"
       >
         <button
+          [disabled]="isLoading"
+          (click)="save()"
           mat-button
           mat-raised-button
           color="primary"
           style="margin-top: 4%"
+          [class.spinner]="isLoading"
         >
-          VOLVER AL ESCRITORIO
+          GUARDAR
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
       </div>

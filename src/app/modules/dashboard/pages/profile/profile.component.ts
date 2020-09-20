@@ -8,6 +8,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { UtilsService } from "src/app/services/utils.service";
 
 @Component({
   selector: "app-profile",
@@ -16,6 +17,7 @@ import {
 })
 export class ProfileComponent implements OnInit {
   public isContentLoaded = false;
+  public isLoading = false;
   public personalDataFormGroup: FormGroup;
   public domain = environment.DOMAIN;
   public cliente: any = {};
@@ -25,7 +27,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private session: SessionsClientService,
-    private http: RequestApiService
+    private http: RequestApiService,
+    private utils: UtilsService
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +51,7 @@ export class ProfileComponent implements OnInit {
       identification: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
       phone: new FormControl("", Validators.required),
-      password: new FormControl("", [
-        Validators.minLength(6),
-        Validators.required,
-      ]),
+      password: new FormControl("", [Validators.minLength(6)]),
     });
   }
 
@@ -68,6 +68,7 @@ export class ProfileComponent implements OnInit {
   fillProfile() {
     console.warn("fillProfile");
 
+    this.personalDataFormGroup.controls.avatar.setValue(this.cliente.avatar);
     this.personalDataFormGroup.controls.name.setValue(
       this.cliente.nombre_razsoc
     );
@@ -141,5 +142,39 @@ export class ProfileComponent implements OnInit {
 
   onFileChanged(e) {}
 
-  save() {}
+  save() {
+    if (this.personalDataFormGroup.invalid) {
+      //
+      const invalid = [];
+      const controls = this.personalDataFormGroup.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          invalid.push(name);
+        }
+      }
+      console.log("invalid", invalid);
+
+      return invalid;
+      //
+      this.utils.showSnackBar(
+        "Por favor, digite os campos corretamente...",
+        5000
+      );
+      return;
+    }
+    this.isLoading = true;
+
+    this.http
+      .post("admon/perfil", this.personalDataFormGroup.getRawValue(), true)
+      .subscribe(
+        (response: any) => {
+          this.isLoading = false;
+          // todo, update form and localstorage
+        },
+        (err) => {
+          this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
+          this.isLoading = false;
+        }
+      );
+  }
 }
