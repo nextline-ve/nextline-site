@@ -7,7 +7,6 @@ import { HeaderComponent } from "./components/header/header.component";
 import { MatButtonModule } from "@angular/material/button";
 import { PresentationComponent } from "./components/presentation/presentation.component";
 import { HireNowComponent } from "./components/hire-now/hire-now.component";
-import { PlansComponent } from "./components/plans/plans.component";
 import { AppComponent } from "./components/app/app.component";
 import { MatIconModule } from "@angular/material/icon";
 import { InfoCompanyComponent } from "./components/info-company/info-company.component";
@@ -16,6 +15,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { MatInputModule } from "@angular/material/input";
     HeaderComponent,
     PresentationComponent,
     HireNowComponent,
-    // PlansComponent,
     AppComponent,
     InfoCompanyComponent,
     LoginModalComponent,
@@ -38,6 +37,7 @@ import { MatInputModule } from "@angular/material/input";
     FormsModule,
     MatInputModule,
     ReactiveFormsModule,
+    SharedModule
   ],
 })
 export class LandingModule {}

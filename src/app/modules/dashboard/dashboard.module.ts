@@ -41,7 +41,6 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { environment } from "src/environments/environment.prod";
 import { SharedModule } from '../shared/shared.module';
-import { PlansComponent } from '../landing/components/plans/plans.component';
 import { SuccessMessageComponent } from './pages/success-message/success-message.component';
 import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
 
@@ -70,7 +69,6 @@ import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
     BillsPageComponent,
     SuccessMessageComponent,
     PlanDetailComponent,
-    // PlansComponent
   ],
   imports: [
     SharedModule,
@@ -93,6 +91,7 @@ import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    SharedModule
   ],
 })
 export class DashboardModule {}

@@ -12,13 +12,13 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { ServicesComponent } from "./components/services/services.component";
-import { PlansComponent } from "./components/plans/plans.component";
 import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment.prod';
 import { AddressMapComponent } from './components/address-map/address-map.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ServicesRequestComponent, ServicesComponent, PlansComponent, AddressMapComponent],
+  declarations: [ServicesRequestComponent, ServicesComponent,  AddressMapComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -32,6 +32,7 @@ import { AddressMapComponent } from './components/address-map/address-map.compon
     MatProgressSpinnerModule,
     MatIconModule,
     MatInputModule,
+    SharedModule,
     AgmCoreModule.forRoot({
       apiKey: environment.GOOGLE_MAPS_KEY
     }),

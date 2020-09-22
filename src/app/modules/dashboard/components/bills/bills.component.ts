@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import mocks from "../../../../mocks";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { SessionsClientService } from "src/app/services/sessions-client.service";
@@ -10,6 +10,7 @@ import { SessionsClientService } from "src/app/services/sessions-client.service"
 })
 export class BillsComponent implements OnInit {
   public bills = [];
+  @Input() mustShow = true;
 
   constructor(
     private session: SessionsClientService,
@@ -17,7 +18,7 @@ export class BillsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.bills = mocks.bills;
+    this.bills = mocks.bills;
     this.loadBills();
   }
 
