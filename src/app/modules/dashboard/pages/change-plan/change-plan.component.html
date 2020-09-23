@@ -15,13 +15,13 @@
           [bolivarPrice]="item.precio_bs"
           [downSpeed]="item.velocidad_baja"
           [upSpeed]="item.velocidad_subida"
-          [selectedPlanId]="selectedPlan"
+          [selectedPlanId]="selectedPlan.id"
           *ngFor="let item of plans"
           (click)="setPlan(item)"
         ></app-plans>
       </div>
     </div>
-    <div class="col-md-12 center-md">
+    <div class="col-md-12 center-md" style="margin-top: 2%;">
       <button
         *ngIf="plans.length > 0"
         mat-button

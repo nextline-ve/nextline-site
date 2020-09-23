@@ -48,16 +48,16 @@ export class PlanDetailComponent implements OnInit {
   }
 
   comfirm() {
-    let obj3 = {
-      title: "Su cambio de plan esta en proceso",
-      icon: "success-plan-change.png",
-      // icon: "success-payed-bill.png",
-    };
+    // let obj3 = {
+    //   title: "Su cambio de plan esta en proceso",
+    //   icon: "success-plan-change.png",
+    //   // icon: "success-payed-bill.png",
+    // };
 
-    this.router.navigate(["/panel/change-plan/success-message"], {
-      queryParams: obj3,
-    });
-    return;
+    // this.router.navigate(["/panel/change-plan/success-message"], {
+    //   queryParams: obj3,
+    // });
+    // return;
     // to do
     this.isLoading = true;
 

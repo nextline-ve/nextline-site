@@ -11,7 +11,8 @@ import { UtilsService } from "src/app/services/utils.service";
 })
 export class ChangePlanComponent implements OnInit {
   public plans = [];
-  public selectedPlan = null;
+  public selectedPlan: any = {};
+  public currentPlan: any = {};
 
   constructor(
     private http: RequestApiService,
@@ -22,6 +23,7 @@ export class ChangePlanComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlans();
+    this.getContractStatus();
   }
 
   async getPlans() {
@@ -36,20 +38,42 @@ export class ChangePlanComponent implements OnInit {
     );
   }
 
+  async getContractStatus() {
+    this.http.get("admon/contratos-status", null, true).subscribe(
+      (response: any) => {
+        console.log(
+          "getContractStatus response.results[0].plan, getContractStatus",
+          response.results[0].plan
+        );
+        this.currentPlan = response.results[0].plan;
+      },
+      (error) => {
+        console.log(error.error.message);
+        console.log(error);
+      }
+    );
+  }
+
   async setPlan(item) {
     this.selectedPlan = item;
   }
 
   validateSelectedPlan() {
-    // if (this.selectedPlan == null) {
-    //   this.utils.showSnackBar("Por favor seleccione un plan.");
-    //   return;
-    // }
+    if (this.selectedPlan == null) {
+      this.utils.showSnackBar("Por favor seleccione un plan.");
+      return;
+    }
+
+    if (this.currentPlan.id == this.selectedPlan) {
+      this.utils.showSnackBar(
+        "Por favor seleccione un plan diferente al actual."
+      );
+      return;
+    }
+    console.log(" this.selectedPlan", this.selectedPlan);
 
     this.router.navigate(["/panel/change-plan/plan-detail"], {
-      queryParams: this.plans[0],
-      // todo
-      // queryParams: this.selectedPlan,
+      queryParams: this.selectedPlan,
     });
   }
 }
