@@ -13,6 +13,5 @@ export class StatusBoxComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log("size", this.isSmall);
   }
 }

@@ -8,12 +8,12 @@
         class="col-xs-6 col-sm-6 col-md-6 col-lg-6 start-xs start-sm start-md start-lg"
       >
         <h1 class="font-blue">Factura</h1>
-        <p>#{{ billId }}</p>
+        <p class="text-black">#{{ billId }}</p>
       </div>
       <div
         class="col-xs-6 col-sm-6 col-md-6 col-lg-6 end-xs end-sm end-md end-lg"
       >
-        <p>date</p>
+        <p class="text-black">date</p>
         <app-status-box
           [status]="'test'"
           [statusDetail]="'test'"
@@ -25,64 +25,58 @@
     <div class="row" style="margin-bottom: 5%">
       <div
         class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
+        style="padding: 0"
       >
         <!-- table -->
         <table id="bills-table">
-          <tr>
-            <th class="text-start">Descripción</th>
-            <th class="text-end">Total Dólar ($)</th>
-            <th class="text-end">Total Bs.</th>
-          </tr>
-          <tr>
-            <td class="text-start border-right">Berglunds snabbköp</td>
-            <td class="border-right text-end {">Christina Berglund</td>
-            <td class="text-end">Sweden</td>
-          </tr>
-          <tr>
-            <td class="text-start border-right">Berglunds snabbköp</td>
-            <td class="border-right text-end {">Christina Berglund</td>
-            <td class="text-end">Sweden</td>
-          </tr>
-          <!-- <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-          </tr>
-          <tr>
-            <td>Ernst Handel</td>
-            <td>Roland Mendel</td>
-            <td>Austria</td>
-          </tr>
-          <tr>
-            <td>Island Trading</td>
-            <td>Helen Bennett</td>
-            <td>UK</td>
-          </tr>
-          <tr>
-            <td>Königlich Essen</td>
-            <td>Philip Cramer</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Laughing Bacchus Winecellars</td>
-            <td>Yoshi Tannamuri</td>
-            <td>Canada</td>
-          </tr>
-          <tr>
-            <td>Magazzini Alimentari Riuniti</td>
-            <td>Giovanni Rovelli</td>
-            <td>Italy</td>
-          </tr>
-          <tr>
-            <td>North/South</td>
-            <td>Simon Crowther</td>
-            <td>UK</td>
-          </tr>
-          <tr>
-            <td>Paris spécialités</td>
-            <td>Marie Bertrand</td>
-            <td>France</td>
-          </tr> -->
+          <thead>
+            <tr>
+              <th class="text-start text-black">Descripción</th>
+              <th class="text-end text-black">Total Dólar ($)</th>
+              <th class="text-end text-black">Total Bs.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-start border-right text-gray">
+                Berglunds snabbköp
+              </td>
+              <td class="border-right text-end text-gray">
+                Christina Berglund
+              </td>
+              <td class="text-end text-gray">Sweden</td>
+            </tr>
+            <tr>
+              <td class="text-start border-right text-gray">
+                Berglunds snabbköp
+              </td>
+              <td class="border-right text-end text-gray">
+                Christina Berglund
+              </td>
+              <td class="text-end text-gray">Sweden</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="text-start text-blue border-none">Total a pagar</th>
+              <th class="text-center text-black border-none">Total Dolar</th>
+              <th class="text-center text-black border-none">Total Bs.</th>
+            </tr>
+            <tr>
+              <th class="text-start text-blue border-none"></th>
+              <th class="text-center text-blue border-none">$50</th>
+              <th class="text-center text-blue border-none">Bs. 50.000.000</th>
+            </tr>
+            <tr>
+              <th class="text-start text-blue border-none"></th>
+              <th class="text-center text-blue border-none">
+                <div (click)="payBill('dolar')" class="pay-button"><p>Pagar en Dolar</p></div>
+              </th>
+              <th class="text-center text-blue border-none">
+                <div (click)="payBill('bs')" class="pay-button"><p>Pagar en Bs.</p></div>
+              </th>
+            </tr>
+          </tfoot>
         </table>
         <!-- table -->
       </div>

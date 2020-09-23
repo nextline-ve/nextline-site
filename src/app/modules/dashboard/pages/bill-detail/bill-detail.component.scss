@@ -15,14 +15,6 @@
   padding: 8px;
 }
 
-#bills-table tr:nth-child(even) {
-  // background-color: #f5f5f5;
-}
-
-#bills-table tr:hover {
-  background-color: rgb(237, 237, 237);
-}
-
 #bills-table th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -40,4 +32,31 @@
 
 .border-right {
   border-right: 1px solid #ddd;
+}
+.text-black {
+  color: #0c0c0c;
+}
+.text-blue {
+  color: #005fab !important;
+}
+.text-gray {
+  color: #828282 !important;
+}
+.border-none {
+  border: none !important;
+}
+.pay-button {
+  margin: auto;
+  width: 121px;
+  height: 30px;
+  border: 1px solid var(--unnamed-color-005fab);
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #005fab;
+  border-radius: 24px;
+  opacity: 1;
+  cursor: pointer;
+  p {
+    margin-top: 3px;
+    color: #005fab;
+  }
 }
