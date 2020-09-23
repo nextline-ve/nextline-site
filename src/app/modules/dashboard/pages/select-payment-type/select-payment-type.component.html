@@ -19,7 +19,8 @@
           *ngFor="let item of payments"
           [id]="item.id"
           [name]="item.name"
-          [icon]="item.icon"
+					[icon]="item.icon"
+					(click)="selectPayment(item)"
         ></app-payment-type-item>
       </div>
     </div>
