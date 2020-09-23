@@ -1,0 +1,43 @@
+.bill-container {
+  width: 70%;
+  margin: auto;
+  margin-top: 10%;
+}
+#bills-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+
+  width: 100%;
+}
+
+#bills-table td,
+#bills-table th {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bills-table tr:nth-child(even) {
+  // background-color: #f5f5f5;
+}
+
+#bills-table tr:hover {
+  background-color: rgb(237, 237, 237);
+}
+
+#bills-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: right;
+
+  color: black;
+}
+.text-start {
+  text-align: start !important;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.border-right {
+  border-right: 1px solid #ddd;
+}
