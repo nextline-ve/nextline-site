@@ -44,6 +44,8 @@ import { SharedModule } from '../shared/shared.module';
 import { SuccessMessageComponent } from './pages/success-message/success-message.component';
 import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
 import { BillDetailComponent } from './pages/bill-detail/bill-detail.component';
+import { SelectPaymentTypeComponent } from './pages/select-payment-type/select-payment-type.component';
+import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { BillDetailComponent } from './pages/bill-detail/bill-detail.component';
     SuccessMessageComponent,
     PlanDetailComponent,
     BillDetailComponent,
+    SelectPaymentTypeComponent,
+    DeclarePaymentComponent,
   ],
   imports: [
     SharedModule,

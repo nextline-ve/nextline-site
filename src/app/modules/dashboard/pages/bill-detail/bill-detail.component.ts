@@ -21,7 +21,9 @@ export class BillDetailComponent implements OnInit {
 
   loadBill() {}
 
-  payBill(method){
-
+  payBill(method) {
+    this.router.navigate(["/panel/bills/select-payment"], {
+      queryParams: { method, billId: this.billId },
+    });
   }
 }
