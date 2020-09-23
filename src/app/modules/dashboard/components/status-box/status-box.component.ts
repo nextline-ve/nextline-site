@@ -8,8 +8,11 @@ import { Component, OnInit, Input } from "@angular/core";
 export class StatusBoxComponent implements OnInit {
   @Input() status;
   @Input() statusDetail;
+  @Input() isSmall = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("size", this.isSmall);
+  }
 }

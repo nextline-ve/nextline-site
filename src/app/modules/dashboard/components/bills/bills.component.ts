@@ -11,6 +11,7 @@ import { SessionsClientService } from "src/app/services/sessions-client.service"
 export class BillsComponent implements OnInit {
   public bills = [];
   @Input() mustShow = true;
+  @Input() isSmall = false;
 
   constructor(
     private session: SessionsClientService,

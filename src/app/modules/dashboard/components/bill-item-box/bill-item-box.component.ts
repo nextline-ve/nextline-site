@@ -12,6 +12,8 @@ export class BillItemBoxComponent implements OnInit {
   @Input() date;
   @Input() bolivar;
   @Input() dolar;
+  @Input() isSmall = false;
+
   public isBgWhite = true;
 
   constructor() {}

@@ -70,7 +70,6 @@ export class ChangePlanComponent implements OnInit {
       );
       return;
     }
-    console.log(" this.selectedPlan", this.selectedPlan);
 
     this.router.navigate(["/panel/change-plan/plan-detail"], {
       queryParams: this.selectedPlan,

@@ -1,1 +1,3 @@
-<small class="ticket-status">{{ statusDetail }}</small>
+<small class="ticket-status" [ngClass]="{ 'small-size': isSmall }">{{
+  statusDetail
+}}</small>
