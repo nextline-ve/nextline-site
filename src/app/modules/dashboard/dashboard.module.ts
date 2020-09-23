@@ -46,6 +46,7 @@ import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
 import { BillDetailComponent } from './pages/bill-detail/bill-detail.component';
 import { SelectPaymentTypeComponent } from './pages/select-payment-type/select-payment-type.component';
 import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment.component';
+import { PaymentTypeItemComponent } from './components/payment-type-item/payment-type-item.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment
     BillDetailComponent,
     SelectPaymentTypeComponent,
     DeclarePaymentComponent,
+    PaymentTypeItemComponent,
   ],
   imports: [
     SharedModule,
