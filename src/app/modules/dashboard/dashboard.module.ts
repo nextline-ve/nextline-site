@@ -43,6 +43,7 @@ import { environment } from "src/environments/environment.prod";
 import { SharedModule } from '../shared/shared.module';
 import { SuccessMessageComponent } from './pages/success-message/success-message.component';
 import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
+import { BillDetailComponent } from './pages/bill-detail/bill-detail.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
     BillsPageComponent,
     SuccessMessageComponent,
     PlanDetailComponent,
+    BillDetailComponent,
   ],
   imports: [
     SharedModule,

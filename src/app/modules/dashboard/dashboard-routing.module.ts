@@ -8,10 +8,11 @@ import { CreateTicketComponent } from "./pages/create-ticket/create-ticket.compo
 import { TicketDetailComponent } from "./pages/ticket-detail/ticket-detail.component";
 import { ChatComponent } from "./pages/chat/chat.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
-import { TechnicalAssitancePageComponent } from './pages/technical-assitance-page/technical-assitance-page.component';
-import { BillsPageComponent } from './pages/bills-page/bills-page.component';
-import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
-import { SuccessMessageComponent } from './pages/success-message/success-message.component';
+import { TechnicalAssitancePageComponent } from "./pages/technical-assitance-page/technical-assitance-page.component";
+import { BillsPageComponent } from "./pages/bills-page/bills-page.component";
+import { PlanDetailComponent } from "./pages/plan-detail/plan-detail.component";
+import { SuccessMessageComponent } from "./pages/success-message/success-message.component";
+import { BillDetailComponent } from "./pages/bill-detail/bill-detail.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/panel/home", pathMatch: "full" },
@@ -21,15 +22,22 @@ const routes: Routes = [
     component: NavBarComponent,
     children: [
       { path: "bills", component: BillsPageComponent },
+      { path: "bill-detail/:id", component: BillDetailComponent },
       { path: "change-plan", component: ChangePlanComponent },
       { path: "change-plan/plan-detail", component: PlanDetailComponent },
-      { path: "change-plan/success-message", component: SuccessMessageComponent },
+      {
+        path: "change-plan/success-message",
+        component: SuccessMessageComponent,
+      },
       { path: "chat/:id", component: ChatComponent },
       { path: "create-ticket", component: CreateTicketComponent },
       { path: "home", component: HomeComponent },
       { path: "profile", component: ProfileComponent },
       { path: "ticket-detail", component: TicketDetailComponent },
-      { path: "technical-assitance", component: TechnicalAssitancePageComponent },
+      {
+        path: "technical-assitance",
+        component: TechnicalAssitancePageComponent,
+      },
     ],
   },
 ];
