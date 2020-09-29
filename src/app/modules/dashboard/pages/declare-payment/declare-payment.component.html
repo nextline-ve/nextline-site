@@ -18,10 +18,11 @@
           >
             <!--  -->
             <app-payment-type-item
-              *ngFor="let item of payments"
-              [id]="item.id"
-              [name]="item.name"
-              [icon]="item.icon"
+              *ngIf="selectedPayment.isValid"
+              (click)="showSelectPaymentModal()"
+              [id]="selectedPayment.id"
+              [name]="selectedPayment.name"
+              [icon]="selectedPayment.icon"
             ></app-payment-type-item>
             <!--  -->
           </div>

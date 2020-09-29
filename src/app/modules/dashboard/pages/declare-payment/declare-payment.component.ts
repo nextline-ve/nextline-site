@@ -10,6 +10,8 @@ import { UtilsService } from "src/app/services/utils.service";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { SessionsClientService } from "src/app/services/sessions-client.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { SelectPaymentModalComponent } from "../../components/select-payment-modal/select-payment-modal.component";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: "app-declare-payment",
@@ -24,17 +26,23 @@ export class DeclarePaymentComponent implements OnInit {
   public payments = [
     { id: 1, name: "Zelle", icon: "zelle.png" },
     { id: 1, name: "Bank of america", icon: "bofa.png" },
+    { id: 1, name: "Bank of america", icon: "bofa.png" },
+    { id: 1, name: "Bank of america", icon: "bofa.png" },
+    { id: 1, name: "Bank of america", icon: "bofa.png" },
   ];
+  public selectedPayment: any = { ...this.payments[0], isValid: true };
+
   public isLoading = false;
   public fileComprobante: File;
   public comprobanteSrc: string;
 
   constructor(
-    private route: ActivatedRoute,
+    public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private session: SessionsClientService,
-    private router: Router,
     private http: RequestApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private session: SessionsClientService,
     private utils: UtilsService
   ) {}
 
@@ -80,6 +88,21 @@ export class DeclarePaymentComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  showSelectPaymentModal() {
+    const dialogForgotRef = this.dialog.open(SelectPaymentModalComponent, {
+      width: "420px",
+      data: {
+        payments: this.payments,
+      },
+    });
+
+    dialogForgotRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.selectedPayment = { ...res, isValid: true };
+      }
+    });
   }
 
   onFileChanged(event) {

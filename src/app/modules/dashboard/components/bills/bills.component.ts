@@ -26,7 +26,7 @@ export class BillsComponent implements OnInit {
   loadBills() {
     this.http.get("admon/factura/", null, true).subscribe(
       (response: any) => {
-        console.log("response, loadBills", response);
+        console.log("loadBills", response);
       },
       (error) => {
         console.log(error.error.message);

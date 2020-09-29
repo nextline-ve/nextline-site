@@ -47,6 +47,8 @@ import { BillDetailComponent } from './pages/bill-detail/bill-detail.component';
 import { SelectPaymentTypeComponent } from './pages/select-payment-type/select-payment-type.component';
 import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment.component';
 import { PaymentTypeItemComponent } from './components/payment-type-item/payment-type-item.component';
+import { SelectPaymentModalComponent } from './components/select-payment-modal/select-payment-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { PaymentTypeItemComponent } from './components/payment-type-item/payment
     SelectPaymentTypeComponent,
     DeclarePaymentComponent,
     PaymentTypeItemComponent,
+    SelectPaymentModalComponent,
   ],
   imports: [
     SharedModule,
@@ -90,6 +93,7 @@ import { PaymentTypeItemComponent } from './components/payment-type-item/payment
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MatDialogModule,
     MatInputModule,
     LayoutModule,
     MatToolbarModule,

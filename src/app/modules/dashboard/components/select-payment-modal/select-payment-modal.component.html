@@ -1,0 +1,37 @@
+<div class="position-relative">
+  <div class="close-modal">
+    <img
+      (click)="close()"
+      class="close-button"
+      src="../../../../../assets/images/cross.svg"
+      width="15px"
+      height="15px"
+      alt=""
+    />
+  </div>
+  <div class="row center-lg mb-5">
+    <div class="col-md-6"></div>
+  </div>
+
+  <form class="w-100">
+    <div class="row">
+      <div class="col-md-12"></div>
+
+      <div class="col-lg-6 col-md-6 col-right">
+        <div style="width: 300px"></div>
+      </div>
+    </div>
+  </form>
+
+  <div class="col-md-12 text-center" *ngIf="isReady">
+    <app-payment-type-item
+      *ngFor="let item of payments"
+      [id]="item.id"
+      [name]="item.name"
+      [icon]="item.icon"
+      (click)="selectPayment(item)"
+    ></app-payment-type-item>
+  </div>
+
+  <div class="col-md-12 text-center"></div>
+</div>
