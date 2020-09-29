@@ -22,30 +22,35 @@ export class ChangePlanComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getPlans();
     this.getContractStatus();
   }
 
   async getPlans() {
-    this.http.get("config/planes/", null, false).subscribe(
-      (res: any) => {
-        this.plans = res.results;
-        console.log("a", this.plans);
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    this.http
+      .get(
+        "config/planes/",
+        { tipo_servicio_id: this.currentPlan.tipo_servicio.id },
+        false
+      )
+      .subscribe(
+        (res: any) => {
+          this.plans = res.results;
+          console.log("plans", this.plans);
+
+          this.setPlan(this.currentPlan);
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   }
 
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        console.log(
-          "getContractStatus response.results[0].plan, getContractStatus",
-          response.results[0].plan
-        );
+        console.log("currentPlan ", response.results[0].plan);
         this.currentPlan = response.results[0].plan;
+        this.getPlans();
       },
       (error) => {
         console.log(error.error.message);
@@ -64,7 +69,7 @@ export class ChangePlanComponent implements OnInit {
       return;
     }
 
-    if (this.currentPlan.id == this.selectedPlan) {
+    if (this.currentPlan.id == this.selectedPlan.id) {
       this.utils.showSnackBar(
         "Por favor seleccione un plan diferente al actual."
       );
