@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { SharedModule } from '../shared/shared.module';
 import { ForgotPasswordModalComponent } from './components/forgot-password-modal/forgot-password-modal.component';
+import { LandingPlansComponent } from './components/landing-plans/landing-plans.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ForgotPasswordModalComponent } from './components/forgot-password-modal
     InfoCompanyComponent,
     LoginModalComponent,
     ForgotPasswordModalComponent,
+    LandingPlansComponent,
   ],
   imports: [
     CommonModule,
