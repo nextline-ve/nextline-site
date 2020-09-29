@@ -255,7 +255,6 @@ export class ServicesRequestComponent implements OnInit {
 
     this.http.post("admon/service-request", myFormData, false).subscribe(
       async (res: any) => {
-        this.plans = res.results;
         this.utils.showSnackBar(
           JSON.stringify("Registrado con exito, por favor inicie sesion"),
           15000

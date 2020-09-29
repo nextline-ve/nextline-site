@@ -49,6 +49,7 @@
               #fileInput
             />
             <button
+              type="button"
               mat-button
               mat-raised-button
               color="primary"
@@ -63,7 +64,7 @@
             *ngIf="fileComprobante"
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
-            {{ fileComprobante }}
+            {{ fileComprobante.name }}
             <mat-icon>delete_forever</mat-icon>
           </div>
         </div>
@@ -120,6 +121,7 @@
         style="margin-top: 3%"
       >
         <button
+          (click)="enviar()"
           [disabled]="isLoading"
           mat-button
           mat-raised-button
