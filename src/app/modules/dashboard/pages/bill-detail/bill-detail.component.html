@@ -70,10 +70,31 @@
             <tr>
               <th class="text-start text-blue border-none"></th>
               <th class="text-center text-blue border-none">
-                <div (click)="payBill('dolar')" class="pay-button"><p>Pagar en Dolar</p></div>
+                <div (click)="payBill('dolar')" class="pay-button">
+                  <p>Pagar en Dolar</p>
+                </div>
               </th>
               <th class="text-center text-blue border-none">
-                <div (click)="payBill('bs')" class="pay-button"><p>Pagar en Bs.</p></div>
+                <div (click)="payBill('bs')" class="pay-button">
+                  <p>Pagar en Bs.</p>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th class="text-start text-blue border-none"></th>
+              <th class="text-center text-blue border-none"></th>
+              <th class="text-center text-blue border-none">
+                <p
+                  class="text-blue"
+                  style="text-transform: uppercase"
+                  (click)="downloadBill()"
+                >
+                  Descargar factura
+                  <img
+                    src="../../../../../assets/images/Icon-feather-download.svg"
+                    alt=""
+                  />
+                </p>
               </th>
             </tr>
           </tfoot>

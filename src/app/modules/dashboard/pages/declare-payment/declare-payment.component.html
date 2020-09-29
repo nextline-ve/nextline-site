@@ -1,62 +1,70 @@
 <div class="container" style="height: 100%; margin-top: 3%">
   <form [formGroup]="myForm">
     <div class="row main-row">
-      <!-- titles -->
       <div
         class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-        style="margin-bottom: 5%; border-bottom: 1px solid #abe4f5"
+        style="margin-bottom: 5%"
       >
         <div class="row">
           <div
-            class="col-xs-12 col-sm-6 col-md-6 col-lg-6 start-xs start-sm start-md start-lg"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
           >
-            <h1 class="font-blue">Mi Perfil</h1>
+            <h1 class="font-blue">Declarar Pago</h1>
           </div>
         </div>
         <div class="row">
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
           >
-            <h2 class="font-blue" style="font-weight: 300">Editar Perfil</h2>
+            <!--  -->
+            <app-payment-type-item
+              *ngFor="let item of payments"
+              [id]="item.id"
+              [name]="item.name"
+              [icon]="item.icon"
+            ></app-payment-type-item>
+            <!--  -->
           </div>
         </div>
       </div>
 
-      <!-- avatar -->
+      <!-- comprobante -->
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 avatar-container">
         <div class="row">
           <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs end-sm end-md end-lg"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
-            <div
+            <mat-label>Datos del Beneficiario</mat-label>
+            <br />
+            <mat-label class="email">{{ cliente.correo }}</mat-label>
+          </div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg mt-3"
+          >
+            <input
+              style="display: none"
+              formControlName="comprobante"
+              type="file"
               (change)="onFileChanged($event)"
-              [ngStyle]="{
-                margin: 'auto',
-                'text-align': 'center',
-                color: '#fff',
-                'background-color': '#EBEBEB',
-
-                'background-repeat': 'no-repeat',
-                'background-size': 'cover',
-                height: '200px',
-                width: '200px',
-                'border-radius': '50%'
-              }"
+              #fileInput
+            />
+            <button
+              mat-button
+              mat-raised-button
+              color="primary"
+              style="margin-top: 4%"
+              (click)="fileInput.click()"
             >
-              <input
-                style="display: none"
-                formControlName="avatar"
-                type="file"
-                (change)="onFileChanged($event)"
-                #fileInput
-              />
-              <mat-icon
-                color="primary"
-                style="margin-top: 85%; cursor: pointer"
-                (click)="fileInput.click()"
-                >camera_alt</mat-icon
-              >
-            </div>
+              Adjuntar Comprobante de Pago
+              <mat-icon>cloud_upload</mat-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="fileComprobante"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+          >
+            {{ fileComprobante }}
+            <mat-icon>delete_forever</mat-icon>
           </div>
         </div>
       </div>
@@ -68,73 +76,40 @@
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
             <mat-form-field style="width: 300px">
-              <mat-label>Nombre o Razon social</mat-label>
+              <mat-label>Nº de referencia</mat-label>
               <input
                 matInput
-                formControlName="name"
-                placeholder="Nombre"
+                formControlName="referencia"
+                placeholder="Nº de referencia"
                 required
               />
-              <mat-icon class="edit-button">edit</mat-icon>
             </mat-form-field>
           </div>
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
             <mat-form-field style="width: 300px">
-              <mat-label>Cedula o Rif</mat-label>
+              <mat-label>Fecha</mat-label>
               <input
                 matInput
-                formControlName="identification"
+                formControlName="fecha"
                 placeholder="Cedula"
                 required
               />
-              <mat-icon class="edit-button">edit</mat-icon>
             </mat-form-field>
           </div>
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
             <mat-form-field style="width: 300px">
-              <mat-label>Correo</mat-label>
+              <mat-label>monto que se pago</mat-label>
               <input
                 matInput
-                formControlName="email"
-                placeholder="Email"
-                type="email"
+                formControlName="monto"
+                placeholder="monto que se pago"
+                type="text"
                 required
               />
-              <mat-icon class="edit-button">edit</mat-icon>
-            </mat-form-field>
-          </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg col-right"
-          >
-            <mat-form-field style="width: 300px">
-              <mat-label>Telefono</mat-label>
-              <input
-                matInput
-                formControlName="phone"
-                placeholder="Celular"
-                required
-              />
-              <mat-icon class="edit-button">edit</mat-icon>
-            </mat-form-field>
-          </div>
-          <div
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
-          >
-            <mat-form-field style="width: 300px">
-              <mat-label>Clave</mat-label>
-              <input
-                matInput
-                color="primary"
-                formControlName="password"
-                placeholder="Clave"
-                type="password"
-                required
-              />
-              <mat-icon class="edit-button">edit</mat-icon>
             </mat-form-field>
           </div>
         </div>
@@ -142,15 +117,18 @@
 
       <div
         class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
-        style="margin-top: 3%; border-top: 1px solid #abe4f5"
+        style="margin-top: 3%"
       >
         <button
+          [disabled]="isLoading"
           mat-button
           mat-raised-button
           color="primary"
           style="margin-top: 4%"
+          class="my-button green-button"
+          [class.spinner]="isLoading"
         >
-          GUARDAR
+          Finalizar pago
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
       </div>
