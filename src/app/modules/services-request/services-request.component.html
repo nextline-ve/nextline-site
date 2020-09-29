@@ -94,7 +94,7 @@
     <mat-step [stepControl]="personalDataFormGroup" [editable]="isEditable">
       <form [formGroup]="personalDataFormGroup">
         <div class="row w-100 element-container">
-          <div class="col-lg-12 avatar-container form-container">
+          <div class="col-lg-12 avatar-container">
             <div
               class="avatar-select"
               (change)="onFileChanged($event)"
@@ -225,7 +225,7 @@
       <ng-template matStepLabel></ng-template>
 
       <div class="row w-100 element-container">
-        <div class="col-lg-12 avatar-container form-container">
+        <div class="col-lg-12 avatar-container">
           <div *ngIf="addressView === 'confirm'">
             <div *ngIf="isLoadingLocation">
               cargando localizacion
@@ -235,7 +235,7 @@
               <p>
                 ¿Esta usted en el sitio donde se va a instalar el servicios?
               </p>
-              <div class="row">
+              <div class="row center-lg">
                 <div class="col-lg-4">
                   <button
                     [disabled]="isLoading"
