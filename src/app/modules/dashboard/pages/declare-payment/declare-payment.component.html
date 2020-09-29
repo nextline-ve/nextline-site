@@ -16,7 +16,6 @@
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
           >
-            <!--  -->
             <app-payment-type-item
               *ngIf="selectedPayment.isValid"
               (click)="showSelectPaymentModal()"
@@ -24,7 +23,6 @@
               [name]="selectedPayment.name"
               [icon]="selectedPayment.icon"
             ></app-payment-type-item>
-            <!--  -->
           </div>
         </div>
       </div>
@@ -62,11 +60,18 @@
             </button>
           </div>
           <div
-            *ngIf="fileComprobante"
-            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg mt-6"
+            style="height: 100px"
           >
-            {{ fileComprobante.name }}
-            <mat-icon>delete_forever</mat-icon>
+            <div class="row" style="padding-top: 8%" *ngIf="fileComprobante">
+              <div
+                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg mt-6"
+                style="height: 100px"
+              >
+                {{ fileComprobante.name }}
+                <mat-icon (click)="deleteFile()">delete_forever</mat-icon>
+              </div>
+            </div>
           </div>
         </div>
       </div>

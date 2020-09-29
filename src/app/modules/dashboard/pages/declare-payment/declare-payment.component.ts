@@ -119,17 +119,12 @@ export class DeclarePaymentComponent implements OnInit {
       });
   }
 
-  enviar() {
-    const obj = {
-      title: "¡Gracias por su pago!",
-      subTitle: "A la espera de confirmación",
-      icon: "success-payed-bill.png",
-    };
+  deleteFile() {
+    this.fileComprobante = null;
+    this.comprobanteSrc = null;
+  }
 
-    this.router.navigate(["/panel/change-plan/success-message"], {
-      queryParams: obj,
-    });
-    // to delete
+  enviar() {
     this.isLoading = true;
 
     const myFormData: FormData = new FormData();

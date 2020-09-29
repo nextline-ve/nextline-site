@@ -16,16 +16,13 @@ export class SelectPaymentModalComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<SelectPaymentModalComponent>
   ) {}
 
   ngOnInit(): void {
-    console.log("this.data", this.data);
     if (this.data.payments) {
       this.payments = this.data.payments;
-      console.log("this.payments.length", this.payments);
       if (this.payments.length > 0) {
         this.isReady = true;
       }
@@ -37,7 +34,6 @@ export class SelectPaymentModalComponent implements OnInit {
   }
 
   selectPayment(payment) {
-    console.log("payment", payment);
-    this.dialogRef.close({...payment})
+    this.dialogRef.close({ ...payment });
   }
 }
