@@ -18,6 +18,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class DeclarePaymentComponent implements OnInit {
   public cliente: any = {};
+  public metodo = null;
+  public billId = null;
   public myForm: FormGroup;
   public payments = [
     { id: 1, name: "Zelle", icon: "zelle.png" },
@@ -40,6 +42,8 @@ export class DeclarePaymentComponent implements OnInit {
     this.prepareForms();
     this.route.queryParams.subscribe((res: any) => {
       console.log(res);
+      this.metodo = res.method;
+      this.billId = res.billId;
       this.getProfile();
     });
   }
@@ -107,6 +111,7 @@ export class DeclarePaymentComponent implements OnInit {
 
     const myFormData: FormData = new FormData();
 
+    // todo, isnert user id , inser bill id, inset method
     myFormData.append(
       "comprobante",
       this.fileComprobante,

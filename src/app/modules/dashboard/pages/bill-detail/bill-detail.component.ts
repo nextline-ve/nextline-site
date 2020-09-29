@@ -24,9 +24,8 @@ export class BillDetailComponent implements OnInit {
   downloadBill() {}
 
   payBill(method) {
-    
     this.router.navigate(["/panel/bills/declare-payment"], {
-      queryParams: {  bill: this.billId },
+      queryParams: { method, bill: this.billId },
     });
   }
 }
