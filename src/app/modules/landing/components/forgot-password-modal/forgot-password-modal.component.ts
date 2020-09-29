@@ -9,21 +9,20 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { SessionsClientService } from "src/app/services/sessions-client.service";
 import { UtilsService } from "../../../../services/utils.service";
-import { ForgotPasswordModalComponent } from '../forgot-password-modal/forgot-password-modal.component';
 
 @Component({
-  selector: "app-login-modal",
-  templateUrl: "./login-modal.component.html",
-  styleUrls: ["./login-modal.component.scss"],
+  selector: "app-forgot-password-modal",
+  templateUrl: "./forgot-password-modal.component.html",
+  styleUrls: ["./forgot-password-modal.component.scss"],
 })
-export class LoginModalComponent implements OnInit {
+export class ForgotPasswordModalComponent implements OnInit {
   public email;
   public isLoading;
-  public loginFormGroup: FormGroup;
+  public forgotFormGroup: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<LoginModalComponent>,
+    public dialogRef: MatDialogRef<ForgotPasswordModalComponent>,
     public dialog: MatDialog,
     private http: RequestApiService,
     private session: SessionsClientService,
@@ -35,12 +34,8 @@ export class LoginModalComponent implements OnInit {
   }
 
   prepareForm() {
-    this.loginFormGroup = this.formBuilder.group({
+    this.forgotFormGroup = this.formBuilder.group({
       email: new FormControl("", [Validators.required, Validators.email]),
-      clave: new FormControl("", [
-        Validators.minLength(6),
-        Validators.required,
-      ]),
     });
   }
 
@@ -48,16 +43,8 @@ export class LoginModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  showForgotPasswordModal() {
-    this.dialogRef.close();
-
-    const dialogForgotRef = this.dialog.open(ForgotPasswordModalComponent, {
-      width: "420px",
-    });
-  }
-
-  login() {
-    if (this.loginFormGroup.invalid) {
+  send() {
+    if (this.forgotFormGroup.invalid) {
       this.utils.showSnackBar(
         "Por favor, digite os campos corretamente...",
         5000
@@ -67,12 +54,15 @@ export class LoginModalComponent implements OnInit {
     this.isLoading = true;
 
     this.http
-      .post("config/auth/", this.loginFormGroup.getRawValue(), false)
+      .post(
+        "config/restaurar-clave//",
+        this.forgotFormGroup.getRawValue(),
+        false
+      )
       .subscribe(
         (response: any) => {
           this.isLoading = false;
-          this.session.registerSession(response);
-          window.location.replace("/panel");
+          this.close();
         },
         (err) => {
           this.utils.showSnackBar(this.utils.formatErrors(err), 5000);

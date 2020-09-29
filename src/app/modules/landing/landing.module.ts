@@ -16,6 +16,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { SharedModule } from '../shared/shared.module';
+import { ForgotPasswordModalComponent } from './components/forgot-password-modal/forgot-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SharedModule } from '../shared/shared.module';
     AppComponent,
     InfoCompanyComponent,
     LoginModalComponent,
+    ForgotPasswordModalComponent,
   ],
   imports: [
     CommonModule,
