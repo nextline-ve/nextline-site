@@ -35,6 +35,12 @@ export class DeclarePaymentComponent implements OnInit {
   public isLoading = false;
   public fileComprobante: File;
   public comprobanteSrc: string;
+  
+  public mask = {
+    guide: true,
+    showMask: true,
+    mask: [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/],
+  };
 
   constructor(
     public dialog: MatDialog,
@@ -126,6 +132,24 @@ export class DeclarePaymentComponent implements OnInit {
 
   enviar() {
     this.isLoading = true;
+
+    if (this.myForm.invalid) {
+      const invalid = [];
+      const controls = this.myForm.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          invalid.push(name);
+        }
+      }
+      console.log("invalid", invalid);
+      this.utils.showSnackBar(
+        "Por favor, digite os campos corretamente...",
+        5000
+      );
+      this.isLoading = false;
+
+      return;
+    }
 
     const myFormData: FormData = new FormData();
 

@@ -49,6 +49,9 @@ import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment
 import { PaymentTypeItemComponent } from './components/payment-type-item/payment-type-item.component';
 import { SelectPaymentModalComponent } from './components/select-payment-modal/select-payment-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -103,7 +106,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    SharedModule
+    SharedModule,
+    MatDatepickerModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule, 
+    TextMaskModule
   ],
 })
 export class DashboardModule {}
