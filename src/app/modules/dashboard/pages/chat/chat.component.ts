@@ -36,6 +36,7 @@ export class ChatComponent implements OnInit {
   public isFileLoading = false;
   public ticketId = null;
   public cliente: any = {};
+  public ticket: any = {};
   public avatar =
     "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
   public percentage: Observable<number>;
@@ -52,10 +53,10 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((res: any) => {
-      console.log(res.params);
-      this.ticketId = res.params.id;
-      // this.isLoading = false;
+    this.route.queryParams.subscribe((res: any) => {
+      console.log(res);
+      this.ticketId = res.id;
+      this.ticket = res;
       this.loadChats();
       this.getProfile();
     });

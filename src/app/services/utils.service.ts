@@ -56,11 +56,21 @@ export class UtilsService {
   }
 
   calculatePaymentDay(dayDate) {
+    console.log("utils claculatePaymentDay", dayDate);
+
     const now = moment();
     const year = now.get("year");
     const month = now.get("month");
     const day = now.get("day");
     const currentMonth = dayDate >= day ? 2 : 1;
+
+    console.log(
+      "utils claculatePaymentDay",
+      dayDate,
+      moment(`${dayDate}-${month + currentMonth}-${year}`, "DD-MM-YYYY").format(
+        "DD/MM/YYYY"
+      )
+    );
 
     return moment(
       `${dayDate}-${month + currentMonth}-${year}`,

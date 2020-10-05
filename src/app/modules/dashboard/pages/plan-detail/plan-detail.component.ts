@@ -44,25 +44,16 @@ export class PlanDetailComponent implements OnInit {
   }
 
   formatDate(day) {
+    console.log("plan detail day this.dateFormated", day, this.dateFormated);
+    
     this.dateFormated = this.utils.calculatePaymentDay(day);
   }
 
   comfirm() {
-    // let obj3 = {
-    //   title: "Su cambio de plan esta en proceso",
-    //   icon: "success-plan-change.png",
-    //   // icon: "success-payed-bill.png",
-    // };
-
-    // this.router.navigate(["/panel/change-plan/success-message"], {
-    //   queryParams: obj3,
-    // });
-    // return;
-    // to do
     this.isLoading = true;
 
     let obj = {
-      cliente: this.cliente.id_usuario,
+      // cliente: this.cliente.id_usuario,
       plan_id: Number(this.plan.id),
     };
     this.http.post("support/cambiar-plan/", obj, true).subscribe(
@@ -73,7 +64,6 @@ export class PlanDetailComponent implements OnInit {
         const obj = {
           title: "Su cambio de plan esta en proceso",
           icon: "success-plan-change.png",
-          // icon: "success-payed-bill.png",
         };
 
         this.router.navigate(["/panel/change-plan/success-message"], {

@@ -34,7 +34,7 @@ const routes: Routes = [
         path: "change-plan/success-message",
         component: SuccessMessageComponent,
       },
-      { path: "chat/:id", component: ChatComponent },
+      { path: "chat", component: ChatComponent },
       { path: "create-ticket", component: CreateTicketComponent },
       { path: "home", component: HomeComponent },
       { path: "profile", component: ProfileComponent },

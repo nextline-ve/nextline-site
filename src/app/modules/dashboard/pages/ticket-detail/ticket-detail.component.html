@@ -28,11 +28,7 @@
         ></app-status-box>
       </div>
       <div class="ticket-button">
-        <button
-          mat-raised-button
-          color="primary"
-          [routerLink]="['/panel/chat', ticket.id]"
-        >
+        <button mat-raised-button color="primary" (click)="goToChat(ticket)">
           VER TICKET
           <mat-icon>remove_red_eye </mat-icon>
         </button>
