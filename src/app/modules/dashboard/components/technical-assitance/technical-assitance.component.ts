@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import mocks from "../../../../mocks";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { SessionsClientService } from "src/app/services/sessions-client.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-technical-assitance",
@@ -12,6 +13,7 @@ export class TechnicalAssitanceComponent implements OnInit {
   public tickets = [];
 
   constructor(
+    private router: Router,
     private session: SessionsClientService,
     private http: RequestApiService
   ) {}
@@ -24,7 +26,7 @@ export class TechnicalAssitanceComponent implements OnInit {
   loadTickets() {
     this.http.get("support/tickets/", null, true).subscribe(
       (response: any) => {
-        // console.log("response, loadTickets", response.results);
+        console.log("loadTickets", response.results);
         this.tickets = response.results;
       },
       (error) => {
@@ -32,5 +34,13 @@ export class TechnicalAssitanceComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  goToChact(ticket) {
+    console.log("ticket", ticket);
+
+    this.router.navigate(["/panel/chat"], {
+      queryParams: { ...ticket },
+    });
   }
 }

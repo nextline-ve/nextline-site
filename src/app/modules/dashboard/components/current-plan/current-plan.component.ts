@@ -38,7 +38,9 @@ export class CurrentPlanComponent implements OnInit {
         this.contracts = response.results;
         this.plan = response.results[0].plan;
         // console.log(this.contracts);
-        console.log("response", response.results[0]);
+        // console.log("response", response.results[0]);
+        console.log("current plan date", response.results[0].dia_corte);
+        
         this.datePlan = response.results[0].dia_corte;
       },
       (error) => {

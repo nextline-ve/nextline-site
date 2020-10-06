@@ -81,6 +81,7 @@
       [status]="ticket.status"
       [statusDetail]="ticket.get_status_display"
       [date]="ticket.fecha_creacion"
+      (click)="goToChact(ticket)"
     ></app-ticket-item-box>
 
     <div *ngIf="tickets.length == 0" class="center-lg text-center">
