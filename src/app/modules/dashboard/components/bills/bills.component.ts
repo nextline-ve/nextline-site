@@ -19,14 +19,14 @@ export class BillsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bills = mocks.bills;
     this.loadBills();
   }
 
   loadBills() {
     this.http.get("admon/factura/", null, true).subscribe(
       (response: any) => {
-        console.log("loadBills", response);
+        console.log("loadBills", response.results);
+        this.bills = response.results;
       },
       (error) => {
         console.log(error.error.message);
