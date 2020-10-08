@@ -31,16 +31,16 @@ export class CurrentPlanComponent implements OnInit {
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        console.log(
-          "response.results[0].plan, getContractStatus",
-          response.results[0].plan
-        );
+        // console.log(
+        //   "response.results[0].plan, getContractStatus",
+        //   response.results[0].plan
+        // );
         this.contracts = response.results;
         this.plan = response.results[0].plan;
         // console.log(this.contracts);
         // console.log("response", response.results[0]);
-        console.log("current plan date", response.results[0].dia_corte);
-        
+        // console.log("current plan date", response.results[0].dia_corte);
+
         this.datePlan = response.results[0].dia_corte;
       },
       (error) => {

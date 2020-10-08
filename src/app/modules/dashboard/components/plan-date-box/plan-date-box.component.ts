@@ -15,14 +15,12 @@ export class PlanDateBoxComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.calculateDate();
-    }, 1000);
+    }, 2000);
   }
 
   ngAfterContentInit() {}
 
   calculateDate() {
-    
     this.dateFormated = this.utils.calculatePaymentDay(this.date);
-    console.log("plan date box this.date this.dateFormated", this.date, this.dateFormated);
   }
 }
