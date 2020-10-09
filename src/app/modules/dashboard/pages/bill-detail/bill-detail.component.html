@@ -13,7 +13,7 @@
       <div
         class="col-xs-6 col-sm-6 col-md-6 col-lg-6 end-xs end-sm end-md end-lg"
       >
-        <p class="text-black">date</p>
+        <p class="text-black">{{ bill.fecha_emision }}</p>
         <app-status-box
           [status]="'test'"
           [statusDetail]="'test'"
@@ -37,23 +37,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let item of bill.factuaradetalle_set">
               <td class="text-start border-right text-gray">
-                Berglunds snabbköp
+                {{ item.concepto.descripcion }}
               </td>
               <td class="border-right text-end text-gray">
-                Christina Berglund
+                {{ item.concepto.monto }}
               </td>
-              <td class="text-end text-gray">Sweden</td>
-            </tr>
-            <tr>
-              <td class="text-start border-right text-gray">
-                Berglunds snabbköp
-              </td>
-              <td class="border-right text-end text-gray">
-                Christina Berglund
-              </td>
-              <td class="text-end text-gray">Sweden</td>
+              <td class="text-end text-gray">{{ item.concepto.monto }}</td>
             </tr>
           </tbody>
           <tfoot>
@@ -64,8 +55,12 @@
             </tr>
             <tr>
               <th class="text-start text-blue border-none"></th>
-              <th class="text-center text-blue border-none">$50</th>
-              <th class="text-center text-blue border-none">Bs. 50.000.000</th>
+              <th class="text-center text-blue border-none">
+                ${{ bill.total }}
+              </th>
+              <th class="text-center text-blue border-none">
+                Bs. {{ bill.total }}
+              </th>
             </tr>
             <tr>
               <th class="text-start text-blue border-none"></th>
@@ -84,7 +79,20 @@
               <th class="text-start text-blue border-none"></th>
               <th class="text-center text-blue border-none"></th>
               <th class="text-center text-blue border-none">
-                <p
+                <a
+                  class="text-blue download-bill"
+                  style="text-transform: uppercase"
+                  href="{{ domain }}/admon/factura/pdf/{{ bill.id }}/"
+                  target="_blank"
+                  download
+                >
+                  Descargar factura
+                  <img
+                    src="../../../../../assets/images/Icon-feather-download.svg"
+                    alt=""
+                  />
+                </a>
+                <!-- <p
                   class="text-blue download-bill"
                   style="text-transform: uppercase"
                   (click)="downloadBill()"
@@ -94,7 +102,7 @@
                     src="../../../../../assets/images/Icon-feather-download.svg"
                     alt=""
                   />
-                </p>
+                </p> -->
               </th>
             </tr>
           </tfoot>

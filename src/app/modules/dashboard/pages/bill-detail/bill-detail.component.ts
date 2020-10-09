@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestApiService } from "src/app/services/request-api.service";
+import { UtilsService } from "src/app/services/utils.service";
+import { environment } from "../../../../../environments/environment";
 
 @Component({
   selector: "app-bill-detail",
@@ -9,11 +11,14 @@ import { RequestApiService } from "src/app/services/request-api.service";
 })
 export class BillDetailComponent implements OnInit {
   public billId = null;
+  public bill: any = {};
+  public domain = environment.DOMAIN;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private http: RequestApiService
+    private http: RequestApiService,
+    private utils: UtilsService
   ) {}
 
   ngOnInit(): void {
@@ -27,12 +32,20 @@ export class BillDetailComponent implements OnInit {
   loadBill() {
     this.http.get(`admon/factura/${this.billId}`, null, true).subscribe(
       (response: any) => {
-        console.log("loadBill", response.results);
+        console.log("loadBill", response);
+        this.bill = response;
+        this.formatDate();
       },
       (error) => {
         console.log(error.error.message);
         console.log(error);
       }
+    );
+  }
+
+  formatDate() {
+    this.bill.fecha_emision = this.utils.calculatePaymentDay(
+      this.bill.fecha_emision
     );
   }
 
