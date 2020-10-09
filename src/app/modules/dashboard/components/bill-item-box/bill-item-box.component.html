@@ -2,11 +2,11 @@
   <div class="bill-title-row">
     <div class="bill-title-row-l bill-id">Ticket {{ id }}</div>
     <div class="bill-title-row-r bill-asunto bill-status">
-      <app-status-box [status]="status" [statusDetail]="'asdasd'" [isSmall]="isSmall"></app-status-box>
+      <app-status-box [status]="status" [statusDetail]="statusDetail" [isSmall]="isSmall"></app-status-box>
     </div>
   </div>
   <div class="bill-info-row">
-    <div class="bill-title-row-l">{{ date }}</div>
+    <div class="bill-title-row-l">{{ dateFormated }}</div>
     <div class="bill-title-row-r bill-asunto">{{ dolar }} / {{ bolivar }}</div>
   </div>
 </div>

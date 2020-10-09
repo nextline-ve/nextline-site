@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { UtilsService } from "src/app/services/utils.service";
 
 @Component({
   selector: "app-bill-item-box",
@@ -9,18 +10,26 @@ export class BillItemBoxComponent implements OnInit {
   @Input() id;
   @Input() index;
   @Input() status;
+  @Input() statusDetail;
   @Input() date;
   @Input() bolivar;
   @Input() dolar;
   @Input() isSmall = false;
-
+  public dateFormated = null;
   public isBgWhite = true;
 
-  constructor() {}
+  constructor(private utils: UtilsService) {}
 
   ngOnInit(): void {
     if (this.index % 2 !== 0) {
       this.isBgWhite = false;
     }
+    setTimeout(() => {
+      this.formatDate();
+    }, 1500);
+  }
+
+  formatDate() {
+    this.dateFormated = this.utils.calculatePaymentDay(this.date);
   }
 }
