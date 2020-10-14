@@ -55,10 +55,11 @@ export class DeclarePaymentComponent implements OnInit {
   ngOnInit(): void {
     this.prepareForms();
     this.route.queryParams.subscribe((res: any) => {
-      console.log(res);
+      console.log("res : ",res);
       this.metodo = res.method;
       this.billId = res.billId;
       this.getProfile();
+      this.loadPayments();
     });
   }
 
@@ -81,6 +82,19 @@ export class DeclarePaymentComponent implements OnInit {
         Validators.minLength(1),
       ]),
     });
+  }
+
+  async loadPayments(){
+    this.http.get("admon/perfil", null, true).subscribe(
+      (response: any) => {
+        // console.log("response, getProfile", response);
+        this.cliente = response;
+      },
+      (error) => {
+        console.log(error.error.message);
+        console.log(error);
+      }
+    );
   }
 
   async getProfile() {
@@ -155,15 +169,16 @@ export class DeclarePaymentComponent implements OnInit {
 
     // todo, isnert user id , inser bill id, inset method
     myFormData.append(
-      "comprobante",
+      "comprobante_pago",
       this.fileComprobante,
       this.fileComprobante.name
     );
     myFormData.append("referencia", this.myForm.get("referencia").value);
-    myFormData.append("fecha", this.myForm.get("fecha").value);
-    myFormData.append("monto", this.myForm.get("monto").value);
+    myFormData.append("fecha_emision", this.myForm.get("fecha").value);
+    myFormData.append("total", this.myForm.get("monto").value);
+    myFormData.append("banco", this.selectedPayment);
 
-    this.http.post("", myFormData, false).subscribe(
+    this.http.post(`admon/factura/${this.billId}`, myFormData, false).subscribe(
       async (res: any) => {
         this.isLoading = false;
 
