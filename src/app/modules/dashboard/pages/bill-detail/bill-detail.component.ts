@@ -12,6 +12,7 @@ import { environment } from "../../../../../environments/environment";
 export class BillDetailComponent implements OnInit {
   public billId = null;
   public bill: any = {};
+  public currencies = [];
   public domain = environment.DOMAIN;
 
   constructor(
@@ -26,6 +27,7 @@ export class BillDetailComponent implements OnInit {
       console.log(res.params);
       this.billId = res.params.id;
       this.loadBill();
+      this.loadCurrencies();
     });
   }
 
@@ -35,6 +37,19 @@ export class BillDetailComponent implements OnInit {
         console.log("loadBill", response);
         this.bill = response;
         this.formatDate();
+      },
+      (error) => {
+        console.log(error.error.message);
+        console.log(error);
+      }
+    );
+  }
+
+  loadCurrencies(){
+    this.http.get(`config/monedas/`, null, true).subscribe(
+      (response: any) => {
+        console.log("loadCurrencies", response);
+        this.currencies = response.results;
       },
       (error) => {
         console.log(error.error.message);
@@ -63,7 +78,10 @@ export class BillDetailComponent implements OnInit {
 
   payBill(method) {
     this.router.navigate(["/panel/bills/declare-payment"], {
-      queryParams: { method, bill: this.billId },
+      queryParams: { 
+        method, 
+        bill: this.billId 
+      },
     });
   }
 }

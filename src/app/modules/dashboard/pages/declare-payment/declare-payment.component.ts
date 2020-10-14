@@ -23,19 +23,11 @@ export class DeclarePaymentComponent implements OnInit {
   public metodo = null;
   public billId = null;
   public myForm: FormGroup;
-  public payments = [
-    { id: 1, name: "Zelle", icon: "zelle.png" },
-    { id: 1, name: "Bank of america", icon: "bofa.png" },
-    { id: 1, name: "Bank of america", icon: "bofa.png" },
-    { id: 1, name: "Bank of america", icon: "bofa.png" },
-    { id: 1, name: "Bank of america", icon: "bofa.png" },
-  ];
-  public selectedPayment: any = { ...this.payments[0], isValid: true };
-
+  public payments = [];
+  public selectedPayment: any = {};
   public isLoading = false;
   public fileComprobante: File;
   public comprobanteSrc: string;
-  
   public mask = {
     guide: true,
     showMask: true,
@@ -55,11 +47,9 @@ export class DeclarePaymentComponent implements OnInit {
   ngOnInit(): void {
     this.prepareForms();
     this.route.queryParams.subscribe((res: any) => {
-      console.log("res : ",res);
       this.metodo = res.method;
       this.billId = res.billId;
       this.getProfile();
-      this.loadPayments();
     });
   }
 
@@ -84,23 +74,9 @@ export class DeclarePaymentComponent implements OnInit {
     });
   }
 
-  async loadPayments(){
-    this.http.get("admon/perfil", null, true).subscribe(
-      (response: any) => {
-        // console.log("response, getProfile", response);
-        this.cliente = response;
-      },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
-    );
-  }
-
   async getProfile() {
     this.http.get("admon/perfil", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getProfile", response);
         this.cliente = response;
       },
       (error) => {
@@ -109,12 +85,12 @@ export class DeclarePaymentComponent implements OnInit {
       }
     );
   }
-
+  
   showSelectPaymentModal() {
     const dialogForgotRef = this.dialog.open(SelectPaymentModalComponent, {
       width: "420px",
       data: {
-        payments: this.payments,
+        payment: this.metodo,
       },
     });
 
@@ -176,7 +152,7 @@ export class DeclarePaymentComponent implements OnInit {
     myFormData.append("referencia", this.myForm.get("referencia").value);
     myFormData.append("fecha_emision", this.myForm.get("fecha").value);
     myFormData.append("total", this.myForm.get("monto").value);
-    myFormData.append("banco", this.selectedPayment);
+    myFormData.append("banco", this.selectedPayment.id);
 
     this.http.post(`admon/factura/${this.billId}`, myFormData, false).subscribe(
       async (res: any) => {

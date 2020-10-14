@@ -27,8 +27,8 @@
     <app-payment-type-item
       *ngFor="let item of payments"
       [id]="item.id"
-      [name]="item.name"
-      [icon]="item.icon"
+      [name]="item.banco"
+      [icon]="item.logo_banco"
       (click)="selectPayment(item)"
     ></app-payment-type-item>
   </div>

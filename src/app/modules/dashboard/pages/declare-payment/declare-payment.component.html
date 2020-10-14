@@ -17,11 +17,10 @@
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
           >
             <app-payment-type-item
-              *ngIf="selectedPayment.isValid"
               (click)="showSelectPaymentModal()"
               [id]="selectedPayment.id"
-              [name]="selectedPayment.name"
-              [icon]="selectedPayment.icon"
+              [name]="selectedPayment.banco"
+              [icon]="selectedPayment.logo_banco"
             ></app-payment-type-item>
           </div>
         </div>
@@ -35,7 +34,7 @@
           >
             <mat-label>Datos del Beneficiario</mat-label>
             <br />
-            <mat-label class="email">{{ cliente.correo }}</mat-label>
+            <mat-label class="email">{{ selectedPayment.numero_cuenta }}</mat-label>
           </div>
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg mt-3"
