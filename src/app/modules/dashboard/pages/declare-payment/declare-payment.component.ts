@@ -24,7 +24,11 @@ export class DeclarePaymentComponent implements OnInit {
   public billId = null;
   public myForm: FormGroup;
   public payments = [];
-  public selectedPayment: any = {};
+  public selectedPayment: any = {
+    id:null,
+    banco:"Seleccione",
+    logo_banco: ""
+  };
   public isLoading = false;
   public fileComprobante: File;
   public comprobanteSrc: string;
@@ -47,8 +51,10 @@ export class DeclarePaymentComponent implements OnInit {
   ngOnInit(): void {
     this.prepareForms();
     this.route.queryParams.subscribe((res: any) => {
+      console.log("res", res);
+      
       this.metodo = res.method;
-      this.billId = res.billId;
+      this.billId = res.bill;
       this.getProfile();
     });
   }
@@ -141,6 +147,16 @@ export class DeclarePaymentComponent implements OnInit {
       return;
     }
 
+    if(this.selectedPayment.id == null){
+      this.utils.showSnackBar(
+        "Por favor, seleccione un metodo de pago...",
+        5000
+      );
+      this.isLoading = false;
+
+      return;
+    }
+
     const myFormData: FormData = new FormData();
 
     // todo, isnert user id , inser bill id, inset method
@@ -149,12 +165,12 @@ export class DeclarePaymentComponent implements OnInit {
       this.fileComprobante,
       this.fileComprobante.name
     );
-    myFormData.append("referencia", this.myForm.get("referencia").value);
-    myFormData.append("fecha_emision", this.myForm.get("fecha").value);
-    myFormData.append("total", this.myForm.get("monto").value);
+    myFormData.append("numero_referencia", this.myForm.get("referencia").value);
+    myFormData.append("fecha_transferencia",  this.utils.formtaBillDate(this.myForm.get("fecha").value));
+    myFormData.append("monto_transferencia", this.myForm.get("monto").value);
     myFormData.append("banco", this.selectedPayment.id);
 
-    this.http.post(`admon/factura/${this.billId}`, myFormData, false).subscribe(
+    this.http.post(`admon/factura/${this.billId}/declarar-pago/`, myFormData, true).subscribe(
       async (res: any) => {
         this.isLoading = false;
 

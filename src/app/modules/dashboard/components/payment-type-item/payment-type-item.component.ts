@@ -8,11 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PaymentTypeItemComponent implements OnInit {
   @Input() id;
   @Input() name;
-  @Input() icon;
+  @Input() icon = "";
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log("asd icon",this.icon);
+    
   }
 
 }
