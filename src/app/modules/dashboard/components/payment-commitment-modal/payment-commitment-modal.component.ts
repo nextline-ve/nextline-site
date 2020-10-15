@@ -64,8 +64,32 @@ export class PaymentCommitmentModalComponent implements OnInit {
     );
   }
 
+  validateDataForCommitment(){
+    
+    const isValid = this.utils.validateDaysForCommitment(this.myForm.get("fecha").value, this.daysForCommitment);
+  }
+
   async enviar(){
     this.isLoading = true;
+
+    this.validateDataForCommitment()
+
+    if (this.myForm.invalid) {
+      const invalid = [];
+      const controls = this.myForm.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          invalid.push(name);
+        }
+      }
+      this.utils.showSnackBar(
+        "Por favor, digite os campos corretamente...",
+        5000
+      );
+      this.isLoading = false;
+
+      return;
+    }
 
     const myFormData: FormData = new FormData();
  

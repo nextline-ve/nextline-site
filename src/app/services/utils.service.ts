@@ -85,4 +85,15 @@ export class UtilsService {
     ).format("YYYY-MM-DD");
   }
 
+  validateDaysForCommitment(dataFormatless, days){
+    
+    const date = moment(dataFormatless,"DD/MM/YYYY").format( "YYYY-MM-DD");
+    const maximumDate = moment().add(days, 'days');
+    
+    console.log("validateDaysForCommitment",  days, maximumDate.format("YYYY-MM-DD"), date);
+    const isBefore =  moment(maximumDate.format("YYYY-MM-DD") ).isSameOrBefore(date);
+    console.log("isBefore",isBefore);
+    return isBefore;
+  }
+
 }

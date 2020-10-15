@@ -128,7 +128,7 @@ export class DeclarePaymentComponent implements OnInit {
 
   enviar() {
     this.isLoading = true;
-
+  
     if (this.myForm.invalid) {
       const invalid = [];
       const controls = this.myForm.controls;
