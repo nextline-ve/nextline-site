@@ -65,14 +65,22 @@ export class PaymentCommitmentModalComponent implements OnInit {
   }
 
   validateDataForCommitment(){
-    
-    const isValid = this.utils.validateDaysForCommitment(this.myForm.get("fecha").value, this.daysForCommitment);
+    return this.utils.validateDaysForCommitment(this.myForm.get("fecha").value, this.daysForCommitment);
   }
 
   async enviar(){
     this.isLoading = true;
 
-    this.validateDataForCommitment()
+    const validDate = this.validateDataForCommitment();
+    if (!validDate.isBefore) {
+
+      this.utils.showSnackBar(
+        `Por favor, digite uma data menor a ${validDate.maxDate}...`,
+        5000
+      );
+      this.isLoading = false;
+      return;
+    }
 
     if (this.myForm.invalid) {
       const invalid = [];

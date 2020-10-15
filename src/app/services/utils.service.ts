@@ -91,9 +91,10 @@ export class UtilsService {
     const maximumDate = moment().add(days, 'days');
     
     console.log("validateDaysForCommitment",  days, maximumDate.format("YYYY-MM-DD"), date);
-    const isBefore =  moment(maximumDate.format("YYYY-MM-DD") ).isSameOrBefore(date);
+    const isBefore =  moment(date ).isSameOrBefore(maximumDate.format("YYYY-MM-DD"));
     console.log("isBefore",isBefore);
-    return isBefore;
+    
+    return {isBefore, maxDate: maximumDate.format("DD/MM/YYYY")};
   }
 
 }
