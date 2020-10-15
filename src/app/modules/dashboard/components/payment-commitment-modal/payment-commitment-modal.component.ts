@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RequestApiService } from 'src/app/services/request-api.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -11,7 +11,11 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class PaymentCommitmentModalComponent implements OnInit {
   public isReady = false;
+  public isLoading = false;
   public enterprise = null;
+  public billId = null;
+  public daysForCommitment = null;
+  public myForm: FormGroup;
 
   constructor(
     public dialog: MatDialog,
@@ -24,9 +28,21 @@ export class PaymentCommitmentModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.data.payment) {
+    this.prepareForms();
+    if (this.data) {
       console.log('ok...', this.data);
+      this.billId = this.data.billId
     }
+    this.loadEnterprise()
+  }
+
+  prepareForms() {
+    this.myForm = this.formBuilder.group({
+      fecha: new FormControl("", [
+        Validators.required,
+        Validators.minLength(2),
+      ]), 
+    });
   }
 
   close() {
@@ -34,10 +50,12 @@ export class PaymentCommitmentModalComponent implements OnInit {
   }
 
   async loadEnterprise() {
-    this.http.get("config/empresa/", {tipo_moneda: this.data.payment}, true).subscribe(
+    this.http.get("config/empresa/", null, true).subscribe(
       (response: any) => {
-        console.log(" loadBanks", response);
+        console.log(" loadEnterprise", response);
+        this.daysForCommitment = response.compromiso_pago
         this.isReady = true;
+        this.isLoading = false;
       },
       (error) => {
         console.log(error.error.message);
@@ -45,5 +63,27 @@ export class PaymentCommitmentModalComponent implements OnInit {
       }
     );
   }
+
+  async enviar(){
+    this.isLoading = true;
+
+    const myFormData: FormData = new FormData();
+ 
+    myFormData.append("fecha_compromiso", this.myForm.get("fecha").value);
+    
+    this.http.post(`admon/factura/${this.billId}/compromiso-pago/`, myFormData, true).subscribe(
+      async (res: any) => {
+        this.isLoading = false;
+
+        this.utils.showSnackBar("¡Gracias por su compromiso!", 15000);
+      },
+      (err) => { 
+        this.utils.showSnackBar(this.utils.formatErrors(err), 15000);
+        this.isLoading = false;
+      }
+    );
+  }
+  // fecha_compromiso
+  // 
 
 }

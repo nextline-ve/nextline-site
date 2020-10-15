@@ -1,1 +1,59 @@
-<p>payment-commitment-modal works!</p>
+<div class="position-relative">
+  <div class="close-modal">
+    <img
+      (click)="close()"
+      class="close-button"
+      src="../../../../../assets/images/cross.svg"
+      width="15px"
+      height="15px"
+      alt=""
+    />
+  </div>
+  <div class="row center-lg mb-5">
+    <div class="col-md-6"></div>
+  </div>
+
+	<form [formGroup]="myForm">
+		<div class="col-md-12 text-center" *ngIf="isReady">
+			<div
+			class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+		>
+				<mat-form-field style="width: 300px">
+					<mat-label>fecha</mat-label>
+					<input matInput required type="text" placeholder="31/12/2000"  formControlName="fecha"  mask="00/00/0000" />
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div
+			*ngIf="isReady"
+			class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center-xs center-sm center-md center-lg"
+			style="margin-top: 3%"
+		>
+			<button
+				(click)="enviar()"
+				[disabled]="!isReady"
+				mat-button
+				mat-raised-button
+				color="primary"
+				style="margin-top: 4%"
+				class="my-button green-button"
+				[class.spinner]="isLoading"
+			>
+				Finalizar pago
+				<mat-icon>keyboard_arrow_right</mat-icon>
+			</button>
+		</div>
+	</form>
+	
+	<div
+			*ngIf="isLoading"
+			style="display: flex; flex: 1; justify-content: center"
+	>
+		<mat-spinner></mat-spinner>
+	</div>
+
+  <div class="col-md-12 text-center"></div>
+</div>
+
+

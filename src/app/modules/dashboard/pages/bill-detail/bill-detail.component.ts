@@ -92,7 +92,7 @@ export class BillDetailComponent implements OnInit {
     const dialogForgotRef = this.dialog.open(PaymentCommitmentModalComponent, {
       width: "420px",
       data: {
-        payment: {as:11},
+        billId: this.billId,
       },
     });
   }
