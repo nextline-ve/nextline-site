@@ -52,6 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TextMaskModule } from 'angular2-text-mask';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatButtonModule,
     MatFormFieldModule,
     MatNativeDateModule, 
-    TextMaskModule
+    TextMaskModule,
+    NgxMaskModule.forRoot(),
   ],
 })
 export class DashboardModule {}

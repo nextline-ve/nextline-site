@@ -78,21 +78,11 @@ export class UtilsService {
     ).format("DD/MM/YYYY");
   }
 
-  formtaBillDate(date){
-
-    console.log("utils formtaBillDate", date);
-
-    const now = moment(date);
-    // const year = now.get("year");
-    // const month = now.get("month");
-    // const day = now.get("day");
-    // const currentMonth = date >= day ? 2 : 1;
-    console.log("utils formtaBillDate", now);
-    return now.format("YYYY-MM-DD");
-    // return moment(
-    //   `${date}-${month + currentMonth}-${year}`,
-    //   "DD-MM-YYYY"
-    // ).format("DD/MM/YYYY");
+  formatBillDate(date){
+    return moment(
+      date,
+      "DD/MM/YYYY"
+    ).format("YYYY-MM-DD");
   }
 
 }

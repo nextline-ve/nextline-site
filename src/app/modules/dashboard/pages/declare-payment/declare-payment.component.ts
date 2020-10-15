@@ -166,7 +166,7 @@ export class DeclarePaymentComponent implements OnInit {
       this.fileComprobante.name
     );
     myFormData.append("numero_referencia", this.myForm.get("referencia").value);
-    myFormData.append("fecha_transferencia",  this.utils.formtaBillDate(this.myForm.get("fecha").value));
+    myFormData.append("fecha_transferencia",  this.utils.formatBillDate(this.myForm.get("fecha").value));
     myFormData.append("monto_transferencia", this.myForm.get("monto").value);
     myFormData.append("banco", this.selectedPayment.id);
 
