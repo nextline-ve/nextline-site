@@ -64,14 +64,12 @@ export class PaymentCommitmentModalComponent implements OnInit {
     );
   }
 
-  validateDataForCommitment(){
-    return this.utils.validateDaysForCommitment(this.myForm.get("fecha").value, this.daysForCommitment);
-  }
-
   async enviar(){
     this.isLoading = true;
 
-    const validDate = this.validateDataForCommitment();
+    const validDate = this.utils.validateDaysForCommitment(this.myForm.get("fecha").value, this.daysForCommitment);
+    console.log("validDate", validDate);
+    
     if (!validDate.isBefore) {
 
       this.utils.showSnackBar(
