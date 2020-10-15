@@ -159,7 +159,6 @@ export class DeclarePaymentComponent implements OnInit {
 
     const myFormData: FormData = new FormData();
 
-    // todo, isnert user id , inser bill id, inset method
     myFormData.append(
       "comprobante_pago",
       this.fileComprobante,
@@ -184,20 +183,7 @@ export class DeclarePaymentComponent implements OnInit {
           queryParams: obj,
         });
       },
-      (err) => {
-        // const keyWithError = [];
-        // for (const key in err.error) {
-        //   if (Object.prototype.hasOwnProperty.call(err.error, key)) {
-        //     if (err.error[key] != "") {
-        //       keyWithError.push(`${err.error[key]} `);
-        //     }
-        //   }
-        // }
-        // const msg =
-        //   keyWithError.length == 1
-        //     ? `Error: ${keyWithError}`
-        //     : `Errores: ${keyWithError.join(", ")}`;
-
+      (err) => { 
         this.utils.showSnackBar(this.utils.formatErrors(err), 15000);
         this.isLoading = false;
       }

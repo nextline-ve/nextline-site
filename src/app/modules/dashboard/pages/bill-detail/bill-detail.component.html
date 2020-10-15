@@ -54,7 +54,9 @@
               <th class="text-center text-black border-none">Total Bs.</th>
             </tr>
             <tr>
-              <th class="text-start text-blue border-none"></th>
+              <th class="text-start text-blue border-none payment-commitment" (click)="showPaymentCommitmentModal()">
+                Hacer compromiso de pago
+              </th>
               <th class="text-center text-blue border-none">
                 ${{ bill.total }}
               </th>
@@ -69,17 +71,6 @@
                   <p>Pagar en {{ item.simbolo }}</p>
                 </div>
               </th>
-              
-              <!-- <th class="text-center text-blue border-none">
-                <div (click)="payBill('dolar')" class="pay-button">
-                  <p>Pagar en Dolar</p>
-                </div>
-              </th>
-              <th class="text-center text-blue border-none">
-                <div (click)="payBill('bs')" class="pay-button">
-                  <p>Pagar en Bs.</p>
-                </div>
-              </th> -->
             </tr>
             <tr>
               <th class="text-start text-blue border-none"></th>

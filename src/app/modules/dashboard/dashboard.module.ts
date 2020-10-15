@@ -44,7 +44,6 @@ import { SharedModule } from '../shared/shared.module';
 import { SuccessMessageComponent } from './pages/success-message/success-message.component';
 import { PlanDetailComponent } from './pages/plan-detail/plan-detail.component';
 import { BillDetailComponent } from './pages/bill-detail/bill-detail.component';
-import { SelectPaymentTypeComponent } from './pages/select-payment-type/select-payment-type.component';
 import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment.component';
 import { PaymentTypeItemComponent } from './components/payment-type-item/payment-type-item.component';
 import { SelectPaymentModalComponent } from './components/select-payment-modal/select-payment-modal.component';
@@ -52,7 +51,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TextMaskModule } from 'angular2-text-mask';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { PaymentCommitmentModalComponent } from './components/payment-commitment-modal/payment-commitment-modal.component'
 
 @NgModule({
   declarations: [
@@ -80,10 +80,10 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
     SuccessMessageComponent,
     PlanDetailComponent,
     BillDetailComponent,
-    SelectPaymentTypeComponent,
     DeclarePaymentComponent,
     PaymentTypeItemComponent,
     SelectPaymentModalComponent,
+    PaymentCommitmentModalComponent,
   ],
   imports: [
     SharedModule,

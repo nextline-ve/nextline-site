@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestApiService } from "src/app/services/request-api.service";
 import { UtilsService } from "src/app/services/utils.service";
 import { environment } from "../../../../../environments/environment";
+import { PaymentCommitmentModalComponent } from '../../components/payment-commitment-modal/payment-commitment-modal.component';
 
 @Component({
   selector: "app-bill-detail",
@@ -17,6 +19,7 @@ export class BillDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    public dialog: MatDialog,
     private router: Router,
     private http: RequestApiService,
     private utils: UtilsService
@@ -81,6 +84,15 @@ export class BillDetailComponent implements OnInit {
       queryParams: { 
         method, 
         bill: this.billId 
+      },
+    });
+  }
+
+  showPaymentCommitmentModal(){
+    const dialogForgotRef = this.dialog.open(PaymentCommitmentModalComponent, {
+      width: "420px",
+      data: {
+        payment: {as:11},
       },
     });
   }

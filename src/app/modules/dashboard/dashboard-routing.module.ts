@@ -13,7 +13,6 @@ import { BillsPageComponent } from "./pages/bills-page/bills-page.component";
 import { PlanDetailComponent } from "./pages/plan-detail/plan-detail.component";
 import { SuccessMessageComponent } from "./pages/success-message/success-message.component";
 import { BillDetailComponent } from "./pages/bill-detail/bill-detail.component";
-import { SelectPaymentTypeComponent } from './pages/select-payment-type/select-payment-type.component';
 import { DeclarePaymentComponent } from './pages/declare-payment/declare-payment.component';
 
 const routes: Routes = [
@@ -24,7 +23,6 @@ const routes: Routes = [
     component: NavBarComponent,
     children: [
       { path: "bills", component: BillsPageComponent },
-      { path: "bills/select-payment", component: SelectPaymentTypeComponent },
       { path: "bills/declare-payment", component: DeclarePaymentComponent },
       { path: "bills/success-message", component: SuccessMessageComponent },
       { path: "bill-detail/:id", component: BillDetailComponent },
