@@ -1,5 +1,6 @@
 <div class="bill-container">
   <div
+    *ngIf="isReady"
     class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
     style="margin-bottom: 5%"
   >
@@ -37,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of bill.factuaradetalle_set">
+            <tr *ngFor="let item of billDetails">
               <td class="text-start border-right text-gray">
                 {{ item.concepto.descripcion }}
               </td>
@@ -49,11 +50,13 @@
           </tbody>
           <tfoot>
             <tr>
-              <th class="text-start text-blue border-none">Total a pagar</th>
+              <th class="text-start text-blue border-none"></th>
               <th class="text-center text-black border-none">Total Dolar</th>
               <th class="text-center text-black border-none">Total Bs.</th>
             </tr>
             <tr>
+              <th *ngIf="bill.status != 'V'" class="text-start text-blue border-none payment-commitment"> </th>
+              
               <th *ngIf="bill.status == 'V'" class="text-start text-blue border-none payment-commitment" (click)="showPaymentCommitmentModal()">
                 Hacer compromiso de pago
               </th>

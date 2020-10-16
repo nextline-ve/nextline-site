@@ -14,8 +14,10 @@ import { PaymentCommitmentModalComponent } from '../../components/payment-commit
 export class BillDetailComponent implements OnInit {
   public billId = null;
   public bill: any = {};
+  public billDetails:any = [];
   public currencies = [];
   public domain = environment.DOMAIN;
+  public isReady = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,40 +27,23 @@ export class BillDetailComponent implements OnInit {
     private utils: UtilsService
   ) {}
 
-  ngOnInit(): void {
-    // this.route.paramMap.subscribe((res: any) => {
-    //   console.log(res.params);
-    //   this.billId = res.params.id;
-    //   this.loadBill();
-    //   this.loadCurrencies();
-    // });
+  async ngOnInit() {
     this.route.queryParams.subscribe((res: any) => {
       console.log(res);
       this.billId = res.id;
-      this.bill = res;
+      this.bill = {...res};
       this.formatDate();
       this.loadCurrencies();
     });
-  }
-
-  loadBill() {
-    this.http.get(`admon/factura/${this.billId}`, null, true).subscribe(
-      (response: any) => {
-        console.log("loadBill", response);
-        this.bill = response;
-        this.formatDate();
-      },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
-    );
+    this.billDetails = await JSON.parse(localStorage.getItem("nextline-bill-details"));
+    this.isReady = true;
+    console.log("this.billDetails", this.billDetails);
+    
   }
 
   loadCurrencies(){
     this.http.get(`config/monedas/`, null, true).subscribe(
       (response: any) => {
-        console.log("loadCurrencies", response);
         this.currencies = response.results;
       },
       (error) => {
@@ -71,18 +56,6 @@ export class BillDetailComponent implements OnInit {
   formatDate() {
     this.bill.fecha_emision = this.utils.calculatePaymentDay(
       this.bill.fecha_emision
-    );
-  }
-
-  downloadBill() {
-    this.http.get(`admon/factura/${this.billId}`, null, true).subscribe(
-      (response: any) => {
-        console.log("downloadBill", response.results);
-      },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
     );
   }
 
