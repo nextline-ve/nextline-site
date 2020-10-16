@@ -139,16 +139,34 @@
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
             <mat-form-field style="width: 300px">
-              <mat-label>Clave</mat-label>
+              <mat-label>Clave Antigua</mat-label>
               <input
                 matInput
                 color="primary"
                 formControlName="password"
-                placeholder="Clave"
+                placeholder="Clave Antigua"
                 type="password"
                 required
               />
               <mat-icon class="edit-button" (click)="toggleInput('password')"
+                >edit</mat-icon
+              >
+            </mat-form-field>
+          </div>
+          <div
+            class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
+          >
+            <mat-form-field style="width: 300px">
+              <mat-label>Nueva Clave</mat-label>
+              <input
+                matInput
+                color="primary"
+                formControlName="newPassword"
+                placeholder="Nueva Clave"
+                type="password"
+                required
+              />
+              <mat-icon class="edit-button" (click)="toggleInput('newPassword')"
                 >edit</mat-icon
               >
             </mat-form-field>

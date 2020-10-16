@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   public cliente: any = {};
   public avatar =
     "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+  public fileAvatar: File;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,12 +48,13 @@ export class ProfileComponent implements OnInit {
 
   prepareForms() {
     this.personalDataFormGroup = this.formBuilder.group({
-      avatar: new FormControl("", Validators.required),
+      avatar: new FormControl(""),
       name: new FormControl("", Validators.required),
       identification: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
       phone: new FormControl("", Validators.required),
-      password: new FormControl("", [Validators.minLength(6)]),
+      password: new FormControl("", ),
+      newPassword: new FormControl("", ),
     });
   }
 
@@ -63,6 +66,7 @@ export class ProfileComponent implements OnInit {
     this.personalDataFormGroup.controls["email"].disable();
     this.personalDataFormGroup.controls["phone"].disable();
     this.personalDataFormGroup.controls["password"].disable();
+    this.personalDataFormGroup.controls["newPassword"].disable();
   }
 
   fillProfile() {
@@ -100,7 +104,6 @@ export class ProfileComponent implements OnInit {
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getContractStatus", response);
         this.cliente = response.results;
       },
       (error) => {
@@ -113,7 +116,6 @@ export class ProfileComponent implements OnInit {
   async getSolicitationStatus() {
     this.http.get("admon/solicitud-status", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getSolicitationStatus", response);
         this.cliente = response;
       },
       (error) => {
@@ -140,9 +142,24 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onFileChanged(e) {}
+  onFileChanged(event) {
+    console.log("file change", event);
+    this.fileAvatar = event.target.files[0];
+    console.log(event.target.files[0]);
+    this.utils
+      .imageFileToURI(event)
+      .then((res: string) => {
+        this.avatar = res;
+      })
+      .catch((e) => {
+        console.error(e);
+        this.avatar = e;
+      });
+  }
 
   save() {
+    this.verifyChangePassword();
+
     if (this.personalDataFormGroup.invalid) {
       const invalid = [];
       const controls = this.personalDataFormGroup.controls;
@@ -154,18 +171,27 @@ export class ProfileComponent implements OnInit {
       console.log("invalid", invalid);
 
       this.utils.showSnackBar(
-        "Por favor, digite os campos corretamente...",
+        "Por favor, digite los campos corretamente...",
         5000
       );
       return;
     }
     this.isLoading = true;
 
+    const myFormData: FormData = new FormData();
+    
+    if (this.fileAvatar) myFormData.append("avatar",   this.fileAvatar,  this.fileAvatar.name  );
+    myFormData.append("nombre_razsoc", this.personalDataFormGroup.get("name").value);
+    myFormData.append("cedula_rif", this.personalDataFormGroup.get("identification").value);
+    myFormData.append("correo", this.personalDataFormGroup.get("email").value);
+    myFormData.append("celular", this.personalDataFormGroup.get("phone").value);
+
     this.http
-      .post("admon/perfil", this.personalDataFormGroup.getRawValue(), true)
+      .put("admon/perfil", myFormData)
       .subscribe(
         (response: any) => {
           this.isLoading = false;
+          console.warn("UPdate localstorage", response);
           // todo, update form and localstorage
         },
         (err) => {
@@ -174,4 +200,45 @@ export class ProfileComponent implements OnInit {
         }
       );
   }
+
+  verifyChangePassword(){
+    const password = this.personalDataFormGroup.get("password").value;
+    const newPassword = this.personalDataFormGroup.get("newPassword").value;
+
+    if (password.length == 0 && newPassword.length == 0) return;
+
+    console.log("ver pass", password.length);
+    console.log("ver pass", newPassword.length);
+    
+    if (
+      password == '' && 
+      password.length < 6 && 
+      newPassword == '' && 
+      newPassword.length < 6
+    ) {
+      this.utils.showSnackBar( "Por favor, digite los campos de clave corretamente...", 5000 ); 
+
+      return;
+    }
+
+    this.http
+      .post("admon/cambiar-clave/", {
+        old_clave: password,
+        clave: newPassword
+      })
+      .subscribe(
+        (response: any) => {
+          this.isLoading = false;
+          console.warn("password", response);
+          this.personalDataFormGroup.get("password").setValue("");
+          this.personalDataFormGroup.get("newPassword").setValue("");
+          this.utils.showSnackBar( response.mensaje, 5000 ); 
+        },
+        (err) => {
+          this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
+          this.isLoading = false;
+        }
+      );
+  }
+
 }

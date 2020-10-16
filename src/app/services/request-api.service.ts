@@ -55,11 +55,15 @@ export class RequestApiService {
 
   }
 
-  public put(url: string, dados) {
+  public put(url: string, dados:any) {
+    let headerRequest = {
+      headers: this.getHeader(),
+    };
 
     return this.http.put(
       this.ambiente + url,
-      JSON.stringify(dados)
+      dados,
+      headerRequest
     );
   }
 
