@@ -56,21 +56,11 @@ export class UtilsService {
   }
 
   calculatePaymentDay(dayDate) {
-    // console.log("utils claculatePaymentDay", dayDate);
-
     const now = moment();
     const year = now.get("year");
     const month = now.get("month");
     const day = now.get("day");
     const currentMonth = dayDate >= day ? 2 : 1;
-
-    // console.log(
-    //   "utils claculatePaymentDay",
-    //   dayDate,
-    //   moment(`${dayDate}-${month + currentMonth}-${year}`, "DD-MM-YYYY").format(
-    //     "DD/MM/YYYY"
-    //   )
-    // );
 
     return moment(
       `${dayDate}-${month + currentMonth}-${year}`,
@@ -89,10 +79,7 @@ export class UtilsService {
     
     const date = moment(dataFormatless,"DD/MM/YYYY").format( "YYYY-MM-DD");
     const maximumDate = moment().add(days, 'days');
-    
-    console.log("validateDaysForCommitment",  days, maximumDate.format("YYYY-MM-DD"), date);
     const isBefore =  moment(date ).isSameOrBefore(maximumDate.format("YYYY-MM-DD"));
-    console.log("isBefore",isBefore);
     
     return {isBefore, maxDate: maximumDate.format("DD/MM/YYYY")};
   }

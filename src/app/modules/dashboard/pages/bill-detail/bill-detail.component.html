@@ -54,7 +54,7 @@
               <th class="text-center text-black border-none">Total Bs.</th>
             </tr>
             <tr>
-              <th class="text-start text-blue border-none payment-commitment" (click)="showPaymentCommitmentModal()">
+              <th *ngIf="bill.status == 'V'" class="text-start text-blue border-none payment-commitment" (click)="showPaymentCommitmentModal()">
                 Hacer compromiso de pago
               </th>
               <th class="text-center text-blue border-none">

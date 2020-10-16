@@ -25,7 +25,7 @@ const routes: Routes = [
       { path: "bills", component: BillsPageComponent },
       { path: "bills/declare-payment", component: DeclarePaymentComponent },
       { path: "bills/success-message", component: SuccessMessageComponent },
-      { path: "bill-detail/:id", component: BillDetailComponent },
+      { path: "bill-detail", component: BillDetailComponent },
       { path: "change-plan", component: ChangePlanComponent },
       { path: "change-plan/plan-detail", component: PlanDetailComponent },
       {

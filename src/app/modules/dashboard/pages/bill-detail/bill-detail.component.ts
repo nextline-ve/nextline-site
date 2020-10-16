@@ -26,10 +26,17 @@ export class BillDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((res: any) => {
-      console.log(res.params);
-      this.billId = res.params.id;
-      this.loadBill();
+    // this.route.paramMap.subscribe((res: any) => {
+    //   console.log(res.params);
+    //   this.billId = res.params.id;
+    //   this.loadBill();
+    //   this.loadCurrencies();
+    // });
+    this.route.queryParams.subscribe((res: any) => {
+      console.log(res);
+      this.billId = res.id;
+      this.bill = res;
+      this.formatDate();
       this.loadCurrencies();
     });
   }
