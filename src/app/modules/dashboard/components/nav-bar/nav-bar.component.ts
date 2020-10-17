@@ -37,7 +37,6 @@ export class NavBarComponent implements OnInit {
 
     if (session.es_cliente && this.session.isAuthenticated()) {
       this.getProfile();
-      this.getContractStatus();
     } else {
       this.getSolicitationStatus();
     }
@@ -48,18 +47,6 @@ export class NavBarComponent implements OnInit {
       (response: any) => {
         this.cliente = response;
         this.verifyAvatar(response.avatar);
-      },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
-    );
-  }
-
-  async getContractStatus() {
-    this.http.get("admon/contratos-status", null, true).subscribe(
-      (response: any) => {
-        this.cliente = response.results;
       },
       (error) => {
         console.log(error.error.message);
@@ -83,7 +70,7 @@ export class NavBarComponent implements OnInit {
   verifyAvatar(img) {
     if (img == null) {
       this.avatar =
-        "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+        "../../../../../assets/images/default-avatar.jpeg";
     } else {
       this.avatar = img;
     }
