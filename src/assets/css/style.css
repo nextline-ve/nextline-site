@@ -65,3 +65,8 @@ button, .mat-raised-button {
 .text-center{
   text-align: center !important;
 }
+
+.clearfix {
+  clear: both;
+  display: table;
+}

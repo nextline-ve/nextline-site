@@ -29,6 +29,9 @@
 .float-right{
   float: right;
 }
+.float-left {
+  float: left;
+}
 .row.reverse {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;

@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
-  selector: "app-chat-item",
-  templateUrl: "./chat-item.component.html",
-  styleUrls: ["./chat-item.component.scss"],
+  selector: 'app-chat-item',
+  templateUrl: './chat-item.component.html',
+  styleUrls: ['./chat-item.component.scss'],
 })
 export class ChatItemComponent implements OnInit {
   @Input() userType;
@@ -12,9 +12,17 @@ export class ChatItemComponent implements OnInit {
   @Input() date;
   @Input() avatar;
   @Input() message;
-  public defaultAvatar = "../../../../../assets/images/imagotipo.png";
+  public defaultAvatar = '../../../../../assets/images/imagotipo.png';
+  public floatContainer = 'float-right';
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.userType) {
+      this.floatContainer = 'float-right';
+    } else {
+      this.floatContainer = 'float-left';
+    }
+  }
 }
