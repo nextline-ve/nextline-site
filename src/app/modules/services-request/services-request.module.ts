@@ -16,6 +16,7 @@ import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment.prod';
 import { AddressMapComponent } from './components/address-map/address-map.component';
 import { SharedModule } from '../shared/shared.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [ServicesRequestComponent, ServicesComponent,  AddressMapComponent],
@@ -36,6 +37,7 @@ import { SharedModule } from '../shared/shared.module';
     AgmCoreModule.forRoot({
       apiKey: environment.GOOGLE_MAPS_KEY
     }),
+    NgxMaskModule.forRoot(),
   ],
 })
 export class ServicesRequestModule {}

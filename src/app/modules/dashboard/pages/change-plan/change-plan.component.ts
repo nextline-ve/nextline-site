@@ -26,10 +26,11 @@ export class ChangePlanComponent implements OnInit {
   }
 
   async getPlans() {
+    console.warn("this.currentPlan.tipo_servicio.id", this.currentPlan.tipo_servicio.id);
     this.http
       .get(
         "config/planes/",
-        { tipo_servicio_id: this.currentPlan.tipo_servicio.id },
+        { tipo_servicio__id: this.currentPlan.tipo_servicio.id },
         true
       )
       .subscribe(
