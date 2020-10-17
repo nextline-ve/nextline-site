@@ -191,8 +191,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.isLoading = false;
-          console.warn("UPdate localstorage", response);
-          // todo, update form and localstorage
+          this.updateLocalStorage(response);
         },
         (err) => {
           this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
@@ -201,15 +200,18 @@ export class ProfileComponent implements OnInit {
       );
   }
 
+  async updateLocalStorage(newData){
+    const oldUser = JSON.parse(localStorage.getItem("nextline-currentClient"));
+    await localStorage.setItem("nextline-currentClient", JSON.stringify({...oldUser, ... newData}));
+    window.location.replace("/panel/profile");
+  }
+
   verifyChangePassword(){
     const password = this.personalDataFormGroup.get("password").value;
     const newPassword = this.personalDataFormGroup.get("newPassword").value;
 
     if (password.length == 0 && newPassword.length == 0) return;
 
-    console.log("ver pass", password.length);
-    console.log("ver pass", newPassword.length);
-    
     if (
       password == '' && 
       password.length < 6 && 
@@ -229,7 +231,6 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.isLoading = false;
-          console.warn("password", response);
           this.personalDataFormGroup.get("password").setValue("");
           this.personalDataFormGroup.get("newPassword").setValue("");
           this.utils.showSnackBar( response.mensaje, 5000 ); 
