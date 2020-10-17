@@ -6,7 +6,9 @@
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left-col">
       <p>{{ticket.fecha_creacion | date}}</p>
-      <app-status-box [status]="'Tecnico Asignado'"></app-status-box>
+      <app-status-box [isSmall]="true" [status]="ticket.status" [statusDetail]="ticket.get_status_display">
+        
+      </app-status-box>
     </div>
     <div
       *ngIf="isLoading"

@@ -9,6 +9,7 @@ export class StatusBoxComponent implements OnInit {
   @Input() status;
   @Input() statusDetail;
   @Input() isSmall = false;
+  @Input() type = 'bill';
 
   constructor() {}
 
@@ -17,9 +18,17 @@ export class StatusBoxComponent implements OnInit {
   }
 
   getColor(status) { 
-    console.warn("getColor", status);
     
     switch (status) {
+      // tickets
+      case 'A':
+        return 'rgb(240 122 60) 0% 0% no-repeat padding-box';
+      case 'S':
+        return '#f5d569 0% 0% no-repeat padding-box';
+      case 'f':
+        return '#f5d569 0% 0% no-repeat padding-box';
+     
+        // bills
       case 'P':
         return '#58e9ad 0% 0% no-repeat padding-box';
       case 'C':
