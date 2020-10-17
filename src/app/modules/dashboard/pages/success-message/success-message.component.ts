@@ -14,7 +14,6 @@ export class SuccessMessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((res: any) => {
-      console.log(res);
       this.data = res;
       this.isContentLoaded = true;
     });

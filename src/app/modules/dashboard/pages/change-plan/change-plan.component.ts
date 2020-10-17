@@ -35,8 +35,6 @@ export class ChangePlanComponent implements OnInit {
       .subscribe(
         (res: any) => {
           this.plans = res.results;
-          console.log("plans", this.plans);
-
           this.setPlan(this.currentPlan);
         },
         (err) => {
@@ -48,7 +46,6 @@ export class ChangePlanComponent implements OnInit {
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        console.log("currentPlan ", response.results[0].plan);
         this.currentPlan = response.results[0].plan;
         this.getPlans();
       },

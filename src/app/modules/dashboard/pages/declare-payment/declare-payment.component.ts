@@ -107,7 +107,6 @@ export class DeclarePaymentComponent implements OnInit {
 
   onFileChanged(event) {
     this.fileComprobante = event.target.files[0];
-    console.log(event.target.files[0]);
     this.utils
       .imageFileToURI(event)
       .then((res: string) => {
@@ -135,7 +134,6 @@ export class DeclarePaymentComponent implements OnInit {
           invalid.push(name);
         }
       }
-      console.log("invalid", invalid);
       this.utils.showSnackBar(
         "Por favor, digite os campos corretamente...",
         5000

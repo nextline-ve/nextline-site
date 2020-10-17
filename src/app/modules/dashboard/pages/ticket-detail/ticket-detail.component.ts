@@ -12,7 +12,7 @@ export class TicketDetailComponent implements OnInit {
     detalle: "...",
     fecha_creacion: "...",
     get_status_display: "...",
-    id: "2",
+    id: null,
     status: "...",
     tipo: "...",
   };
@@ -29,15 +29,12 @@ export class TicketDetailComponent implements OnInit {
   }
 
   formatDate() {
-    // ticket.fecha_creacion
     this.dateFormated = moment(this.ticket.fecha_creacion, "YYYY-MM-DD").format(
       "DD/MM/YYYY"
     );
   }
 
   goToChat(ticket){
-    console.log("ticket", ticket);
-    
     this.router.navigate(["/panel/chat"], {
       queryParams: { ...ticket },
     });

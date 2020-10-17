@@ -23,7 +23,6 @@ export class PlanDetailComponent implements OnInit {
 
   async ngOnInit() {
     this.route.queryParams.subscribe((res: any) => {
-      console.log(res);
       this.plan = res;
       this.getContractStatus();
     });
@@ -44,8 +43,6 @@ export class PlanDetailComponent implements OnInit {
   }
 
   formatDate(day) {
-    console.log("plan detail day this.dateFormated", day, this.dateFormated);
-    
     this.dateFormated = this.utils.calculatePaymentDay(day);
   }
 
@@ -53,12 +50,10 @@ export class PlanDetailComponent implements OnInit {
     this.isLoading = true;
 
     let obj = {
-      // cliente: this.cliente.id_usuario,
       plan_id: Number(this.plan.id),
     };
     this.http.post("support/cambiar-plan/", obj, true).subscribe(
       (response: any) => {
-        console.log("response", response);
         this.isLoading = false;
 
         const obj = {

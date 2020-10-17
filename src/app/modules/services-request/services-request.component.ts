@@ -51,8 +51,6 @@ export class ServicesRequestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.error("service-request");
-
     this.prepareForms();
     this.getServices();
     this.getPlans();
@@ -192,9 +190,8 @@ export class ServicesRequestComponent implements OnInit {
           latitude: 10.502456738546742,
           longitude: -66.85264314414663,
         };
-        console.log("setAddressView null current", this.currentLocation);
       } else {
-        console.log("setAddressView not null current", this.currentLocation);
+        
       }
     }
     this.addressView = type;

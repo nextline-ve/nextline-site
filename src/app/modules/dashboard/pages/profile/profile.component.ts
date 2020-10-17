@@ -143,9 +143,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    console.log("file change", event);
     this.fileAvatar = event.target.files[0];
-    console.log(event.target.files[0]);
     this.utils
       .imageFileToURI(event)
       .then((res: string) => {

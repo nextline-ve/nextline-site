@@ -22,22 +22,14 @@ export class AddressMapComponent implements OnInit {
   };
 
   constructor() {
-    // this.isMapReady = true;
   }
 
   ngOnInit(): void {
-    console.log("asd", this.inputLatitude);
-    console.log("asd", this.inputLongitude);
     this.setDefaultValues(this.inputLatitude);
   }
-
-  onChooseLocation(e) {
-    console.log(e.coords);
-  }
+ 
 
   setDefaultValues(inputLatitude) {
-    console.log("_ setDefaultValues", inputLatitude);
-
     if (inputLatitude) {
       this.currentLocation.latitude = this.inputLatitude;
       this.currentLocation.longitude = this.inputLongitude;

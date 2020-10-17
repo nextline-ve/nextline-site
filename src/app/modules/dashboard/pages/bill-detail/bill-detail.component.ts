@@ -29,7 +29,6 @@ export class BillDetailComponent implements OnInit {
 
   async ngOnInit() {
     this.route.queryParams.subscribe((res: any) => {
-      console.log(res);
       this.billId = res.id;
       this.bill = {...res};
       this.formatDate();
@@ -37,8 +36,6 @@ export class BillDetailComponent implements OnInit {
     });
     this.billDetails = await JSON.parse(localStorage.getItem("nextline-bill-details"));
     this.isReady = true;
-    console.log("this.billDetails", this.billDetails);
-    
   }
 
   loadCurrencies(){
