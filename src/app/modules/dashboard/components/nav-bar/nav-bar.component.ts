@@ -46,7 +46,6 @@ export class NavBarComponent implements OnInit {
   async getProfile() {
     this.http.get("admon/perfil", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getProfile", response);
         this.cliente = response;
         this.verifyAvatar(response.avatar);
       },
@@ -60,7 +59,6 @@ export class NavBarComponent implements OnInit {
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getContractStatus", response);
         this.cliente = response.results;
       },
       (error) => {
@@ -73,7 +71,6 @@ export class NavBarComponent implements OnInit {
   async getSolicitationStatus() {
     this.http.get("admon/solicitud-status", null, true).subscribe(
       (response: any) => {
-        // console.log("response, getSolicitationStatus", response);
         this.cliente = response;
       },
       (error) => {
@@ -93,7 +90,6 @@ export class NavBarComponent implements OnInit {
   }
 
   logout() {
-    console.log("_ logout");
     this.session.logout();
   }
 }

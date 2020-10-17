@@ -13,8 +13,6 @@ export class PaymentTypeItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("asd icon",this.icon);
-    
   }
 
 }
