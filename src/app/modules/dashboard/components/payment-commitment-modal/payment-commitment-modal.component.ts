@@ -30,7 +30,6 @@ export class PaymentCommitmentModalComponent implements OnInit {
   ngOnInit(): void {
     this.prepareForms();
     if (this.data) {
-      console.log('ok...', this.data);
       this.billId = this.data.billId
     }
     this.loadEnterprise()
@@ -52,7 +51,6 @@ export class PaymentCommitmentModalComponent implements OnInit {
   async loadEnterprise() {
     this.http.get("config/empresa/", null, true).subscribe(
       (response: any) => {
-        console.log(" loadEnterprise", response);
         this.daysForCommitment = response.compromiso_pago
         this.isReady = true;
         this.isLoading = false;
@@ -68,8 +66,6 @@ export class PaymentCommitmentModalComponent implements OnInit {
     this.isLoading = true;
 
     const validDate = this.utils.validateDaysForCommitment(this.myForm.get("fecha").value, this.daysForCommitment);
-    console.log("validDate", validDate);
-    
     if (!validDate.isBefore) {
 
       this.utils.showSnackBar(
@@ -104,7 +100,6 @@ export class PaymentCommitmentModalComponent implements OnInit {
     this.http.post(`admon/factura/${this.billId}/compromiso-pago/`, myFormData, true).subscribe(
       async (res: any) => {
         this.isLoading = false;
-
         this.utils.showSnackBar("¡Gracias por su compromiso!", 15000);
       },
       (err) => { 
@@ -113,7 +108,5 @@ export class PaymentCommitmentModalComponent implements OnInit {
       }
     );
   }
-  // fecha_compromiso
-  // 
 
 }

@@ -28,7 +28,6 @@ export class SelectPaymentModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data.payment) {
-      console.log('ok...', this.data.payment);
       this.loadBanks();
     }
   }
@@ -44,7 +43,6 @@ export class SelectPaymentModalComponent implements OnInit {
   async loadBanks() {
     this.http.get("config/bancos/", {tipo_moneda: this.data.payment}, true).subscribe(
       (response: any) => {
-        console.log(" loadBanks", response);
         this.payments = response.results;
         this.isReady = true;
       },
