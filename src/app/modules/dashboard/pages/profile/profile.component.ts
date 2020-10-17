@@ -59,8 +59,6 @@ export class ProfileComponent implements OnInit {
   }
 
   disableALlFields() {
-    console.warn("disableALlFields");
-
     this.personalDataFormGroup.controls["name"].disable();
     this.personalDataFormGroup.controls["identification"].disable();
     this.personalDataFormGroup.controls["email"].disable();
@@ -70,8 +68,6 @@ export class ProfileComponent implements OnInit {
   }
 
   fillProfile() {
-    console.warn("fillProfile");
-
     this.personalDataFormGroup.controls.avatar.setValue(this.cliente.avatar);
     this.personalDataFormGroup.controls.name.setValue(
       this.cliente.nombre_razsoc
