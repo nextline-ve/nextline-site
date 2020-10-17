@@ -29,8 +29,10 @@ export class BillDetailComponent implements OnInit {
 
   async ngOnInit() {
     this.route.queryParams.subscribe((res: any) => {
+      
       this.billId = res.id;
       this.bill = {...res};
+      console.warn("this.bill", this.bill);
       this.formatDate();
       this.loadCurrencies();
     });

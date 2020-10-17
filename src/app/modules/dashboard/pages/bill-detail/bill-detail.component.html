@@ -17,7 +17,7 @@
         <p class="text-black">{{ bill.fecha_emision }}</p>
         <app-status-box
           [status]="'test'"
-          [statusDetail]="'test'"
+          [statusDetail]="bill.get_status_display"
           [isSmall]="true"
           style="height: 32%"
         ></app-status-box>
@@ -61,10 +61,10 @@
                 Hacer compromiso de pago
               </th>
               <th class="text-center text-blue border-none">
-                ${{ bill.total }}
+                {{ bill.total }}
               </th>
               <th class="text-center text-blue border-none">
-                Bs. {{ bill.total }}
+                {{ bill.total_bs }}
               </th>
             </tr>
             <tr>

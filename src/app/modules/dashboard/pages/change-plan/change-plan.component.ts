@@ -30,7 +30,7 @@ export class ChangePlanComponent implements OnInit {
       .get(
         "config/planes/",
         { tipo_servicio_id: this.currentPlan.tipo_servicio.id },
-        false
+        true
       )
       .subscribe(
         (res: any) => {
