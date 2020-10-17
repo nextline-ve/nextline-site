@@ -40,8 +40,8 @@
       [date]="ticket.fecha_creacion"
       (click)="goToChact(ticket)"
     ></app-ticket-item-box>
-
-    <div *ngIf="tickets.length == 0" class="center-lg text-center">
+ 
+    <div *ngIf="tickets.length == 0" class="center-lg text-center empty-div">
       <h3>Sin items</h3>
     </div>
   </div>
