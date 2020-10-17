@@ -51,8 +51,6 @@ export class DeclarePaymentComponent implements OnInit {
   ngOnInit(): void {
     this.prepareForms();
     this.route.queryParams.subscribe((res: any) => {
-      console.log("res", res);
-      
       this.metodo = res.method;
       this.billId = res.bill;
       this.getProfile();
