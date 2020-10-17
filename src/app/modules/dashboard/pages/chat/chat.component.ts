@@ -4,44 +4,39 @@ import {
   NgZone,
   ViewChild,
   ElementRef,
-  Inject,
-} from "@angular/core";
-import mocks from "../../../../mocks";
-import { ActivatedRoute } from "@angular/router";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { SessionsClientService } from "src/app/services/sessions-client.service";
-import { RequestApiService } from "src/app/services/request-api.service";
+} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {SessionsClientService} from 'src/app/services/sessions-client.service';
+import {RequestApiService} from 'src/app/services/request-api.service';
 import {
   AngularFireStorage,
-  AngularFireUploadTask,
-} from "@angular/fire/storage";
-import { finalize, tap } from "rxjs/operators";
-import { Observable } from "rxjs";
+} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
-  selector: "app-chat",
-  templateUrl: "./chat.component.html",
-  styleUrls: ["./chat.component.scss"],
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-  @ViewChild("scrollMe") private myScrollContainer: ElementRef;
-  public msg = "";
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  public msg = '';
   public myFile: any;
   public regex: any;
   public fullMessage: any = {};
   public result: any;
   public chats = [];
-  public message = "";
+  public message = '';
   public isLoading = true;
   public isFileLoading = false;
   public ticketId = null;
   public cliente: any = {};
   public ticket: any = {};
   public avatar =
-    "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+    'https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg';
   public percentage: Observable<number>;
-  public task: AngularFireUploadTask;
-  public snapshot: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,7 +45,8 @@ export class ChatComponent implements OnInit {
     private session: SessionsClientService,
     private http: RequestApiService,
     private storage: AngularFireStorage
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((res: any) => {
@@ -67,7 +63,7 @@ export class ChatComponent implements OnInit {
   }
 
   async getProfile() {
-    this.http.get("admon/perfil", null, true).subscribe(
+    this.http.get('admon/perfil', null, true).subscribe(
       (response: any) => {
         this.cliente = response;
         this.verifyAvatar(response.avatar);
@@ -81,7 +77,7 @@ export class ChatComponent implements OnInit {
   }
 
   async getClientId() {
-    const user: any = await localStorage.getItem("nextline-currentClient");
+    const user: any = await localStorage.getItem('nextline-currentClient');
     this.cliente.id = JSON.parse(user).id_usuario;
     this.isLoading = false;
     console.log(this.cliente);
@@ -98,8 +94,8 @@ export class ChatComponent implements OnInit {
 
   loadChats() {
     this.db.database
-      .ref("chatsCollections/" + this.ticketId)
-      .on("value", (snapshot) => {
+      .ref('chatsCollections/' + this.ticketId)
+      .on('value', (snapshot) => {
         if (snapshot.exists()) {
           this.updateChats();
 
@@ -113,36 +109,27 @@ export class ChatComponent implements OnInit {
   async updateChats() {
     this.zone.run(async () => {
       this.chats = await this.db.database
-        .ref("chatsCollections/" + this.ticketId)
-        .once("value")
+        .ref('chatsCollections/' + this.ticketId)
+        .once('value')
         .then((snapshot) => {
           return Object.keys(snapshot.val()).map((key) => snapshot.val()[key]);
         });
-
-      // this.chats = this.chats.filter((element) => {
-      //   return element.type !== "visualizacoes";
-      // });
     });
 
     setTimeout(() => {
       this.scrollToBottomContent();
-      console.log("chats", this.chats);
     }, 100);
   }
 
   scrollToBottomContent() {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) { }
   }
 
   onFileChanged(event: any) {
     this.isFileLoading = true;
     this.myFile = event.target.files[0];
-    // this.uploadFile();
-
     const file = event.target.files[0];
     const filePath = `images/${this.myFile.name}`;
     const fileRef = this.storage.ref(filePath);
@@ -184,19 +171,19 @@ export class ChatComponent implements OnInit {
   }
 
   async saveFileToFirebase(url) {
-    console.log("url", url);
+    console.log('url', url);
     this.isFileLoading = false;
 
-    const msg = "img";
+    const msg = 'img';
     const now = new Date();
     this.fullMessage = {
       customId: this.cliente.id,
       message: url,
       dateMessage: this.getData(),
-      typeMessage: "img",
+      typeMessage: 'img',
     };
     this.db.database
-      .ref("chatsCollections/" + this.ticketId)
+      .ref('chatsCollections/' + this.ticketId)
       .push(this.fullMessage);
   }
 
@@ -242,13 +229,13 @@ export class ChatComponent implements OnInit {
       customId: this.cliente.id,
       message: this.msg,
       dateMessage: this.getData(),
-      typeMessage: "text",
+      typeMessage: 'text',
     };
 
-    this.msg = "";
+    this.msg = '';
 
     this.db.database
-      .ref("chatsCollections/" + this.ticketId)
+      .ref('chatsCollections/' + this.ticketId)
       .push(this.fullMessage);
   }
 }
