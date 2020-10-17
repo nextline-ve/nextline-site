@@ -110,8 +110,6 @@ export class ServicesRequestComponent implements OnInit {
     this.http
       .get("config/planes/", { tipo_servicio__id: item }, false)
       .subscribe((response: any) => {
-        console.log(response.results);
-
         this.plans = response.results;
       });
   }
@@ -138,7 +136,6 @@ export class ServicesRequestComponent implements OnInit {
 
   onFileChanged(event) {
     this.avatar = event.target.files[0];
-    console.log(event.target.files[0]);
     this.utils
       .imageFileToURI(event)
       .then((res: string) => {
@@ -156,13 +153,11 @@ export class ServicesRequestComponent implements OnInit {
       this.geoUtils
         .askLocation()
         .then((res) => {
-          console.log("_ promise res", res);
           this.doesItHaveLocation = true;
           this.currentLocation = res;
           this.getAddress(res);
           this.didAskedLocationFailed = false;
           this.isLoadingLocation = false;
-          console.log(res);
         })
         .catch((e) => {
           this.doesItHaveLocation = false;
@@ -178,8 +173,6 @@ export class ServicesRequestComponent implements OnInit {
     this.geoUtils
       .getAddress(coords)
       .then((res: any) => {
-        console.log("getAddress proper address", res.formatted_address);
-        // this.myAddress = res.formatted_address;
         this.myAddress = `Parroquia: - Estado ${res.address_components[4].long_name} - Municipio: ${res.address_components[3].long_name}, Calle: ${res.address_components[1].long_name} ${res.address_components[0].long_name}. `;
         this.doesItHaveAddress = true;
         this.isLoadingLocation = false;
@@ -193,10 +186,7 @@ export class ServicesRequestComponent implements OnInit {
   }
 
   async setAddressView(type) {
-    console.log("setAddressView");
-
     if (type == "map") {
-      console.log("setAddressView map");
       if (this.currentLocation == null) {
         this.currentLocation = {
           latitude: 10.502456738546742,
@@ -211,7 +201,6 @@ export class ServicesRequestComponent implements OnInit {
   }
 
   setLocation(e) {
-    console.log("set", e);
     this.currentLocation = e;
     this.getAddress(e);
     this.setAddressView("address");
@@ -225,9 +214,6 @@ export class ServicesRequestComponent implements OnInit {
 
   async requestService() {
     this.isLoading = true;
-
-    console.warn(this.personalDataFormGroup.get("identification").value);
-    console.log(this.selectedPlan);
 
     const myFormData: FormData = new FormData();
     myFormData.append(
@@ -265,19 +251,6 @@ export class ServicesRequestComponent implements OnInit {
         this.router.navigate([""]);
       },
       (err) => {
-        // const keyWithError = [];
-        // for (const key in err.error) {
-        //   if (Object.prototype.hasOwnProperty.call(err.error, key)) {
-        //     if (err.error[key] != "") {
-        //       keyWithError.push(`${err.error[key]} `);
-        //     }
-        //   }
-        // }
-        // const msg =
-        //   keyWithError.length == 1
-        //     ? `Error: ${keyWithError}`
-        //     : `Errores: ${keyWithError.join(", ")}`;
-
         this.utils.showSnackBar(this.utils.formatErrors(err), 15000);
         this.isLoading = false;
       }

@@ -72,6 +72,7 @@ export class LoginModalComponent implements OnInit {
         (response: any) => {
           this.isLoading = false;
           this.session.registerSession(response);
+          localStorage.removeItem("nextline-actions");
           window.location.replace("/panel");
         },
         (err) => {
