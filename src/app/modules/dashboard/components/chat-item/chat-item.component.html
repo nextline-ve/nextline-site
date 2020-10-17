@@ -10,7 +10,8 @@
     >
       <div class="row" style="padding: 2%">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 start-md">
-          <p class="name">{{ name }}</p>
+          <p class="name" *ngIf="userType">{{ name }}</p>
+          <p class="name" *ngIf="!userType">Ana Karina</p>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <p class="date">{{ date }}</p>
