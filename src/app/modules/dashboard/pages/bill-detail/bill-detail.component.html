@@ -16,7 +16,7 @@
       >
         <p class="text-black">{{ bill.fecha_emision }}</p>
         <app-status-box
-          [status]="'test'"
+          [status]="bill.status"
           [statusDetail]="bill.get_status_display"
           [isSmall]="true"
           style="height: 32%"
@@ -70,7 +70,7 @@
             <tr>
               <th class="text-start text-blue border-none"></th>
               <th *ngFor="let item of currencies" class="text-center text-blue border-none">
-                <div (click)="payBill(item.simbolo)" class="pay-button">
+                <div *ngIf="bill.status == 'G' || bill.status == 'G' " (click)="payBill(item.simbolo)" class="pay-button">
                   <p>Pagar en {{ item.simbolo }}</p>
                 </div>
               </th>

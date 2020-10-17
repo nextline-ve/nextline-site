@@ -1,3 +1,5 @@
-<small class="ticket-status" [ngClass]="{ 'small-size': isSmall }">{{
+<small class="ticket-status" [ngClass]="{ 'small-size': isSmall }"
+  [ngStyle]="{'background':getColor(status)}"
+>{{
   statusDetail
 }}</small>
