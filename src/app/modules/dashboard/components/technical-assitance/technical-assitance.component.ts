@@ -13,7 +13,6 @@ export class TechnicalAssitanceComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private session: SessionsClientService,
     private http: RequestApiService
   ) {
   }
