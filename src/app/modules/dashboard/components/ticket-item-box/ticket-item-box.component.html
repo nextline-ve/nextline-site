@@ -1,10 +1,7 @@
 <div class="container ticket-container">
   <div class="row ticket-title-row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <div class="ticket-title-row-l ticket-id">Ticket {{ id }}</div>
-      <div class="ticket-title-row-l">
-        <small>{{ subject.slice(0, 40) }}</small>
-      </div>
+      <div class="ticket-title-row-l ticket-id">{{ id }}</div>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <app-status-box
@@ -14,6 +11,9 @@
       <div class="date">
         <small>{{ date }}</small>
       </div>
+    </div>
+    <div class="ticket-title-row-l">
+      <small>{{ subject.slice(0, 40) }}</small>
     </div>
   </div>
 </div>

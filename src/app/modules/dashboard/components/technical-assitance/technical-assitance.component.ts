@@ -1,13 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import mocks from "../../../../mocks";
-import { RequestApiService } from "src/app/services/request-api.service";
-import { SessionsClientService } from "src/app/services/sessions-client.service";
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {RequestApiService} from 'src/app/services/request-api.service';
+import {SessionsClientService} from 'src/app/services/sessions-client.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: "app-technical-assitance",
-  templateUrl: "./technical-assitance.component.html",
-  styleUrls: ["./technical-assitance.component.scss"],
+  selector: 'app-technical-assitance',
+  templateUrl: './technical-assitance.component.html',
+  styleUrls: ['./technical-assitance.component.scss'],
 })
 export class TechnicalAssitanceComponent implements OnInit {
   public tickets = [];
@@ -16,27 +15,29 @@ export class TechnicalAssitanceComponent implements OnInit {
     private router: Router,
     private session: SessionsClientService,
     private http: RequestApiService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadTickets();
   }
 
   loadTickets() {
-    this.http.get("support/tickets/", null, true).subscribe(
+    this.http.get('support/tickets/', null, true).subscribe(
       (response: any) => {
         this.tickets = response.results;
       },
       (error) => {
-        console.log(error.error.message);
-        console.log(error);
+        if (error.status === 401) {
+          this.router.navigateByUrl('/');
+        }
       }
     );
   }
 
   goToChact(ticket) {
-    this.router.navigate(["/panel/chat"], {
-      queryParams: { ...ticket },
+    this.router.navigate(['/panel/chat'], {
+      queryParams: {...ticket},
     });
   }
 }
