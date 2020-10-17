@@ -90,7 +90,7 @@ export class ChatComponent implements OnInit {
   verifyAvatar(img) {
     if (img == null) {
       this.avatar =
-        "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+        "../../../../../assets/images/default-avatar.jpeg";
     } else {
       this.avatar = img;
     }
