@@ -31,70 +31,94 @@
         <!-- table -->
         <table id="bills-table">
           <thead>
-            <tr>
-              <th class="text-start text-black">Descripción</th>
-              <th class="text-end text-black">Total Dólar ($)</th>
-              <th class="text-end text-black">Total Bs.</th>
-            </tr>
+          <tr>
+            <th class="text-start text-black w-30">Descripción</th>
+            <th class="text-end text-black">Total Dólar</th>
+            <th class="text-end text-black">Total Bs.</th>
+          </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of billDetails">
-              <td class="text-start border-right text-gray">
-                {{ item.concepto.descripcion }}
-              </td>
-              <td class="border-right text-end text-gray">
-                {{ item.concepto.monto }}
-              </td>
-              <td class="text-end text-gray">{{ item.concepto.monto }}</td>
-            </tr>
+          <tr *ngFor="let item of billDetails">
+            <td class="text-start border-right text-gray">
+              {{ item.concepto.descripcion }}
+            </td>
+            <td class="border-right text-end text-gray">
+              {{ item.monto }} USD
+            </td>
+            <td class="text-end text-gray">{{ item.total_bs }}</td>
+          </tr>
           </tbody>
           <tfoot>
-            <tr>
-              <th class="text-start text-blue border-none"></th>
-              <th class="text-center text-black border-none">Total Dolar</th>
-              <th class="text-center text-black border-none">Total Bs.</th>
-            </tr>
-            <tr>
-              <th *ngIf="bill.status != 'V'" class="text-start text-blue border-none payment-commitment"> </th>
-              
-              <th *ngIf="bill.status == 'V'" class="text-start text-blue border-none payment-commitment" (click)="showPaymentCommitmentModal()">
-                Hacer compromiso de pago
-              </th>
-              <th class="text-center text-blue border-none">
-                {{ bill.total }}
-              </th>
-              <th class="text-center text-blue border-none">
-                {{ bill.total_bs }}
-              </th>
-            </tr>
-            <tr>
-              <th class="text-start text-blue border-none"></th>
-              <th *ngFor="let item of currencies" class="text-center text-blue border-none">
-                <div *ngIf="bill.status == 'G' || bill.status == 'G' " (click)="payBill(item.simbolo)" class="pay-button">
-                  <p>Pagar en {{ item.simbolo }}</p>
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <th class="text-start text-blue border-none"></th>
-              <th class="text-center text-blue border-none"></th>
-              <th class="text-center text-blue border-none">
-                <a
-                  class="text-blue download-bill"
-                  style="text-transform: uppercase"
-                  href="{{ domain }}/admon/factura/pdf/{{ bill.id }}/"
-                  target="_blank"
-                  download
-                >
-                  Descargar factura
-                  <img
-                    src="../../../../../assets/images/Icon-feather-download.svg"
-                    alt=""
-                  />
-                </a>
-                 
-              </th>
-            </tr>
+          <tr>
+            <th class="text-start text-blue border-none"></th>
+            <th class="text-center text-black border-none"></th>
+            <th class="text-center text-black border-none"></th>
+          </tr>
+          <tr>
+            <th class="text-start text-blue border-none"></th>
+            <th class="text-center text-black border-none"></th>
+            <th class="text-center text-black border-none">
+              <table class="w-100 mb-4">
+                <tr>
+                  <td  class="text-left">Monto Base:</td>
+                  <td class="text-right text-gray">{{bill.monto_base}} USD / {{bill.monto_base_bs}}</td>
+                </tr>
+                <tr>
+                  <td class="text-left"><span>I.V.A ( {{bill.iva}}%):</span></td>
+                  <td class="text-right text-gray">{{bill.monto_iva}} USD / {{bill.monto_iva_bs}}</td>
+                </tr>
+                <tr>
+                  <td class="text-left"><span>Sub Total:</span></td>
+                  <td class="text-right text-gray">{{bill.subtotal}} USD / {{bill.subtotal_bs}}</td>
+                </tr>
+              </table>
+            </th>
+          </tr>
+          <tr>
+            <th class="text-start text-blue border-none"></th>
+            <th class="text-center text-black border-none">Total Dolar</th>
+            <th class="text-center text-black border-none">Total Bs.</th>
+          </tr>
+          <tr>
+            <th class="text-start text-blue border-none"></th>
+            <th class="text-center text-blue border-none">
+              {{ bill.total }} USD
+            </th>
+            <th class="text-center text-blue border-none">
+              {{ bill.total_bs }}
+            </th>
+          </tr>
+          <tr>
+            <th *ngIf="bill.status == 'V'" class="text-start text-blue border-none payment-commitment"
+                (click)="showPaymentCommitmentModal()">
+              Hacer compromiso de pago
+            </th>
+            <th *ngFor="let item of currencies" class="text-center text-blue border-none">
+              <div *ngIf="bill.status == 'G' || bill.status == 'V' " (click)="payBill(item.simbolo)" class="pay-button">
+                <p>Pagar en {{ item.simbolo }}</p>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th class="text-start text-blue border-none"></th>
+            <th class="text-center text-blue border-none"></th>
+            <th class="text-center text-blue border-none">
+              <a
+                class="text-blue download-bill"
+                style="text-transform: uppercase"
+                href="{{ domain }}/admon/factura/pdf/{{ bill.id }}/"
+                target="_blank"
+                download
+              >
+                Descargar factura
+                <img
+                  src="../../../../../assets/images/Icon-feather-download.svg"
+                  alt=""
+                />
+              </a>
+
+            </th>
+          </tr>
           </tfoot>
         </table>
         <!-- table -->

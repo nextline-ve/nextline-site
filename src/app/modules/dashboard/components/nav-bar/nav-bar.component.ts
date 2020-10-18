@@ -1,23 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { Observable } from "rxjs";
-import { map, shareReplay } from "rxjs/operators";
-import { SessionsClientService } from "src/app/services/sessions-client.service";
-import { environment } from "src/environments/environment.prod";
-import { RequestApiService } from "src/app/services/request-api.service";
+import {Component, OnInit} from '@angular/core';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, shareReplay} from 'rxjs/operators';
+import {SessionsClientService} from 'src/app/services/sessions-client.service';
+import {environment} from 'src/environments/environment.prod';
+import {RequestApiService} from 'src/app/services/request-api.service';
 
 @Component({
-  selector: "app-nav-bar",
-  templateUrl: "./nav-bar.component.html",
-  styleUrls: ["./nav-bar.component.scss"],
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
   public domain = environment.DOMAIN;
   public cliente = {
-    nombre_razsoc: "User Full Name Optional",
+    nombre_razsoc: 'User Full Name Optional',
   };
   public avatar =
-    "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+    '../../../../../assets/images/default-avatar.jpeg';
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -30,7 +30,8 @@ export class NavBarComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private session: SessionsClientService,
     private http: RequestApiService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     const session: any = this.session.getCurrentSession();
@@ -43,7 +44,7 @@ export class NavBarComponent implements OnInit {
   }
 
   async getProfile() {
-    this.http.get("admon/perfil", null, true).subscribe(
+    this.http.get('admon/perfil', null, true).subscribe(
       (response: any) => {
         this.cliente = response;
         this.verifyAvatar(response.avatar);
@@ -56,7 +57,7 @@ export class NavBarComponent implements OnInit {
   }
 
   async getSolicitationStatus() {
-    this.http.get("admon/solicitud-status", null, true).subscribe(
+    this.http.get('admon/solicitud-status', null, true).subscribe(
       (response: any) => {
         this.cliente = response;
       },
@@ -70,7 +71,7 @@ export class NavBarComponent implements OnInit {
   verifyAvatar(img) {
     if (img == null) {
       this.avatar =
-        "../../../../../assets/images/default-avatar.jpeg";
+        '../../../../../assets/images/default-avatar.jpeg';
     } else {
       this.avatar = img;
     }
