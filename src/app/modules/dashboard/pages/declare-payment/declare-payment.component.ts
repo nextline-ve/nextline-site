@@ -1,22 +1,22 @@
-import { Component, OnInit } from "@angular/core";
-import { environment } from "src/environments/environment.prod";
+import {Component, OnInit} from '@angular/core';
+import {environment} from 'src/environments/environment.prod';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
-} from "@angular/forms";
-import { UtilsService } from "src/app/services/utils.service";
-import { RequestApiService } from "src/app/services/request-api.service";
-import { SessionsClientService } from "src/app/services/sessions-client.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { SelectPaymentModalComponent } from "../../components/select-payment-modal/select-payment-modal.component";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+} from '@angular/forms';
+import {UtilsService} from 'src/app/services/utils.service';
+import {RequestApiService} from 'src/app/services/request-api.service';
+import {SessionsClientService} from 'src/app/services/sessions-client.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SelectPaymentModalComponent} from '../../components/select-payment-modal/select-payment-modal.component';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
-  selector: "app-declare-payment",
-  templateUrl: "./declare-payment.component.html",
-  styleUrls: ["./declare-payment.component.scss"],
+  selector: 'app-declare-payment',
+  templateUrl: './declare-payment.component.html',
+  styleUrls: ['./declare-payment.component.scss'],
 })
 export class DeclarePaymentComponent implements OnInit {
   public cliente: any = {};
@@ -25,9 +25,9 @@ export class DeclarePaymentComponent implements OnInit {
   public myForm: FormGroup;
   public payments = [];
   public selectedPayment: any = {
-    id:null,
-    banco:"Seleccione",
-    logo_banco: ""
+    id: null,
+    banco: 'Seleccione',
+    logo_banco: ''
   };
   public isLoading = false;
   public fileComprobante: File;
@@ -35,7 +35,7 @@ export class DeclarePaymentComponent implements OnInit {
   public mask = {
     guide: true,
     showMask: true,
-    mask: [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/],
+    mask: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
   };
 
   constructor(
@@ -46,7 +46,8 @@ export class DeclarePaymentComponent implements OnInit {
     private router: Router,
     private session: SessionsClientService,
     private utils: UtilsService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.prepareForms();
@@ -59,19 +60,19 @@ export class DeclarePaymentComponent implements OnInit {
 
   prepareForms() {
     this.myForm = this.formBuilder.group({
-      referencia: new FormControl("", [
+      referencia: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
       ]),
-      fecha: new FormControl("", [
+      fecha: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
       ]),
-      monto: new FormControl("", [
+      monto: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
       ]),
-      comprobante: new FormControl("", [
+      comprobante: new FormControl('', [
         Validators.required,
         Validators.minLength(1),
       ]),
@@ -79,7 +80,7 @@ export class DeclarePaymentComponent implements OnInit {
   }
 
   async getProfile() {
-    this.http.get("admon/perfil", null, true).subscribe(
+    this.http.get('admon/perfil', null, true).subscribe(
       (response: any) => {
         this.cliente = response;
       },
@@ -89,10 +90,10 @@ export class DeclarePaymentComponent implements OnInit {
       }
     );
   }
-  
+
   showSelectPaymentModal() {
     const dialogForgotRef = this.dialog.open(SelectPaymentModalComponent, {
-      width: "420px",
+      width: '420px',
       data: {
         payment: this.metodo,
       },
@@ -100,7 +101,7 @@ export class DeclarePaymentComponent implements OnInit {
 
     dialogForgotRef.afterClosed().subscribe((res) => {
       if (res) {
-        this.selectedPayment = { ...res, isValid: true };
+        this.selectedPayment = {...res, isValid: true};
       }
     });
   }
@@ -125,7 +126,7 @@ export class DeclarePaymentComponent implements OnInit {
 
   enviar() {
     this.isLoading = true;
-  
+
     if (this.myForm.invalid) {
       const invalid = [];
       const controls = this.myForm.controls;
@@ -135,7 +136,7 @@ export class DeclarePaymentComponent implements OnInit {
         }
       }
       this.utils.showSnackBar(
-        "Por favor, digite os campos corretamente...",
+        'Por favor, digite os campos corretamente...',
         5000
       );
       this.isLoading = false;
@@ -143,9 +144,9 @@ export class DeclarePaymentComponent implements OnInit {
       return;
     }
 
-    if(this.selectedPayment.id == null){
+    if (this.selectedPayment.id == null) {
       this.utils.showSnackBar(
-        "Por favor, seleccione un metodo de pago...",
+        'Por favor, seleccione un metodo de pago...',
         5000
       );
       this.isLoading = false;
@@ -156,30 +157,30 @@ export class DeclarePaymentComponent implements OnInit {
     const myFormData: FormData = new FormData();
 
     myFormData.append(
-      "comprobante_pago",
+      'comprobante_pago',
       this.fileComprobante,
       this.fileComprobante.name
     );
-    myFormData.append("numero_referencia", this.myForm.get("referencia").value);
-    myFormData.append("fecha_transferencia",  this.utils.formatBillDate(this.myForm.get("fecha").value));
-    myFormData.append("monto_transferencia", this.myForm.get("monto").value);
-    myFormData.append("banco", this.selectedPayment.id);
+    myFormData.append('numero_referencia', this.myForm.get('referencia').value);
+    myFormData.append('fecha_transferencia', this.utils.formatBillDate(this.myForm.get('fecha').value));
+    myFormData.append('monto_transferencia', this.myForm.get('monto').value);
+    myFormData.append('banco', this.selectedPayment.id);
 
     this.http.post(`admon/factura/${this.billId}/declarar-pago/`, myFormData, true).subscribe(
       async (res: any) => {
         this.isLoading = false;
 
         const obj = {
-          title: "¡Gracias por su pago!",
-          subTitle: "A la espera de confirmación",
-          icon: "success-payed-bill.png",
+          title: '¡Gracias por su pago!',
+          subTitle: 'A la espera de confirmación',
+          icon: 'success-payed-bill.png',
         };
 
-        this.router.navigate(["/panel/change-plan/success-message"], {
+        this.router.navigate(['/panel/change-plan/success-message'], {
           queryParams: obj,
         });
       },
-      (err) => { 
+      (err) => {
         this.utils.showSnackBar(this.utils.formatErrors(err), 15000);
         this.isLoading = false;
       }
