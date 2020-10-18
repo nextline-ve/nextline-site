@@ -49,10 +49,7 @@ export class NavBarComponent implements OnInit {
         this.cliente = response;
         this.verifyAvatar(response.avatar);
       },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
+      (error) => { }
     );
   }
 
@@ -61,10 +58,7 @@ export class NavBarComponent implements OnInit {
       (response: any) => {
         this.cliente = response;
       },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
+      (error) => { }
     );
   }
 
