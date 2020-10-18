@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import {UtilsService} from 'src/app/services/utils.service';
+import {Observer} from '../../../../services/observer';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private session: SessionsClientService,
     private http: RequestApiService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private event: Observer
   ) {
   }
 
@@ -90,10 +92,7 @@ export class ProfileComponent implements OnInit {
         this.isContentLoaded = true;
         this.fillProfile();
       },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
+      (error) => { }
     );
   }
 
@@ -102,10 +101,7 @@ export class ProfileComponent implements OnInit {
       (response: any) => {
         this.cliente = response.results;
       },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
+      (error) => { }
     );
   }
 
@@ -114,17 +110,12 @@ export class ProfileComponent implements OnInit {
       (response: any) => {
         this.cliente = response;
       },
-      (error) => {
-        console.log(error.error.message);
-        console.log(error);
-      }
+      (error) => { }
     );
   }
 
   verifyAvatar(img) {
-    if (img == null) {
-      this.avatar = '../../../../../assets/images/imagotipo.png';
-    } else {
+    if (img != null) {
       this.avatar = img;
     }
   }
@@ -144,10 +135,7 @@ export class ProfileComponent implements OnInit {
       .then((res: string) => {
         this.avatar = res;
       })
-      .catch((e) => {
-        console.error(e);
-        this.avatar = e;
-      });
+      .catch((e) => { });
   }
 
   save() {
@@ -161,7 +149,6 @@ export class ProfileComponent implements OnInit {
           invalid.push(name);
         }
       }
-      console.log('invalid', invalid);
 
       this.utils.showSnackBar(
         'Por favor, digite los campos corretamente...',
@@ -187,6 +174,7 @@ export class ProfileComponent implements OnInit {
         (response: any) => {
           this.isLoading = false;
           this.updateLocalStorage(response);
+          this.event.create(response.avatar);
         },
         (err) => {
           this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
@@ -198,7 +186,7 @@ export class ProfileComponent implements OnInit {
   async updateLocalStorage(newData) {
     const oldUser = JSON.parse(localStorage.getItem('nextline-currentClient'));
     await localStorage.setItem('nextline-currentClient', JSON.stringify({...oldUser, ...newData}));
-    window.location.replace('/panel/profile');
+
   }
 
   verifyChangePassword() {

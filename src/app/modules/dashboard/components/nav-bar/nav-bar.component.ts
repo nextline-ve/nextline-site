@@ -5,6 +5,7 @@ import {map, shareReplay} from 'rxjs/operators';
 import {SessionsClientService} from 'src/app/services/sessions-client.service';
 import {environment} from 'src/environments/environment.prod';
 import {RequestApiService} from 'src/app/services/request-api.service';
+import {Observer} from '../../../../services/observer';
 
 @Component({
   selector: 'app-nav-bar',
@@ -29,7 +30,8 @@ export class NavBarComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private session: SessionsClientService,
-    private http: RequestApiService
+    private http: RequestApiService,
+    private event: Observer
   ) {
   }
 
@@ -41,6 +43,10 @@ export class NavBarComponent implements OnInit {
     } else {
       this.getSolicitationStatus();
     }
+
+    this.event.getObservable().subscribe( (avatar: any) => {
+      this.avatar = avatar;
+    });
   }
 
   async getProfile() {
