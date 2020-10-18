@@ -33,7 +33,6 @@ export class BillDetailComponent implements OnInit {
 
       this.billId = res.id;
       this.bill = {...res};
-      console.warn('this.bill', this.bill);
       this.formatDate();
       this.loadCurrencies();
     });
