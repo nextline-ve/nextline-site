@@ -1,19 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { RequestApiService } from "src/app/services/request-api.service";
-import { SessionsClientService } from "src/app/services/sessions-client.service";
-import { environment } from "src/environments/environment.prod";
+import {Component, OnInit} from '@angular/core';
+import {RequestApiService} from 'src/app/services/request-api.service';
+import {SessionsClientService} from 'src/app/services/sessions-client.service';
+import {environment} from 'src/environments/environment.prod';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
-} from "@angular/forms";
-import { UtilsService } from "src/app/services/utils.service";
+} from '@angular/forms';
+import {UtilsService} from 'src/app/services/utils.service';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
   public isContentLoaded = false;
@@ -21,8 +21,7 @@ export class ProfileComponent implements OnInit {
   public personalDataFormGroup: FormGroup;
   public domain = environment.DOMAIN;
   public cliente: any = {};
-  public avatar =
-    "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+  public avatar = '../../../../../assets/images/imagotipo.png';
   public fileAvatar: File;
 
 
@@ -31,7 +30,8 @@ export class ProfileComponent implements OnInit {
     private session: SessionsClientService,
     private http: RequestApiService,
     private utils: UtilsService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.prepareForms();
@@ -48,30 +48,26 @@ export class ProfileComponent implements OnInit {
 
   prepareForms() {
     this.personalDataFormGroup = this.formBuilder.group({
-      avatar: new FormControl(""),
-      name: new FormControl("", Validators.required),
-      identification: new FormControl("", Validators.required),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      phone: new FormControl("", Validators.required),
-      password: new FormControl("", ),
-      newPassword: new FormControl("", ),
+      avatar: new FormControl(''),
+      name: new FormControl('', Validators.required),
+      identification: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phone: new FormControl('', Validators.required),
+      password: new FormControl('',),
+      newPassword: new FormControl('',),
     });
   }
 
   disableALlFields() {
-    console.warn("disableALlFields");
-
-    this.personalDataFormGroup.controls["name"].disable();
-    this.personalDataFormGroup.controls["identification"].disable();
-    this.personalDataFormGroup.controls["email"].disable();
-    this.personalDataFormGroup.controls["phone"].disable();
-    this.personalDataFormGroup.controls["password"].disable();
-    this.personalDataFormGroup.controls["newPassword"].disable();
+    this.personalDataFormGroup.controls['name'].disable();
+    this.personalDataFormGroup.controls['identification'].disable();
+    this.personalDataFormGroup.controls['email'].disable();
+    this.personalDataFormGroup.controls['phone'].disable();
+    this.personalDataFormGroup.controls['password'].disable();
+    this.personalDataFormGroup.controls['newPassword'].disable();
   }
 
   fillProfile() {
-    console.warn("fillProfile");
-
     this.personalDataFormGroup.controls.avatar.setValue(this.cliente.avatar);
     this.personalDataFormGroup.controls.name.setValue(
       this.cliente.nombre_razsoc
@@ -86,9 +82,9 @@ export class ProfileComponent implements OnInit {
   }
 
   async getProfile() {
-    this.http.get("admon/perfil", null, true).subscribe(
+    this.http.get('admon/perfil', null, true).subscribe(
       (response: any) => {
-        console.log("response, getProfile", response);
+        console.log('response, getProfile', response);
         this.cliente = response;
         this.verifyAvatar(response.avatar);
         this.isContentLoaded = true;
@@ -102,7 +98,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async getContractStatus() {
-    this.http.get("admon/contratos-status", null, true).subscribe(
+    this.http.get('admon/contratos-status', null, true).subscribe(
       (response: any) => {
         this.cliente = response.results;
       },
@@ -114,7 +110,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async getSolicitationStatus() {
-    this.http.get("admon/solicitud-status", null, true).subscribe(
+    this.http.get('admon/solicitud-status', null, true).subscribe(
       (response: any) => {
         this.cliente = response;
       },
@@ -127,8 +123,7 @@ export class ProfileComponent implements OnInit {
 
   verifyAvatar(img) {
     if (img == null) {
-      this.avatar =
-        "https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg";
+      this.avatar = '../../../../../assets/images/imagotipo.png';
     } else {
       this.avatar = img;
     }
@@ -166,10 +161,10 @@ export class ProfileComponent implements OnInit {
           invalid.push(name);
         }
       }
-      console.log("invalid", invalid);
+      console.log('invalid', invalid);
 
       this.utils.showSnackBar(
-        "Por favor, digite los campos corretamente...",
+        'Por favor, digite los campos corretamente...',
         5000
       );
       return;
@@ -177,15 +172,17 @@ export class ProfileComponent implements OnInit {
     this.isLoading = true;
 
     const myFormData: FormData = new FormData();
-    
-    if (this.fileAvatar) myFormData.append("avatar",   this.fileAvatar,  this.fileAvatar.name  );
-    myFormData.append("nombre_razsoc", this.personalDataFormGroup.get("name").value);
-    myFormData.append("cedula_rif", this.personalDataFormGroup.get("identification").value);
-    myFormData.append("correo", this.personalDataFormGroup.get("email").value);
-    myFormData.append("celular", this.personalDataFormGroup.get("phone").value);
+
+    if (this.fileAvatar) {
+      myFormData.append('avatar', this.fileAvatar, this.fileAvatar.name);
+    }
+    myFormData.append('nombre_razsoc', this.personalDataFormGroup.get('name').value);
+    myFormData.append('cedula_rif', this.personalDataFormGroup.get('identification').value);
+    myFormData.append('correo', this.personalDataFormGroup.get('email').value);
+    myFormData.append('celular', this.personalDataFormGroup.get('phone').value);
 
     this.http
-      .put("admon/perfil", myFormData)
+      .put('admon/perfil', myFormData)
       .subscribe(
         (response: any) => {
           this.isLoading = false;
@@ -198,40 +195,42 @@ export class ProfileComponent implements OnInit {
       );
   }
 
-  async updateLocalStorage(newData){
-    const oldUser = JSON.parse(localStorage.getItem("nextline-currentClient"));
-    await localStorage.setItem("nextline-currentClient", JSON.stringify({...oldUser, ... newData}));
-    window.location.replace("/panel/profile");
+  async updateLocalStorage(newData) {
+    const oldUser = JSON.parse(localStorage.getItem('nextline-currentClient'));
+    await localStorage.setItem('nextline-currentClient', JSON.stringify({...oldUser, ...newData}));
+    window.location.replace('/panel/profile');
   }
 
-  verifyChangePassword(){
-    const password = this.personalDataFormGroup.get("password").value;
-    const newPassword = this.personalDataFormGroup.get("newPassword").value;
+  verifyChangePassword() {
+    const password = this.personalDataFormGroup.get('password').value;
+    const newPassword = this.personalDataFormGroup.get('newPassword').value;
 
-    if (password.length == 0 && newPassword.length == 0) return;
+    if (password.length == 0 && newPassword.length == 0) {
+      return;
+    }
 
     if (
-      password == '' && 
-      password.length < 6 && 
-      newPassword == '' && 
+      password == '' &&
+      password.length < 6 &&
+      newPassword == '' &&
       newPassword.length < 6
     ) {
-      this.utils.showSnackBar( "Por favor, digite los campos de clave corretamente...", 5000 ); 
+      this.utils.showSnackBar('Por favor, digite los campos de clave corretamente...', 5000);
 
       return;
     }
 
     this.http
-      .post("admon/cambiar-clave/", {
+      .post('admon/cambiar-clave/', {
         old_clave: password,
         clave: newPassword
       })
       .subscribe(
         (response: any) => {
           this.isLoading = false;
-          this.personalDataFormGroup.get("password").setValue("");
-          this.personalDataFormGroup.get("newPassword").setValue("");
-          this.utils.showSnackBar( response.mensaje, 5000 ); 
+          this.personalDataFormGroup.get('password').setValue('');
+          this.personalDataFormGroup.get('newPassword').setValue('');
+          this.utils.showSnackBar(response.mensaje, 5000);
         },
         (err) => {
           this.utils.showSnackBar(this.utils.formatErrors(err), 5000);

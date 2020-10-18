@@ -13,9 +13,7 @@ export class StatusBoxComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.warn(this.status, this.statusDetail);
-  }
+  ngOnInit(): void { }
 
   getColor(status) { 
     

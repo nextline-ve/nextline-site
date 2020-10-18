@@ -26,7 +26,6 @@ export class ChangePlanComponent implements OnInit {
   }
 
   async getPlans() {
-    console.warn("this.currentPlan.tipo_servicio.id", this.currentPlan.tipo_servicio.id);
     this.http
       .get(
         "config/planes/",
