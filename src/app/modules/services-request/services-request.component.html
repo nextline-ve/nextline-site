@@ -170,7 +170,7 @@
                 formControlName="phone"
                 placeholder="Celular"
                 required
-                mask="00000000000"
+                mask="00000000"
               />
             </mat-form-field>
           </div>
@@ -225,12 +225,12 @@
     <mat-step>
       <ng-template matStepLabel></ng-template>
 
-      <div class="row w-100 element-container">
+      <div class="row w-100 element-container loader-spinner" >
         <div class="col-lg-12 avatar-container">
           <div *ngIf="addressView === 'confirm'">
-            <div *ngIf="isLoadingLocation">
+            <div class="loader-spinner" *ngIf="isLoadingLocation">
               cargando localizacion
-              <mat-spinner></mat-spinner>
+              <mat-spinner class="loader-spinner"></mat-spinner>
             </div>
             <div *ngIf="!didAskedLocationFailed && !isLoadingLocation">
               <p>
@@ -273,7 +273,7 @@
           <div *ngIf="addressView === 'map'">
             <div *ngIf="isLoadingLocation && didAskedLocationFailed">
               cargando localizacion
-              <mat-spinner></mat-spinner>
+              <mat-spinner class="loader-spinner"></mat-spinner>
             </div>
             <div id="map">
               <app-address-map
@@ -286,9 +286,9 @@
           </div>
 
           <div *ngIf="addressView === 'address'">
-            <div *ngIf="isLoadingLocation">
+            <div class="loader-spinner" *ngIf="isLoadingLocation">
               cargando localizacion
-              <mat-spinner></mat-spinner>
+              <mat-spinner class="loader-spinner"></mat-spinner>
             </div>
             <div *ngIf="!isLoadingLocation">
               <div class="row w-100 element-container">
