@@ -7,7 +7,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 left-col">
       <p>{{ticket.fecha_creacion | date}}</p>
       <app-status-box [isSmall]="true" [status]="ticket.status" [statusDetail]="ticket.get_status_display">
-        
+
       </app-status-box>
     </div>
     <div
@@ -25,10 +25,10 @@
       <app-chat-item
         *ngFor="let chat of chats"
         [userType]="chat.customId == cliente.id"
-        [type]="chat.typeMessage"
+        [type]="chat.type"
         [name]="cliente.nombre_razsoc"
         [avatar]="avatar"
-        [message]="chat.message"
+        [message]=getMessage(chat)
         [date]="chat.dateMessage"
       ></app-chat-item>
     </div>

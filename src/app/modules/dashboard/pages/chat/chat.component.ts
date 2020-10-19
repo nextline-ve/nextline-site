@@ -157,7 +157,7 @@ export class ChatComponent implements OnInit {
 
     this.fullMessage = {
       customId: this.cliente.id,
-      message: url,
+      imageUrl: url,
       date: this.getData(),
       type: 'img',
     };
@@ -214,5 +214,9 @@ export class ChatComponent implements OnInit {
     this.db.database
       .ref('chatsCollections/' + this.ticketId)
       .push(this.fullMessage);
+  }
+
+  getMessage(chat: any) {
+    return (chat.message === '') ? chat.imageUrl : chat.message;
   }
 }
