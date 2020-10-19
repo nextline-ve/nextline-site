@@ -6,7 +6,16 @@ declare const google: any;
   providedIn: "root",
 })
 export class GeoUtilsService {
-  constructor(private mapsAPILoader: MapsAPILoader) {}
+  constructor(private mapsAPILoader: MapsAPILoader) { this.initMapsPlugin(); }
+
+  initMapsPlugin(){
+    this.mapsAPILoader.load().then(() => {
+      const bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(10.502456738546742, -66.85264314414663),
+        new google.maps.LatLng(10.502456738546742, -66.85264314414663)
+      );
+    });
+  }
 
   async askLocation() {
     return new Promise((resolve, reject) => {
@@ -49,6 +58,8 @@ export class GeoUtilsService {
   }
 
   async getAddress(coords: any) {
+    console.warn("getAddress", coords);
+    
     const geocoder = new google.maps.Geocoder();
     const latlng = {
       lat: coords.latitude,

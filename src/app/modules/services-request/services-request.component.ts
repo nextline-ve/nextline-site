@@ -150,10 +150,14 @@ export class ServicesRequestComponent implements OnInit {
       this.isLoadingLocation = true;
       this.geoUtils
         .askLocation()
-        .then((res) => {
+        .then((res:any) => {
           this.doesItHaveLocation = true;
           this.currentLocation = res;
-          this.getAddress(res);
+          this.getAddress(
+            {
+              latitude: res.latitude,
+              longitude:res.longitude
+            });
           this.didAskedLocationFailed = false;
           this.isLoadingLocation = false;
         })
