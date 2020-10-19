@@ -152,35 +152,14 @@ export class ChatComponent implements OnInit {
       .subscribe();
   }
 
-  uploadFile() {
-    // const fileRef = this.storage.ref(`images/${this.myFile.name}`);
-    // this.percentage = task.percentageChanges();
-    // this.storage
-    //   .upload(`images/${this.myFile.name}`, this.myFile)
-    //   .snapshotChanges()
-    //   .pipe(
-    //     finalize(() => {
-    //       fileRef.getDownloadURL().subscribe((url) => {
-    //         console.log(url);
-    //         this.isFileLoading = false;
-    //         this.saveFileToFirebase(url);
-    //       });
-    //     })
-    //   )
-    //   .subscribe();
-  }
-
   async saveFileToFirebase(url) {
-    console.log('url', url);
     this.isFileLoading = false;
 
-    const msg = 'img';
-    const now = new Date();
     this.fullMessage = {
       customId: this.cliente.id,
       message: url,
-      dateMessage: this.getData(),
-      typeMessage: 'img',
+      date: this.getData(),
+      type: 'img',
     };
     this.db.database
       .ref('chatsCollections/' + this.ticketId)
@@ -228,11 +207,9 @@ export class ChatComponent implements OnInit {
     this.fullMessage = {
       customId: this.cliente.id,
       message: this.msg,
-      dateMessage: this.getData(),
-      typeMessage: 'text',
+      date: this.getData(),
+      type: 'text',
     };
-
-    this.msg = '';
 
     this.db.database
       .ref('chatsCollections/' + this.ticketId)
