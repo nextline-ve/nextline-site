@@ -68,7 +68,7 @@ export class ServicesRequestComponent implements OnInit {
       name: new FormControl("", Validators.required),
       identification: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
-      phone: new FormControl("", Validators.required),
+      phone: new FormControl(null, Validators.required),
       password: new FormControl("", [
         Validators.minLength(6),
         Validators.required,
@@ -205,6 +205,15 @@ export class ServicesRequestComponent implements OnInit {
 
   validatePersonalForm() {
     if (!this.personalDataFormGroup.valid) {
+      const invalid = [];
+      const controls = this.personalDataFormGroup.controls;
+      for (const name in controls) {
+        if (controls[name].invalid) {
+          invalid.push(name);
+        }
+      }
+      this.utils.showSnackBar("Todos los campos son requeridos.");
+      
       return;
     }
   }
