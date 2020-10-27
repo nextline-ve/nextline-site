@@ -152,6 +152,19 @@ export class ChatComponent implements OnInit {
       .subscribe();
   }
 
+  getData() {
+    const now = new Date();
+    const day = now.getDate() <= 9 ? `0${now.getDate()}` : now.getDate();
+    const month =
+      now.getMonth() + 1 <= 9 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
+    const hour = now.getHours() <= 9 ? `0${now.getHours()}` : now.getHours();
+    const minutes =
+      now.getMinutes() <= 9 ? `0${now.getMinutes()}` : now.getMinutes();
+    const dataFormatada = `${day}/${month}/${now.getFullYear()} - ${hour}:${minutes}`;
+
+    return dataFormatada;
+  }
+
   async saveFileToFirebase(url) {
     this.isFileLoading = false;
 
@@ -164,19 +177,6 @@ export class ChatComponent implements OnInit {
     this.db.database
       .ref('chatsCollections/' + this.ticketId)
       .push(this.fullMessage);
-  }
-
-  getData() {
-    const now = new Date();
-    const day = now.getDate() <= 9 ? `0${now.getDate()}` : now.getDate();
-    const month =
-      now.getMonth() + 1 <= 9 ? `0${now.getMonth() + 1}` : now.getMonth() + 1;
-    const hour = now.getHours() <= 9 ? `0${now.getHours()}` : now.getHours();
-    const minutes =
-      now.getMinutes() <= 9 ? `0${now.getMinutes()}` : now.getMinutes();
-    const dataFormatada = `${day}/${month}/${now.getFullYear()} - ${hour}:${minutes}`;
-
-    return dataFormatada;
   }
 
   async validateSend() {
@@ -211,12 +211,14 @@ export class ChatComponent implements OnInit {
       type: 'text',
     };
 
+    this.msg = "";
+
     this.db.database
       .ref('chatsCollections/' + this.ticketId)
       .push(this.fullMessage);
   }
 
   getMessage(chat: any) {
-    return (chat.message === '') ? chat.imageUrl : chat.message;
+    return (chat.type === "img") ? chat.imageUrl : chat.message;
   }
 }
