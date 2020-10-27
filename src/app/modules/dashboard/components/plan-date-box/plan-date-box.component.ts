@@ -21,6 +21,9 @@ export class PlanDateBoxComponent implements OnInit {
   ngAfterContentInit() {}
 
   calculateDate() {
-    this.dateFormated = this.utils.calculatePaymentDay(this.date);
+    if (this.date) {
+      this.dateFormated = this.utils.calculatePaymentDay(this.date);
+    }
+    console.log("this.date", this.date);
   }
 }
