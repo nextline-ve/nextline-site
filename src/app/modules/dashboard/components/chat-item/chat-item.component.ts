@@ -20,9 +20,9 @@ export class ChatItemComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userType) {
-      this.floatContainer = 'float-right';
+      this.floatContainer = 'col-md-offset-5';
     } else {
-      this.floatContainer = 'float-left';
+      this.floatContainer = '';
     }
   }
 }

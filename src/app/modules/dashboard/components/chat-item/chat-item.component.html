@@ -1,5 +1,5 @@
-<div [ngClass]="floatContainer" class="col-md-7 col-xs-12 clearfix">
-  <div class="row">
+<div [ngClass]="floatContainer" class="col-md-7 col-xs-12">
+  <div class="row w-100">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-avatar">
       <img *ngIf="userType" class="avatar" src="{{ avatar }}" alt="" />
       <img *ngIf="!userType" class="avatar" src="{{ defaultAvatar }}" alt="" />
@@ -17,11 +17,11 @@
           <p class="date">{{ date }}</p>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
           <p *ngIf="type != 'img'" style="text-align: justify; max-width: 100%">
             {{ message }}
           </p>
-          <img *ngIf="type == 'img'" style="max-width: 100%" src="{{ message }}" alt="" />
+          <img *ngIf="type == 'img'" style="max-width: 50%" src="{{ message }}" alt="" />
         </div>
       </div>
     </div>
