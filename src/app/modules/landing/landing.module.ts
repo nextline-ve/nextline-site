@@ -21,6 +21,7 @@ import {LandingPlansComponent} from './components/landing-plans/landing-plans.co
 import {FooterComponent} from './components/footer/footer.component';
 import { PrivacyPoliciesComponent } from './pages/privacy-policies/privacy-policies.component';
 import { HomeComponent } from './pages/home/home.component';
+import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HomeComponent } from './pages/home/home.component';
     FormsModule,
     MatInputModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ScrollToModule.forRoot()
   ],
 })
 export class LandingModule {
