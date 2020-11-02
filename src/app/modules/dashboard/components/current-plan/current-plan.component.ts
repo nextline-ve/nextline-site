@@ -13,6 +13,8 @@ export class CurrentPlanComponent implements OnInit {
   public solicitation: any = null;
   public contracts: any = [];
   public datePlan;
+  public isClient: Boolean = false;
+  public soicitationStatus: any = "";
 
   constructor(
     private sessions: SessionsClientService,
@@ -23,6 +25,7 @@ export class CurrentPlanComponent implements OnInit {
     const session: any = this.sessions.getCurrentSession();
     if (session.es_cliente && this.sessions.isAuthenticated()) {
       this.getContractStatus();
+      this.isClient = true;
     } else {
       this.getSolicitationStatus();
     }
@@ -47,6 +50,7 @@ export class CurrentPlanComponent implements OnInit {
       (response: any) => {
         this.solicitation = response;
         this.plan = response.plan;
+        this.soicitationStatus = response.get_status_display
       },
       (error) => {
         console.log(error.error.message);

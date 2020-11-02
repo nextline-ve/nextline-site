@@ -8,6 +8,8 @@ import { UtilsService } from "src/app/services/utils.service";
 })
 export class PlanDateBoxComponent implements OnInit {
   @Input() date = null;
+  @Input() isClient = null;
+  @Input() soicitationStatus = null;
   public dateFormated;
 
   constructor(private utils: UtilsService) {}
@@ -16,6 +18,7 @@ export class PlanDateBoxComponent implements OnInit {
     setTimeout(() => {
       this.calculateDate();
     }, 2000);
+    console.log("ad", this.isClient)
   }
 
   ngAfterContentInit() {}
