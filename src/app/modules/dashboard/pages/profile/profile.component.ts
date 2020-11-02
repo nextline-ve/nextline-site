@@ -37,15 +37,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.prepareForms();
+    this.getProfile();
 
-    const session: any = this.session.getCurrentSession();
-
-    if (session.es_cliente && this.session.isAuthenticated()) {
-      this.getProfile();
-      this.getContractStatus();
-    } else {
-      this.getSolicitationStatus();
-    }
   }
 
   prepareForms() {
@@ -91,14 +84,14 @@ export class ProfileComponent implements OnInit {
   }
   async getProfile() {
     let urlEndPoint = 'admon/clientes/perfil';
-    if (this.session.getCurrentSession().id_usuario == 0) {
+    if (this.session.getCurrentSession().id_usuario === 0) {
       urlEndPoint = 'admon/futuros-clientes/perfil';
     }
     this.http.get(urlEndPoint, null, true).subscribe(
       (response: any) => this.setDataClient(response),
       (error) => { }
     );
-    
+
   }
 
   async getContractStatus() {
@@ -173,8 +166,13 @@ export class ProfileComponent implements OnInit {
     myFormData.append('correo', this.personalDataFormGroup.get('email').value);
     myFormData.append('celular', this.personalDataFormGroup.get('phone').value);
 
+    let urlEndPoint = 'admon/clientes/perfil';
+    if (this.session.getCurrentSession().id_usuario === 0) {
+      urlEndPoint = 'admon/futuros-clientes/perfil';
+    }
+
     this.http
-      .put('admon/perfil', myFormData)
+      .put(urlEndPoint, myFormData)
       .subscribe(
         (response: any) => {
           this.isLoading = false;

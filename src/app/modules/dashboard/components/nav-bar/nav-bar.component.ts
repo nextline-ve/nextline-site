@@ -36,12 +36,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     const session: any = this.session.getCurrentSession();
-
-    if (session.es_cliente && this.session.isAuthenticated()) {
-      this.getProfile();
-    } else {
-      this.getSolicitationStatus();
-    }
+    this.getProfile();
 
     this.event.getObservable().subscribe( (avatar: any) => {
       this.avatar = avatar;
@@ -53,15 +48,6 @@ export class NavBarComponent implements OnInit {
     if (this.cliente.avatar != '') {
       this.avatar = this.cliente.avatar;
     }
-  }
-
-  async getSolicitationStatus() {
-    this.http.get('admon/solicitud-status', null, true).subscribe(
-      (response: any) => {
-        this.cliente = response;
-      },
-      (error) => { }
-    );
   }
 
   verifyAvatar(img) {
