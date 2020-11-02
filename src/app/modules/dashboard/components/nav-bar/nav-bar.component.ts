@@ -5,6 +5,7 @@ import {map, shareReplay} from 'rxjs/operators';
 import {SessionsClientService} from 'src/app/services/sessions-client.service';
 import {environment} from 'src/environments/environment.prod';
 import {RequestApiService} from 'src/app/services/request-api.service';
+
 import {Observer} from '../../../../services/observer';
 
 @Component({
@@ -14,9 +15,7 @@ import {Observer} from '../../../../services/observer';
 })
 export class NavBarComponent implements OnInit {
   public domain = environment.DOMAIN;
-  public cliente = {
-    nombre_razsoc: 'User Full Name Optional',
-  };
+  public cliente: any;
   public avatar =
     '../../../../../assets/images/default-avatar.jpeg';
 
@@ -50,13 +49,10 @@ export class NavBarComponent implements OnInit {
   }
 
   async getProfile() {
-    this.http.get('admon/perfil', null, true).subscribe(
-      (response: any) => {
-        this.cliente = response;
-        this.verifyAvatar(response.avatar);
-      },
-      (error) => { }
-    );
+    this.cliente = this.session.getCurrentSession();
+    if (this.cliente.avatar != '') {
+      this.avatar = this.cliente.avatar;
+    }
   }
 
   async getSolicitationStatus() {

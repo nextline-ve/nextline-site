@@ -83,17 +83,22 @@ export class ProfileComponent implements OnInit {
     this.disableALlFields();
   }
 
+  private setDataClient(response: any) {
+    this.cliente = response;
+    this.verifyAvatar(response.avatar);
+    this.isContentLoaded = true;
+    this.fillProfile();
+  }
   async getProfile() {
-    this.http.get('admon/perfil', null, true).subscribe(
-      (response: any) => {
-        console.log('response, getProfile', response);
-        this.cliente = response;
-        this.verifyAvatar(response.avatar);
-        this.isContentLoaded = true;
-        this.fillProfile();
-      },
+    let urlEndPoint = 'admon/clientes/perfil';
+    if (this.session.getCurrentSession().id_usuario == 0) {
+      urlEndPoint = 'admon/futuros-clientes/perfil';
+    }
+    this.http.get(urlEndPoint, null, true).subscribe(
+      (response: any) => this.setDataClient(response),
       (error) => { }
     );
+    
   }
 
   async getContractStatus() {
