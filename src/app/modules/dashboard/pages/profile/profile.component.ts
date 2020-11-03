@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', Validators.required),
       password: new FormControl('',),
-      newPassword: new FormControl('',),
+      newPassword: new FormControl('', Validators.minLength(8)),
     });
   }
 
