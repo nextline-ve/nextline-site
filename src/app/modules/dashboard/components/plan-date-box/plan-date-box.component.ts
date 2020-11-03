@@ -18,7 +18,6 @@ export class PlanDateBoxComponent implements OnInit {
     setTimeout(() => {
       this.calculateDate();
     }, 2000);
-    console.log("ad", this.isClient)
   }
 
   ngAfterContentInit() {}
