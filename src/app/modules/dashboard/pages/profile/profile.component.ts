@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
     this.personalDataFormGroup = this.formBuilder.group({
       avatar: new FormControl('',),
       name: new FormControl('', Validators.required),
-      identification: new FormControl('', Validators.required),
+      identification: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', Validators.required),
       password: new FormControl('',),
@@ -165,7 +165,6 @@ export class ProfileComponent implements OnInit {
       myFormData.append('avatar', this.fileAvatar, this.fileAvatar.name);
     }
     myFormData.append('nombre_razsoc', this.personalDataFormGroup.get('name').value);
-    myFormData.append('cedula_rif', this.personalDataFormGroup.get('identification').value);
     myFormData.append('correo', this.personalDataFormGroup.get('email').value);
     myFormData.append('celular', this.personalDataFormGroup.get('phone').value);
 
