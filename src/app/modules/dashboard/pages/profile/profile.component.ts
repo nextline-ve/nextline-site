@@ -22,8 +22,9 @@ export class ProfileComponent implements OnInit {
   public personalDataFormGroup: FormGroup;
   public domain = environment.DOMAIN;
   public cliente: any = {};
-  public avatar = '../../../../../assets/images/imagotipo.png';
-  public fileAvatar: File;
+  public avatarModel: any = "";
+  public avatar = "../../../../../assets/images/imagotipo.png";
+  public fileAvatar: File = null;
 
 
   constructor(
@@ -43,7 +44,7 @@ export class ProfileComponent implements OnInit {
 
   prepareForms() {
     this.personalDataFormGroup = this.formBuilder.group({
-      avatar: new FormControl(''),
+      avatar: new FormControl('',),
       name: new FormControl('', Validators.required),
       identification: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -115,6 +116,8 @@ export class ProfileComponent implements OnInit {
   verifyAvatar(img) {
     if (img != null) {
       this.avatar = img;
+    }else{
+      this.avatar = "../../../../../assets/images/imagotipo.png";
     }
   }
 
@@ -178,6 +181,7 @@ export class ProfileComponent implements OnInit {
           this.isLoading = false;
           this.updateLocalStorage(response);
           this.event.create(response.avatar);
+          this.utils.showSnackBar("Perfil actualizado.", 5000);
         },
         (err) => {
           this.utils.showSnackBar(this.utils.formatErrors(err), 5000);
