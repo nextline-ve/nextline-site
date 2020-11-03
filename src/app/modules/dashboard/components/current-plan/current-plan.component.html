@@ -32,8 +32,12 @@
     </div>
   </div>
 
-  <div class="price-container">
+  <div *ngIf="!isClient" class="price-container">
     <app-plan-date-box [date]="datePlan" [soicitationStatus]="soicitationStatus" [isClient]="isClient" style="flex: 6"></app-plan-date-box>
+  </div>
+  
+  <div *ngIf="isClient" class="price-container">
+    <app-plan-date-box [date]="datePlan" [soicitationStatus]="soicitationStatus" style="flex: 6"></app-plan-date-box>
     <app-plan-price-box
       [bsPrice]="plan.precio_bs"
       [$Price]="plan.precio"
