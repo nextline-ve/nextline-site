@@ -16,7 +16,7 @@ export class TicketItemBoxComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
     this.date = moment(this.date).format('DD/MM/YYYY');
   }
 }

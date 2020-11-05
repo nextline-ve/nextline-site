@@ -37,6 +37,7 @@ export class ChatComponent implements OnInit {
   public avatar =
     'https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg';
   public percentage: Observable<number>;
+  public isFinished: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -53,6 +54,8 @@ export class ChatComponent implements OnInit {
       console.log(res);
       this.ticketId = res.id;
       this.ticket = res;
+      this.checkIfIsFinished(res.status);
+      
       this.loadChats();
       this.getProfile();
     });
@@ -60,6 +63,10 @@ export class ChatComponent implements OnInit {
 
   ngAfterViewChecked() {
     this.scrollToBottomContent();
+  }
+
+  checkIfIsFinished(status){
+    if (status == "S" || status == "A" || status == "F") this.isFinished = true;
   }
 
   async getProfile() {
@@ -128,6 +135,8 @@ export class ChatComponent implements OnInit {
   }
 
   onFileChanged(event: any) {
+    if (this.isFinished) return;
+
     this.isFileLoading = true;
     this.myFile = event.target.files[0];
     const file = event.target.files[0];
@@ -204,6 +213,8 @@ export class ChatComponent implements OnInit {
   }
 
   send() {
+    if (this.isFinished) return;
+
     this.fullMessage = {
       customId: this.cliente.id,
       message: this.msg,
