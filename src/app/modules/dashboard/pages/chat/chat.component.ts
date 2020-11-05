@@ -63,7 +63,7 @@ export class ChatComponent implements OnInit {
   }
 
   async getProfile() {
-    this.http.get('admon/perfil', null, true).subscribe(
+    this.http.get('admon/clientes/perfil', null, true).subscribe(
       (response: any) => {
         this.cliente = response;
         this.verifyAvatar(response.avatar);
@@ -160,7 +160,7 @@ export class ChatComponent implements OnInit {
     const hour = now.getHours() <= 9 ? `0${now.getHours()}` : now.getHours();
     const minutes =
       now.getMinutes() <= 9 ? `0${now.getMinutes()}` : now.getMinutes();
-    const dataFormatada = `${day}/${month}/${now.getFullYear()} - ${hour}:${minutes}`;
+    const dataFormatada = `${day}/${month}/${now.getFullYear()} ${hour}:${minutes}`;
 
     return dataFormatada;
   }
