@@ -35,6 +35,8 @@ export class TechnicalAssitanceComponent implements OnInit {
   }
 
   goToChact(ticket) {
+    if(ticket.status == "F") return;
+    
     this.router.navigate(['/panel/chat'], {
       queryParams: {...ticket},
     });
