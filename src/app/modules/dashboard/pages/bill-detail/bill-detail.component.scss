@@ -1,12 +1,6 @@
 .bill-container {
-  width: 70%;
   margin: auto;
   margin-top: 8%;
-}
-#bills-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-
-  width: 100%;
 }
 
 #bills-table td,
@@ -22,14 +16,6 @@
 
   color: black;
 }
-.text-start {
-  text-align: start !important;
-}
-
-.text-end {
-  text-align: end;
-}
-
 .border-right {
   border-right: 1px solid #ddd;
 }

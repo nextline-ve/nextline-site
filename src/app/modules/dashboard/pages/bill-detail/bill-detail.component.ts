@@ -18,6 +18,7 @@ export class BillDetailComponent implements OnInit {
   public currencies = [];
   public domain = environment.DOMAIN;
   public isReady = false;
+  public discount: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,15 +31,27 @@ export class BillDetailComponent implements OnInit {
 
   async ngOnInit() {
     this.route.queryParams.subscribe((res: any) => {
-
       this.billId = res.id;
       this.bill = {...res};
       this.formatDate();
       this.loadCurrencies();
     });
     this.billDetails = await JSON.parse(localStorage.getItem('nextline-bill-details'));
+    this.itHasDiscount();
     this.isReady = true;
   }
+
+  private itHasDiscount() {
+    if (this.bill.monto_descuento < 1) {
+      return;
+    }
+    for (const item of this.billDetails) {
+      if (item.descuento) {
+        this.discount = item;
+      }
+    }
+  }
+
 
   loadCurrencies() {
     this.http.get('config/monedas/', null, true).subscribe(

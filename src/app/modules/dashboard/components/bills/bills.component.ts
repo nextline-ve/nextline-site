@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
-import mocks from "../../../../mocks";
-import { RequestApiService } from "src/app/services/request-api.service";
-import { SessionsClientService } from "src/app/services/sessions-client.service";
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import mocks from '../../../../mocks';
+import {RequestApiService} from 'src/app/services/request-api.service';
+import {SessionsClientService} from 'src/app/services/sessions-client.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: "app-bills",
-  templateUrl: "./bills.component.html",
-  styleUrls: ["./bills.component.scss"],
+  selector: 'app-bills',
+  templateUrl: './bills.component.html',
+  styleUrls: ['./bills.component.scss'],
 })
 export class BillsComponent implements OnInit {
   public bills = [];
@@ -18,30 +18,29 @@ export class BillsComponent implements OnInit {
     private router: Router,
     private session: SessionsClientService,
     private http: RequestApiService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadBills();
   }
 
   loadBills() {
-    this.http.get("admon/factura/", null, true).subscribe(
+    this.http.get('admon/factura/', null, true).subscribe(
       (response: any) => {
         this.bills = response.results;
       },
       (error) => {
-        console.log(error.error.message);
-        console.log(error);
       }
     );
   }
 
-  showBillDetail(bill){
-    this.router.navigate(["/panel/bill-detail"], {
-      queryParams: { 
+  showBillDetail(bill) {
+    this.router.navigate(['/panel/bill-detail'], {
+      queryParams: {
         ...bill
       },
     });
-    localStorage.setItem("nextline-bill-details", JSON.stringify(bill.factuaradetalle_set));
+    localStorage.setItem('nextline-bill-details', JSON.stringify(bill.factuaradetalle_set));
   }
 }
