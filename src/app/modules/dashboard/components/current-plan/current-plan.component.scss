@@ -10,7 +10,7 @@
 }
 .white-circle {
   flex: 1;
-  position: relative; 
+  position: relative;
   width: 100px;
   background: transparent
     linear-gradient(117deg, #52c0f2 0%, #0090df 35%, #005fab 100%) 0% 0%
@@ -21,7 +21,6 @@
   justify-content: space-evenly;
   align-items: center;
   overflow: hidden;
-  padding: 7%;
   box-shadow: 2px 4px 6px #52c0f2;
 
 }
@@ -75,4 +74,12 @@
   display: flex;
   justify-content: center;
   margin-top: 7%;
+}
+
+.info-solicitation {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 10px 20px #005fab33;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  opacity: 0.95;
 }

@@ -1,18 +1,13 @@
-<div *ngIf="!isClient" class="date-container" style="border-right: none">
-  <p class="price-text" style="text-transform: capitalize;">Estatus de la
-    Solicitud</p>
+<div class="date-container" style="border-right: none">
+  <p class="price-text" style="text-transform: capitalize;">
+    Estatus de la Solicitud</p>
   <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 center-md">
       <p class="price-sub-text" style="margin-top: 5%">{{ soicitationStatus }}</p>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 center-md" style="margin-top: 4px;">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 center-md mt-3">
       <span class="dot"></span>
     </div>
   </div>
 
-</div>
-
-<div *ngIf="isClient" class="date-container">
-  <p class="price-text">FECHA DE PAGO</p>
-  <p class="price-sub-text" style="margin-top: 5%">{{ dateFormated }}</p>
 </div>

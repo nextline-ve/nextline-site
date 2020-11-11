@@ -350,7 +350,7 @@
   margin-left: auto !important;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 320px) {
   .m-sm-0 {
     margin: 0 !important;
   }

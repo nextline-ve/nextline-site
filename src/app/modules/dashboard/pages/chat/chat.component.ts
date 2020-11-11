@@ -55,7 +55,7 @@ export class ChatComponent implements OnInit {
       this.ticketId = res.id;
       this.ticket = res;
       this.checkIfIsFinished(res.status);
-      
+
       this.loadChats();
       this.getProfile();
     });
@@ -152,7 +152,6 @@ export class ChatComponent implements OnInit {
       .pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-            console.log(url);
             this.isFileLoading = false;
             this.saveFileToFirebase(url);
           });

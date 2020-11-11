@@ -10,7 +10,7 @@
   </div>
 
   <div class="row center-xs center-sm center-md center-lg">
-    <div class="col-xs-4 col-sm-4 col-md-5 white-circle">
+    <div class="col-xs-4 col-sm-4 col-md-5 white-circle p-lg-4 p-sm-1">
       <img
         width="50"
         src="../../../../../assets/images/icon_white_test.svg"
@@ -23,21 +23,24 @@
 
   <div class="plan-speed-container">
     <div class="speed-box">
-      <img src="../../../../../assets/images/arrow_up.svg" alt="" />
-      <p class="plan-speed-text">{{ plan.velocidad_subida }} Mb</p>
-    </div>
-    <div class="speed-box">
       <img src="../../../../../assets/images/arrow_down.svg" alt="" />
       <p class="plan-speed-text">{{ plan.velocidad_bajada }} Mb</p>
     </div>
+    <div class="speed-box">
+      <img src="../../../../../assets/images/arrow_up.svg" alt="" />
+      <p class="plan-speed-text">{{ plan.velocidad_subida }} Mb</p>
+    </div>
   </div>
 
-  <div *ngIf="!isClient" class="price-container">
-    <app-plan-date-box [date]="datePlan" [soicitationStatus]="soicitationStatus" [isClient]="isClient" style="flex: 6"></app-plan-date-box>
+  <div *ngIf="solicitation != null" class="info-solicitation m-3">
+    <app-plan-date-box [date]="datePlan" [soicitationStatus]="soicitationStatus"></app-plan-date-box>
   </div>
-  
-  <div *ngIf="isClient" class="price-container">
-    <app-plan-date-box [date]="datePlan" [soicitationStatus]="soicitationStatus" style="flex: 6"></app-plan-date-box>
+
+  <div *ngIf="solicitation == null" class="price-container">
+    <div *ngIf="isClient" class="date-container">
+      <p class="price-text">FECHA DE PAGO</p>
+      <p class="price-sub-text" style="margin-top: 5%">{{ datePlan }}</p>
+    </div>
     <app-plan-price-box
       [bsPrice]="plan.precio_bs"
       [$Price]="plan.precio"
