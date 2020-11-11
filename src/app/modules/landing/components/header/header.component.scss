@@ -4,7 +4,6 @@
 }
 
 .menu > li {
-  padding: 10px 20px;
   display: inline-block;
 }
 
@@ -16,7 +15,8 @@
 }
 
 .example-sidenav {
-  padding: 20px;
+  border: 1px solid #ccc;
+  top: 52px;
   position: fixed;
-  height: 320px;
+  height: 62px;
 }

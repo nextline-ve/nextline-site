@@ -7,10 +7,10 @@
         </div>
         <div class="col-md-auto">
           <ul class = "menu">
-            <li>
+            <li class="p-2">
               <button mat-button class="font-regular" [ngxScrollTo]="'plans'">Planes</button>
             </li>
-            <li>
+            <li class="p-2">
               <button mat-button class="font-regular" [ngxScrollTo]="'infoCompany'">Nosotros</button>
             </li>
 
@@ -29,30 +29,31 @@
   </section>
 </section>
 
-
-<div class="row bg-white d-lg-none">
-  <div class="col-xs-6">
-    <img src="../../../../../assets/images/logo.svg" style="max-width: 100%">
-  </div>
-  <div class="col-xs-5">
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+<div class="position-fixed">
+  <div class="row bg-white d-lg-none">
+    <div class="col-xs-6">
+      <img src="../../../../../assets/images/logo.svg" style="max-width: 100%">
+    </div>
+    <div class="col-xs-5">
+      <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <ul class = "d-inline">
-      <li>
+  <mat-drawer #drawer class="example-sidenav pt-2 pb-2" mode="side">
+    <ul class = "menu">
+      <li class="p-0">
         <button mat-button class="font-regular" [ngxScrollTo]="'plans'">Planes</button>
       </li>
-      <li>
+      <li class="p-1">
         <button mat-button class="font-regular" [ngxScrollTo]="'infoCompany'">Nosotros</button>
       </li>
-      <li>
+      <li class="p-1">
         <button mat-raised-button class="font-blue bg-white" (click)="showLodingModal()" (click)="drawer.toggle()">
           Soy Cliente
           <mat-icon>person_pin</mat-icon>
