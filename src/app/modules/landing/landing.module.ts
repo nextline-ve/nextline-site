@@ -22,6 +22,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import { PrivacyPoliciesComponent } from './pages/privacy-policies/privacy-policies.component';
 import { HomeComponent } from './pages/home/home.component';
 import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -38,19 +39,20 @@ import {ScrollToModule} from '@nicky-lenaers/ngx-scroll-to';
     PrivacyPoliciesComponent,
     HomeComponent,
   ],
-  imports: [
-    CommonModule,
-    LandingRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    SharedModule,
-    ScrollToModule.forRoot()
-  ],
+    imports: [
+        CommonModule,
+        LandingRoutingModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        SharedModule,
+        ScrollToModule.forRoot(),
+        MatSidenavModule
+    ],
 })
 export class LandingModule {
 }

@@ -8,8 +8,9 @@ import {LoginModalComponent} from '../login-modal/login-modal.component';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public dialog: MatDialog) {
-  }
+  showFiller = false;
+
+  constructor(public dialog: MatDialog) { }
 
   async ngOnInit() {
     const action = await localStorage.getItem('nextline-actions-open-login');
@@ -26,7 +27,6 @@ export class HeaderComponent implements OnInit {
   }
 
   scrollToElement($element): void {
-    console.log($element);
     $element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
 }

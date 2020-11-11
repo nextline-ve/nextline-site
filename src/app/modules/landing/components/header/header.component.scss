@@ -7,3 +7,16 @@
   padding: 10px 20px;
   display: inline-block;
 }
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+  position: fixed;
+  height: 320px;
+}
