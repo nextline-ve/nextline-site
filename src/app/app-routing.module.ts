@@ -8,13 +8,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/landing/landing.module').then((m) => m.LandingModule),
   },
-  {
+  /*{
     path: 'service-request',
     loadChildren: () =>
       import('./modules/services-request/services-request.module').then(
         (m) => m.ServicesRequestModule
       ),
-  },
+  },*/
   {
     path: 'panel',
     canActivate: [AuthGuardService],
