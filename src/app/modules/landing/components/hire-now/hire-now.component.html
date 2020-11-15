@@ -1,9 +1,9 @@
-<h2 class="text-center font-light mt-5">CONTRATA AHORA</h2>
+<h2 class="text-center font-light mt-lg-5">CONTRATA AHORA</h2>
 <h1 class="trebuchetregular text-center">La mejor conexión para todo</h1>
 <p class="text-center font-light">Planes para Empresas y Hogares</p>
-<section class="container-fluid mt-5 mb-5"><br>
-  <div class="row mt-5 center-lg">
-    <div class="col-md-2 m-5 p-5 box-service" *ngFor="let service of services; let i = index" id="service-{{i}}">
+<section class="container-lg-fluid mt-lg-5 mb-5"><br>
+  <div class="row mt-lg-5 mt-sm-2 center-lg center-sm">
+    <div class="col-md-2 col-xs-10 m-lg-5 m-sm-1 mt-sm-2 mb-sm-2 p-5 box-service text-center" *ngFor="let service of services; let i = index" id="service-{{i}}">
       <img src="./assets/images/{{service.servicio | lowercase}}.svg" width="80px" class="img-service">
       <div class="img-service"></div>
       <h3>{{service.servicio}}</h3>

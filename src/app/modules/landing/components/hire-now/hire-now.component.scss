@@ -5,7 +5,8 @@ h1  {
   box-shadow: 0px 14px 30px #459EFF33;
   border-radius: 25px;
   height: 180px;
-  
+  background: white;
+
 }
 
 .box-service:hover {
@@ -18,7 +19,9 @@ h1  {
 .box-service:hover img {
   filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);
 }
-
-#service-1{
-  margin-top: -10px !important;
+@media only screen and (min-width: 75em) {
+  #service-1{
+    margin-top: -10px !important;
+  }
 }
+
