@@ -12,3 +12,14 @@ h1  {
   box-shadow: 0px 14px 30px #459EFF33;
   border-radius: 25px;
 }
+
+.box-medium {
+  background: linear-gradient(191deg, rgba(0,98,174,1) 35%, rgba(15,151,226,1) 100%);
+}
+@media only screen and (min-width: 75em) {
+
+  .box-medium {
+    margin-top: -3rem !important;
+  }
+
+}
