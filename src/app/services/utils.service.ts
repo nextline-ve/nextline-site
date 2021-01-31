@@ -56,16 +56,10 @@ export class UtilsService {
   }
 
   calculatePaymentDay(dayDate) {
-    const now = moment();
-    const year = now.get("year");
-    const month = now.get("month");
-    const day = now.get("day");
-    const currentMonth = dayDate >= day ? 2 : 1;
-
     return moment(
-      `${dayDate}-${month + currentMonth}-${year}`,
-      "DD-MM-YYYY"
-    ).format("DD/MM/YYYY");
+        dayDate,
+        "YYYY-MM-DD"
+      ).format("DD/MM/YYYY")
   }
 
   formatBillDate(date){

@@ -33,7 +33,8 @@ export class PlanDetailComponent implements OnInit {
   async getContractStatus() {
     this.http.get("admon/contratos-status", null, true).subscribe(
       (response: any) => {
-        this.formatDate(response.results[0].dia_corte);
+        this.formatDate(response.results[0].fecha_cobro);
+        // this.formatDate(response.results[0].dia_corte);
       },
       (error) => {
         console.log(error.error.message);
