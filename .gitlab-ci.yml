@@ -1,0 +1,29 @@
+stages:
+  - prepare
+  - deploy
+
+before_staging:
+  stage: prepare
+  tags:
+    - staging
+  only:
+    - develop
+  script:
+    - cd /applications/gitlab/nextline-site
+    - git fetch
+    - git checkout develop
+    - git reset --hard
+    - git pull origin develop
+
+after_staging:
+  stage: deploy
+  tags:
+    - staging
+  only:
+    - develop
+  script:
+    - cd /applications/gitlab/nextline-site
+    - npm i
+    - ng build --prod
+    - sudo rm -rf /home/nextline-site/dist
+    - sudo mv dist /home/nextline-site
