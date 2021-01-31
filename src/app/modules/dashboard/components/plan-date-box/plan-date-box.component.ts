@@ -23,7 +23,6 @@ export class PlanDateBoxComponent implements OnInit {
   calculateDate() {
     if (this.date) {
       this.dateFormated = this.utils.calculatePaymentDay(this.date);
-      console.log(" -----", this.dateFormated);      
     }
   }
 }

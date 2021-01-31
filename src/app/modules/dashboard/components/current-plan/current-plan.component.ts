@@ -40,7 +40,6 @@ export class CurrentPlanComponent implements OnInit {
         this.contracts = response.results;
         this.plan = response.results[0].plan;
         this.datePlan = this.utils.calculatePaymentDay(response.results[0].fecha_cobro);
-        // this.datePlan = this.utils.calculatePaymentDay(response.results[0].dia_corte);
       },
       (error) => { }
     );

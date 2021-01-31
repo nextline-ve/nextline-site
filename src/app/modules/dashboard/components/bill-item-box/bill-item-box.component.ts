@@ -31,6 +31,5 @@ export class BillItemBoxComponent implements OnInit {
 
   formatDate() {
     this.dateFormated = this.utils.calculatePaymentDay(this.date);
-    // console.log("----", this.dateFormated);    
   }
 }
