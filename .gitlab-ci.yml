@@ -9,7 +9,7 @@ before_staging:
   only:
     - develop
   script:
-    - cd /applications/nextile/staging/nextline-site
+    - cd /applications/nextline/staging/nextline-site
     - git fetch
     - git checkout develop
     - git reset --hard
@@ -22,7 +22,7 @@ after_staging:
   only:
     - develop
   script:
-    - cd /applications/gitlab/nextline-site
+    - cd /applications/nextline/staging/nextline-site
     - npm i
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline-site/dist
