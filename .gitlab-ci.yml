@@ -9,7 +9,7 @@ before_staging:
   only:
     - develop
   script:
-    - cd /applications/gitlab/nextline-site
+    - cd /applications/nextile/staging/nextline-site
     - git fetch
     - git checkout develop
     - git reset --hard
@@ -25,5 +25,7 @@ after_staging:
     - cd /applications/gitlab/nextline-site
     - npm i
     - ng build --prod
-    - sudo rm -rf /home/nextline-site/dist
-    - sudo mv dist /home/nextline-site
+    - sudo rm -rf /home/gitlab-runner/nextline-site/dist
+    - sudo mv dist /home/nextline-site/nextline-site
+    - cd /home/gitlab-runner/nextline-site/dist
+    - pm2 restart "ng serve --host 127.0.0.1 --port 9100"
