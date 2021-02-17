@@ -27,5 +27,5 @@ after_staging:
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
-    - cd /home/gitlab-runner/nextline/staging/dist
-    - pm2 restart "ng serve --host 127.0.0.1 --port 9100"
+    - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
+    - pm2 restart http-server -i index.html
