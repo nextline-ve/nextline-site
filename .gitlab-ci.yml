@@ -28,4 +28,6 @@ after_staging:
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    - pm2 restart http-server -i index.html
+    - pm2 stop http-server -i index.html
+    - pm2 start http-server -i index.html
+
