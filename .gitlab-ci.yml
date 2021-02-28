@@ -1,26 +1,26 @@
 stages:
   - prepare
-  - master
+  - deploy
 
 before_staging:
   stage: prepare
   tags:
     - staging
   only:
-    - master
+    - develop
   script:
     - cd /applications/nextline/staging/nextline-site
     - git fetch
-    - git checkout master
+    - git checkout develop
     - git reset --hard
-    - git pull origin master
+    - git pull origin develop
 
 after_staging:
   stage: deploy
   tags:
     - staging
   only:
-    - master
+    - develop
   script:
     - cd /applications/nextline/staging/nextline-site
     - npm i
@@ -28,6 +28,35 @@ after_staging:
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
+    #- pm2 stop http-server -i index.html
+    #- pm2 start http-server -i index.html
+
+
+before_production:
+  stage: prepare
+  tags:
+    - production
+  only:
+    - master
+  script:
+    - cd /applications/nextline/production/nextline-site
+    - git fetch
+    - git checkout master
+    - git reset --hard
+    - git pull origin master
+
+after_production:
+  stage: deploy
+  tags:
+    - production
+  only:
+    - master
+  script:
+    - cd /applications/nextline/production/nextline-site
+    - npm i
+    - ng build --prod
+    - sudo rm -rf /home/gitlab-runner/nextline/production/dist
+    - sudo mv dist /home/gitlab-runner/nextline/production
+    - cd /home/gitlab-runner/nextline/production/dist/nextline-site
     - pm2 stop http-server -i index.html
     - pm2 start http-server -i index.html
-
