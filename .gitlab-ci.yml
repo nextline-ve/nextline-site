@@ -1,26 +1,26 @@
 stages:
   - prepare
-  - deploy
+  - master
 
 before_staging:
   stage: prepare
   tags:
     - staging
   only:
-    - develop
+    - master
   script:
     - cd /applications/nextline/staging/nextline-site
     - git fetch
-    - git checkout develop
+    - git checkout master
     - git reset --hard
-    - git pull origin develop
+    - git pull origin master
 
 after_staging:
   stage: deploy
   tags:
     - staging
   only:
-    - develop
+    - master
   script:
     - cd /applications/nextline/staging/nextline-site
     - npm i

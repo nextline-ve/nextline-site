@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   GOOGLE_MAPS_KEY: "AIzaSyBMAbWtexOQ_qiuGvHXxAGp-455u8WWkOk",
-  URL_API: "https://nextline.jaspesoft.com/api/v1/",
-  DOMAIN: "https://nextline.jaspesoft.com",
+  URL_API: "https://panel.nextline.com.ve/api/v1/",
+  DOMAIN: "https://panel.nextline.com.ve",
   firebaseConfig: {
     apiKey: "AIzaSyB_SiugFuU2jYqY-DwXl7dGe91XArYzXuA",
     authDomain: "nextline-ve.firebaseapp.com",
