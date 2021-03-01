@@ -24,12 +24,12 @@ after_staging:
   script:
     - cd /applications/nextline/staging/nextline-site
     - npm i
-    - ng build --prod
+    - ng build
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    #- pm2 stop http-server -i index.html
-    #- pm2 start http-server -i index.html
+    - pm2 stop http-server -p 7070 -i index.html
+    - pm2 start http-server -p 7070 -i index.html
 
 
 before_production:
