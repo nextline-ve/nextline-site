@@ -24,7 +24,7 @@ after_staging:
   script:
     - cd /applications/nextline/staging/nextline-site
     - npm i
-    - ng build
+    - ng build --configuration=qa
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
