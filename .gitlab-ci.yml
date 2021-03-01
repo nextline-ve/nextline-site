@@ -27,8 +27,7 @@ after_staging:
     - ng build --configuration qa
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
-    - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    - systemctl restart nextline-staging.service
+    - sudo systemctl restart nextline-staging.service
 
 
 before_production:
@@ -56,5 +55,4 @@ after_production:
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
     - sudo mv dist /home/gitlab-runner/nextline/production
-    - cd /home/gitlab-runner/nextline/production/dist/nextline-site
-    - systemctl restart nextline-production.service
+    - sudo systemctl restart nextline-production.service
