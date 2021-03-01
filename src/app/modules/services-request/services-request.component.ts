@@ -53,7 +53,6 @@ export class ServicesRequestComponent implements OnInit {
   ngOnInit(): void {
     this.prepareForms();
     this.getServices();
-    this.getPlans();
   }
 
   prepareForms() {
@@ -84,7 +83,7 @@ export class ServicesRequestComponent implements OnInit {
       (err) => {
         console.error(err);
         this.utils.showSnackBar(
-          "Error al conectarse a nuestros ervidores",
+          "Error al conectarse a nuestros servidores",
           3000
         );
       }
@@ -195,7 +194,7 @@ export class ServicesRequestComponent implements OnInit {
           longitude: -66.85264314414663,
         };
       } else {
-        
+
       }
     }
     this.addressView = type;
@@ -217,7 +216,7 @@ export class ServicesRequestComponent implements OnInit {
         }
       }
       this.utils.showSnackBar("Todos los campos son requeridos.");
-      
+
       return;
     }
   }

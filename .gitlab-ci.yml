@@ -24,12 +24,10 @@ after_staging:
   script:
     - cd /applications/nextline/staging/nextline-site
     - npm i
-    - ng build --prod
+    - ng build --configuration qa
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
-    - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    #- pm2 stop http-server -i index.html
-    #- pm2 start http-server -i index.html
+    - sudo systemctl restart nextline-staging.service
 
 
 before_production:
@@ -57,6 +55,4 @@ after_production:
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
     - sudo mv dist /home/gitlab-runner/nextline/production
-    - cd /home/gitlab-runner/nextline/production/dist/nextline-site
-    - pm2 stop http-server -i index.html
-    - pm2 start http-server -i index.html
+    - sudo systemctl restart nextline-production.service
