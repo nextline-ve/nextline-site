@@ -28,8 +28,7 @@ after_staging:
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    - pm2 stop http-server -p 7070  -i index.html --env=qa
-    - pm2 start http-server -p 7070 -i index.html --env=qa
+    - systemctl restart nextline-staging.service
 
 
 before_production:
@@ -58,5 +57,4 @@ after_production:
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
     - sudo mv dist /home/gitlab-runner/nextline/production
     - cd /home/gitlab-runner/nextline/production/dist/nextline-site
-    - pm2 stop http-server -i index.html
-    - pm2 start http-server -i index.html
+    - systemctl restart nextline-production.service
