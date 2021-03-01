@@ -18,7 +18,7 @@ import { MatStepper } from "@angular/material/stepper";
   styleUrls: ["./services-request.component.scss"],
 })
 export class ServicesRequestComponent implements OnInit {
-  @ViewChild("stepper", { static: true }) stepper: MatStepper;
+  @ViewChild("stepper", {static: true}) stepper: MatStepper;
   public serviceFormGroup: FormGroup;
   public selectedService: any;
   public selectedPlan = null;
@@ -48,7 +48,8 @@ export class ServicesRequestComponent implements OnInit {
     private router: Router,
     private session: SessionsClientService,
     private utils: UtilsService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.prepareForms();
@@ -105,7 +106,7 @@ export class ServicesRequestComponent implements OnInit {
     this.selectedService = item;
 
     this.http
-      .get("config/planes/", { tipo_servicio__id: item }, false)
+      .get("config/planes/", {tipo_servicio__id: item}, false)
       .subscribe((response: any) => {
         this.plans = response.results;
       });
@@ -149,13 +150,13 @@ export class ServicesRequestComponent implements OnInit {
       this.isLoadingLocation = true;
       this.geoUtils
         .askLocation()
-        .then((res:any) => {
+        .then((res: any) => {
           this.doesItHaveLocation = true;
           this.currentLocation = res;
           this.getAddress(
             {
               latitude: res.latitude,
-              longitude:res.longitude
+              longitude: res.longitude
             });
           this.didAskedLocationFailed = false;
           this.isLoadingLocation = false;
