@@ -23,7 +23,6 @@ after_staging:
     - develop
   script:
     - cd /applications/nextline/staging/nextline-site
-    - rm -rf node_modules
     - npm i
     - ng build --configuration qa
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
@@ -54,7 +53,6 @@ after_production:
     - master
   script:
     - cd /applications/nextline/production/nextline-site
-    - rm -rf node_modules
     - npm i
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
