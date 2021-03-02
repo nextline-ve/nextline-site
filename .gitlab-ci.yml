@@ -27,9 +27,7 @@ after_staging:
     - ng build --configuration qa
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
-    - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    - kill-port --port 7070
-    - angular-http-server -p 7070 --silent
+    - sudo systemctl restart nextline-staging.service
 
 
 before_production:
@@ -57,6 +55,4 @@ after_production:
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
     - sudo mv dist /home/gitlab-runner/nextline/production
-    - cd /home/gitlab-runner/nextline/production/dist/nextline-site
-    - kill-port --port 8080
-    - angular-http-server -p 8080 --silent
+    - sudo systemctl restart nextline-production.service
