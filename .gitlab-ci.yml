@@ -23,13 +23,13 @@ after_staging:
     - develop
   script:
     - cd /applications/nextline/staging/nextline-site
+    - rm -rf node_modules
     - npm i
     - ng build --configuration qa
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    - alias ngf='kill -9  $(lsof -t -i:7070);ng serve'
-    - sudo systemctl restart nextline-staging.service
+    - kill-port --port 7070
     - angular-http-server -p 7070 --silent
 
 
@@ -54,8 +54,11 @@ after_production:
     - master
   script:
     - cd /applications/nextline/production/nextline-site
+    - rm -rf node_modules
     - npm i
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
     - sudo mv dist /home/gitlab-runner/nextline/production
-    - sudo systemctl restart nextline-production.service
+    - cd /home/gitlab-runner/nextline/production/dist/nextline-site
+    - kill-port --port 8080
+    - angular-http-server -p 8080 --silent
