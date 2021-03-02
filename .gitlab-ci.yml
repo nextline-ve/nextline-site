@@ -28,7 +28,7 @@ after_staging:
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - cd /home/gitlab-runner/nextline/staging/dist/nextline-site
-    - sudo kill $(sudo lsof -t -i:7070)
+    - alias ngf='kill -9  $(lsof -t -i:7070);ng serve'
     - sudo systemctl restart nextline-staging.service
     - angular-http-server -p 7070 --silent
 
