@@ -92,6 +92,12 @@
     </mat-step>
 
     <mat-step [stepControl]="personalDataFormGroup" [editable]="isEditable">
+      <div class = "row center-lg">
+        <div class="col-lg-4">
+          <h2 class="primary-color">Datos personales</h2>
+          <div class="element-container blue-line"></div>
+        </div>
+      </div>
       <form [formGroup]="personalDataFormGroup">
         <div class="row w-100 element-container">
           <div class="col-lg-12 avatar-container">
@@ -127,7 +133,7 @@
           </div>
         </div>
         <!-- form -->
-        <div class="row w-100 element-container">
+        <div class="row w-100 element-container mt-4">
           <div class="col-lg-6 col-md-6 col-left">
             <mat-form-field style="width: 300px">
               <mat-label>Nombre o Razon social</mat-label>
@@ -170,7 +176,7 @@
                 formControlName="phone"
                 placeholder="Celular"
                 required
-                mask="00000000"
+                mask="0000000000"
               />
             </mat-form-field>
           </div>
@@ -246,6 +252,8 @@
                   >
                     Si
                   </button>
+                </div>
+                <div class="col-lg-4">
                   <button
                     [disabled]="isLoading"
                     mat-raised-button
