@@ -8,6 +8,7 @@ import {
   FormControl,
 } from "@angular/forms";
 import { UtilsService } from "src/app/services/utils.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private http: RequestApiService,
     private session: SessionsClientService,
     private formBuilder: FormBuilder,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,14 +44,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onSubmit");
 
     if (this.form.invalid) {
       this.utils.showSnackBar("Por favor, digite os campos corretamente...");
       console.log("Por favor, digite os campos corretamente...");
       return;
     }
-    console.log("this.form.getRawValue()", this.form.getRawValue());
 
     this.isLoading = true;
     this.http.post("config/auth/", this.form.getRawValue(), false).subscribe(
@@ -58,11 +58,10 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.session.registerSession(response);
 
-        window.location.replace("/panel");
+        this.router.navigate(['/panel']);
+
       },
       (error) => {
-        console.log(error.error);
-        console.log(error.error.message);
         this.utils.showSnackBar("Email o clave invalidos", 10000);
         this.isLoading = false;
       }
