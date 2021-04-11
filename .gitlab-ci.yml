@@ -23,8 +23,9 @@ after_staging:
     - develop
   script:
     - cd /applications/nextline/staging/nextline-site
+    - echo "$ENV_DEV" > "$(pwd)/src/environments/environment.prod.ts"
     - npm i
-    - ng build --configuration qa
+    - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/staging/dist
     - sudo mv dist /home/gitlab-runner/nextline/staging
     - sudo systemctl restart nextline-staging.service
@@ -51,6 +52,7 @@ after_production:
     - master
   script:
     - cd /applications/nextline/production/nextline-site
+    - echo "$ENV_PROD" > "$(pwd)/src/environments/environment.prod.ts"
     - npm i
     - ng build --prod
     - sudo rm -rf /home/gitlab-runner/nextline/production/dist
