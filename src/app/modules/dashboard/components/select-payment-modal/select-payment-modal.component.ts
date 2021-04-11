@@ -47,8 +47,7 @@ export class SelectPaymentModalComponent implements OnInit {
         this.isReady = true;
       },
       (error) => {
-        console.log(error.error.message);
-        console.log(error);
+        this.isReady = true;
       }
     );
   }

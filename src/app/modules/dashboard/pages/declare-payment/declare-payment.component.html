@@ -97,22 +97,23 @@
 
             <mat-form-field style="width: 300px">
               <mat-label>fecha</mat-label>
-              <input matInput required type="text" placeholder="31/12/2000" formControlName="fecha" mask="00/00/0000"/>
+              <input matInput required type="text" placeholder="dd/mm/yyyy" formControlName="fecha" mask="00/00/0000"/>
             </mat-form-field>
           </div>
           <div
             class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-md-12 center-xs start-sm start-md start-lg"
           >
             <mat-form-field style="width: 300px">
-              <mat-label>monto que se pago</mat-label>
+              <mat-label>monto que se pagó</mat-label>
               <input
-                mask="0000000"
+                thousandSeparator="."
+                [allowNegativeNumbers]="false" mask="separator.2"
                 matInput
                 formControlName="monto"
-                placeholder="monto que se pago"
                 type="text"
                 required
               />
+              <mat-hint>Separador de decimales es la coma (,)</mat-hint>
             </mat-form-field>
           </div>
         </div>

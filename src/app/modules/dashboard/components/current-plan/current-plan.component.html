@@ -9,13 +9,8 @@
     </h5>
   </div>
 
-  <div class="row center-xs center-sm center-md center-lg">
+  <div class="row center-xs center-sm center-md center-lg" *ngIf="!loading">
     <div class="col-xs-4 col-sm-4 col-md-5 white-circle p-lg-4 p-sm-1">
-      <img
-        width="50"
-        src="../../../../../assets/images/icon_white_test.svg"
-        alt=""
-      />
       <h1 class="font-white m-0 font-bold">{{ plan.plan }}</h1>
       <p class="font-white m-0">PLAN</p>
     </div>
