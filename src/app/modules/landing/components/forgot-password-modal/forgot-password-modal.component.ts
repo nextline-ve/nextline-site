@@ -27,7 +27,8 @@ export class ForgotPasswordModalComponent implements OnInit {
     private http: RequestApiService,
     private session: SessionsClientService,
     private utils: UtilsService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.prepareForm();
@@ -46,7 +47,7 @@ export class ForgotPasswordModalComponent implements OnInit {
   send() {
     if (this.forgotFormGroup.invalid) {
       this.utils.showSnackBar(
-        "Por favor, digite os campos corretamente...",
+        'Por favor, digite os campos corretamente...',
         5000
       );
       return;
@@ -55,7 +56,7 @@ export class ForgotPasswordModalComponent implements OnInit {
 
     this.http
       .post(
-        "config/restaurar-clave//",
+        'config/restaurar-clave/',
         this.forgotFormGroup.getRawValue(),
         false
       )
