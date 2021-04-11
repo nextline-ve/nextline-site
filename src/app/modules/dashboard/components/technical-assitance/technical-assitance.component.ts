@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 })
 export class TechnicalAssitanceComponent implements OnInit {
   public tickets = [];
+  public loading = true;
 
   constructor(
     private router: Router,
@@ -24,9 +25,11 @@ export class TechnicalAssitanceComponent implements OnInit {
   loadTickets() {
     this.http.get('support/tickets/', null, true).subscribe(
       (response: any) => {
+        this.loading = false;
         this.tickets = response.results;
       },
       (error) => {
+        this.loading = false;
         if (error.status === 401) {
           this.router.navigateByUrl('/');
         }

@@ -15,6 +15,7 @@ export class CurrentPlanComponent implements OnInit {
   public datePlan;
   public isClient: boolean;
   public soicitationStatus: any = '';
+  public loading = true;
 
   constructor(
     private sessions: SessionsClientService,
@@ -37,11 +38,14 @@ export class CurrentPlanComponent implements OnInit {
   async getContractStatus() {
     this.http.get('admon/contratos-status', null, true).subscribe(
       (response: any) => {
+        this.loading = false;
         this.contracts = response.results;
         this.plan = response.results[0].plan;
         this.datePlan = this.utils.calculatePaymentDay(response.results[0].fecha_cobro);
       },
-      (error) => { }
+      (error) => {
+        this.loading = false;
+      }
     );
   }
 

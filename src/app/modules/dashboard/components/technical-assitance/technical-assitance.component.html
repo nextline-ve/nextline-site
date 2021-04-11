@@ -26,7 +26,7 @@
     <h5 class="title-3">Historico de tickets</h5>
   </div>
 
-  <div
+  <div *ngIf="!loading"
     class="row items-container"
     style=""
 
@@ -40,9 +40,16 @@
       [date]="ticket.fecha_creacion"
       (click)="goToChact(ticket)"
     ></app-ticket-item-box>
- 
+
     <div *ngIf="tickets.length == 0" class="center-lg text-center empty-div">
       <h3>Sin items</h3>
     </div>
   </div>
+
+  <div class="row center-lg center-sm mb-5" *ngIf="loading">
+    <div class="col-lg-3 col-sm-2">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+
 </div>

@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class BillsComponent implements OnInit {
   public bills = [];
+  public loading = true;
   @Input() mustShow = true;
   @Input() isSmall = false;
 
@@ -28,9 +29,11 @@ export class BillsComponent implements OnInit {
   loadBills() {
     this.http.get('admon/factura/', null, true).subscribe(
       (response: any) => {
+        this.loading = false;
         this.bills = response.results;
       },
       (error) => {
+        this.loading = false;
       }
     );
   }
