@@ -58,18 +58,10 @@
       <div class="col-md-6 col-xs-12">
         <div class="row">
           <div class="col-md-4 col-xs-12">
-            <b>Monto Base:</b>
+            <b>Sub Total:</b>
           </div>
           <div class="col-md-6 col-xs-12">
-            <p class="text-gray">{{bill.monto_base}} USD / {{bill.monto_base_bs}}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 col-xs-12">
-            <b><span>I.V.A ( {{bill.iva}}%)</span>:</b>
-          </div>
-          <div class="col-md-6 col-xs-12">
-            <p class="text-gray">{{bill.monto_iva}} USD / {{bill.monto_iva_bs}}</p>
+            <p class="text-gray">{{bill.subtotal}} USD / {{bill.subtotal_bs}}</p>
           </div>
         </div>
         <div class="row" *ngIf="bill.monto_descuento > 0">
@@ -80,6 +72,23 @@
             <p class="text-gray">{{bill.monto_descuento}} USD / {{bill.monto_descuento_bs}}</p>
           </div>
         </div>
+        <div class="row" >
+          <div class="col-md-4 col-xs-12">
+            <b><span>I.V.A ( {{bill.iva}}%)</span>:</b>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <p class="text-gray">{{bill.monto_iva}} USD / {{bill.monto_iva_bs}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <b>Total a Pagar:</b>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <p class="text-gray">{{bill.total}} USD / {{bill.total_bs}}</p>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="row mt-5 center-xs">
