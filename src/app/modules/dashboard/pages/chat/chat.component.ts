@@ -5,15 +5,16 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {SessionsClientService} from 'src/app/services/sessions-client.service';
-import {RequestApiService} from 'src/app/services/request-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { SessionsClientService } from 'src/app/services/sessions-client.service';
+import { RequestApiService } from 'src/app/services/request-api.service';
 import {
   AngularFireStorage,
 } from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-chat',
@@ -37,7 +38,8 @@ export class ChatComponent implements OnInit {
   public avatar =
     'https://pbs.twimg.com/profile_images/527229878211321857/Ken4pm5u_400x400.jpeg';
   public percentage: Observable<number>;
-  public isFinished: Boolean = false;
+  public isFinished: boolean;
+  private urlChat: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,22 +53,27 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((res: any) => {
-      console.log(res);
       this.ticketId = res.id;
       this.ticket = res;
       this.checkIfIsFinished(res.status);
 
+      this.configUrlChat();
       this.loadChats();
       this.getProfile();
     });
   }
 
+  private configUrlChat() {
+    this.urlChat = 'chatsCollections/' + this.ticketId + ' - ' + environment.firebaseEnv;
+  }
+
+  // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewChecked() {
     this.scrollToBottomContent();
   }
 
-  checkIfIsFinished(status){
-    if (status == "S" || status == "A" || status == "F") this.isFinished = true;
+  checkIfIsFinished(status) {
+    (status === 'S' || status === 'A' || status === 'F') ? this.isFinished = true : this.isFinished = false;
   }
 
   async getProfile() {
@@ -77,8 +84,6 @@ export class ChatComponent implements OnInit {
         this.getClientId();
       },
       (error) => {
-        console.log(error.error.message);
-        console.log(error);
       }
     );
   }
@@ -93,7 +98,7 @@ export class ChatComponent implements OnInit {
   verifyAvatar(img) {
     if (img == null) {
       this.avatar =
-        "../../../../../assets/images/default-avatar.jpeg";
+        '../../../../../assets/images/default-avatar.jpeg';
     } else {
       this.avatar = img;
     }
@@ -101,7 +106,7 @@ export class ChatComponent implements OnInit {
 
   loadChats() {
     this.db.database
-      .ref('chatsCollections/' + this.ticketId)
+      .ref(this.urlChat)
       .on('value', (snapshot) => {
         if (snapshot.exists()) {
           this.updateChats();
@@ -116,7 +121,7 @@ export class ChatComponent implements OnInit {
   async updateChats() {
     this.zone.run(async () => {
       this.chats = await this.db.database
-        .ref('chatsCollections/' + this.ticketId)
+        .ref(this.urlChat)
         .once('value')
         .then((snapshot) => {
           return Object.keys(snapshot.val()).map((key) => snapshot.val()[key]);
@@ -131,11 +136,13 @@ export class ChatComponent implements OnInit {
   scrollToBottomContent() {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { }
+    } catch (err) {
+    }
   }
 
   onFileChanged(event: any) {
-    if (this.isFinished) return;
+    if (this.isFinished)
+      return;
 
     this.isFileLoading = true;
     this.myFile = event.target.files[0];
@@ -183,7 +190,7 @@ export class ChatComponent implements OnInit {
       type: 'img',
     };
     this.db.database
-      .ref('chatsCollections/' + this.ticketId)
+      .ref(this.urlChat)
       .push(this.fullMessage);
   }
 
@@ -221,14 +228,14 @@ export class ChatComponent implements OnInit {
       type: 'text',
     };
 
-    this.msg = "";
+    this.msg = '';
 
     this.db.database
-      .ref('chatsCollections/' + this.ticketId)
+      .ref(this.urlChat)
       .push(this.fullMessage);
   }
 
   getMessage(chat: any) {
-    return (chat.type === "img") ? chat.imageUrl : chat.message;
+    return (chat.type === 'img') ? chat.imageUrl : chat.message;
   }
 }
